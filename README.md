@@ -1,6 +1,6 @@
 # Web_Programming_25
 
-##constraints
+## Constraints
 - You must create it on your own platform and populate it in a massive way (go ahead and use external sources, or create synthetic data with whatever system you think is useful
 - the important thing is to have some numerosity and variety in the data)
 - You will have to develop an application for which you will be given an interface template (one per group)
@@ -8,7 +8,7 @@
 - Each application will have to realize all CRUD 
 operations for a particular table that will be given.
 
-##FadeInDB(Our Group)
+## FadeInDB(Our Group)
 1. Codice Progetto: 73
 2. DB di riferimento: Ex 1 - Museo
 3. Tabella per CRUD: Opera
