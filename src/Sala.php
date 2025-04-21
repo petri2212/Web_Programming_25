@@ -18,7 +18,6 @@
         <div class="contenuto">Contenuto/risultati
 
         </div>
-        
     </div>
 </body>
 
