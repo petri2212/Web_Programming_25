@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Opera</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="griglia">
-        <header>Header</header>
-        <nav>Nav</nav>
+<?php	
+    include 'footer.html';
+	include 'nav.html';
+?>
+        <header>OperaDb</header>
+
         <div class="filtro">Filtro Ricerca</div>
-        <div class="contenuto">Contenuto/risultati</div>
-        <footer>Footer</footer>
+        <div class="contenuto">Contenuto/risultati
+
+        </div>
+        
     </div>
 </body>
+
 </html>
