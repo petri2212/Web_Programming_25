@@ -23,20 +23,27 @@ ol {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #333;
+	background-color: #9dd;
+	
 	position: relative;
 	float:left;
 }
+
+
+
+li {
+}
+
 li a {
 	display: block;
-	color: white;
+	color: black;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
 }
 
 li a:hover:not(.active) {
-	background-color: #111;
+	background-color: #aee;
 }
 
 .active {
@@ -71,11 +78,14 @@ nav{
     border: 1px solid #000;
 }
 
-.contenuto{
+#contenuto{
     grid-area: contenuto;
     background-color: #fef9d5;
     padding: 20px;
     border: 1px solid #000;
+    height:55vh;
+	width: 75vw;
+    overflow-y:scroll;
 }
 
 footer{
