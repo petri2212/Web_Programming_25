@@ -16,16 +16,7 @@
 <header>AutoreDb</header>
 
         <div class="filtro">Filtro Ricerca</div>
-        <div class="contenuto">Contenuto/risultati
-
-        <ol>
-	    <li><a href="Autore.php">Autore</a></li> 
-	    <li><a href="Opera.php">Opera</a></li> 
-	    <li><a href="Sala.php">Sala</a></li> 
-	    <li><a href="Tema.php">Tema</a></li>	   	  
-	</ol>
-
-        </div>
+        <div class="contenuto">Contenuto/risultati </div>
         
     </div>
 </body>
