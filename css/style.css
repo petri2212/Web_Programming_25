@@ -144,3 +144,9 @@ tr th{
     background: #fff;
     color: #434f5a
   }
+.rigaPari { 
+	background: #ebeeee;
+}
+.rigaDispari {  
+	background: #adb5bd;
+}
