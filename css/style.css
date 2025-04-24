@@ -69,12 +69,13 @@ p3 {
 }
 
 .myInput {
-    width: 300px;
-    height: 100%;
+    width: auto;
     position: relative;
     align-items: center;
     font-size: 18px;
+    border-radius: 3px;
 }
+
 
 hr {
     border: none;
@@ -121,4 +122,8 @@ footer {
     color: #F8F9FA;
     background-color: #212529;
     padding: 20px;
+}
+
+tr th{
+    padding: 0px 15px;
 }
