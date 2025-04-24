@@ -25,8 +25,8 @@
 		</header>
 
 		<div class="filtro">
-			<p3>Filtro Ricerca</p3>
-			<input type="text" name="filtroRicerca" class="myInput">
+			<input type="text" name="filtroRicerca" id="Descrizione" class="myInput" placeholder="Descrizione">
+			<input type="submit" value="Cerca" id="idInvio"/>
 		</div>
 
 		<div class="contenuto">

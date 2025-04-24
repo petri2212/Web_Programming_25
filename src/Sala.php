@@ -23,8 +23,10 @@
 		</header>
 
 		<div class="filtro">
-			<p3>Filtro Ricerca</p3>
-			<input type="text" name="filtroRicerca" class="myInput">
+			<input type="text" name="filtroRicerca" id="Nome" class="myInput" placeholder="Nome">
+			<input type="text" name="filtroRicerca" id="Superficie" class="myInput" placeholder="Superficie">
+			<input type="text" name="filtroRicerca" id="Tema_Sala" class="myInput" placeholder="Tema Sala">
+			<input type="submit" value="Cerca" id="idInvio"/>
 		</div>
 
 		<div class="contenuto">
