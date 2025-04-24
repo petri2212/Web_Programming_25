@@ -30,7 +30,8 @@
 		</div>
 
 		<div class="contenuto">
-			<?php
+
+		<?php	      			
 			try {
 				// query
 				$result = $conn->query("SELECT * FROM sala");
@@ -70,6 +71,7 @@
 				<?php
 			}
 			?>
+
 		</div>
 	</div>
 </body>
