@@ -25,11 +25,13 @@
 		</header>
 
 		<div class="filtro">
-			<p3>Filtro Ricerca</p3>
-			<input type="text" name="filtroRicerca" class="myInput">
+            <form name="myform" method="POST">
+			    <input type="text" name="Descrizione" id="n1" class="myInput" placeholder="Descrizione">
+			    <input type="submit" value="Cerca" id="idInvio"/>
+			</form>
 		</div>
 
-		<div class="contenuto">
+		<div class="contenuto" id="pippo">
 			<?php
 			try {
 				// query
@@ -66,6 +68,81 @@
 				<?php
 			}
 			?>
+
+        <script> 
+        let persone;
+
+         fetch('./select.php', {
+
+            method : 'POST',
+            header: {
+                'Content-Type' : 'application/json'
+            }
+        })
+        
+                .then(response => response.json())
+                .then(data => {
+                    persone = data;
+                    console.log('dati ricevuti: ',data);
+                    let tabella = ` 
+                    <table class="tabella">
+					<tr class="testata">
+						<th>Codice </th>
+						<th>Descrizione </th>
+					</tr>
+                        ${generaRighe(data)}
+
+                    </table>
+                    `;
+                   // let tabellaContainer = document.querySelector("#pippo");
+
+                   document.getElementById("pippo").innerHTML = tabella;
+                   // tabellaContainer.insertAdjacentHTML('beforeend', tabella);
+                
+                  //  tabellaContainer.in
+                    //tabellaContainer.innerHTML(tabella)
+                })
+                .catch((error)=>{
+                    console.log('errore: ', error);
+
+/*
+                    .then(response => response.text())
+  .then(data => {     try {
+    console.log(JSON.parse(data));
+  } catch (e) {
+    console.error('Error parsing JSON:', data);
+  }   
+*/               
+
+            });
+
+            function generaRighe(data){
+                let righe = '';
+                data.forEach(data => {
+                    let riga = `
+                    <tr>
+                        <td> ${data.codice} </td>
+                         <td> ${data.descrizione} </td>
+                    </tr>
+                    `;
+                    righe+=riga;
+                });
+                return righe;
+
+
+            }
+
+
+
+
+
+
+
+
+        </script>
+           
+
+
 
 		</div>
 
