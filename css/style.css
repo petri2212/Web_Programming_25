@@ -111,7 +111,7 @@ nav {
     background-color: #F8F9FA;
     font-size: 20px;
     padding: 20px;
-    border: 1px solid #ADB5BD;
+    border: 1px solid #adb5bd;
     overflow-y: scroll;
 }
 
@@ -126,4 +126,11 @@ footer {
 
 tr th{
     padding: 0px 15px;
+}
+
+.rigaPari { 
+	background: #ebeeee;
+}
+.rigaDispari {  
+	background: #adb5bd;
 }
