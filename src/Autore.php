@@ -33,7 +33,10 @@
 			<input type="text" name="filtroRicerca" id="dataNascita" class="myInput" placeholder="data di nascita">
 			<input type="text" name="filtroRicerca" id="vivoMorto" class="myInput" placeholder="vivo o morto">
 			<input type="text" name="filtroRicerca" id="dataMorte" class="myInput" placeholder="data di nascita">
+
+			<input type="submit" class="invio" value="Cerca"/>
 		</div>
+		
 
 
 		<div class="contenuto">
