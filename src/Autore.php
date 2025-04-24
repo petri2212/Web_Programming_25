@@ -26,7 +26,13 @@
 
 		<div class="filtro">
 			<p3>Filtro Ricerca</p3>
-			<input type="text" name="filtroRicerca" class="myInput">
+			<input type="text" name="filtroRicerca" id="codice" class="myInput" placeholder="codice">
+			<input type="text" name="filtroRicerca" id="nome" class="myInput" placeholder="nome">
+			<input type="text" name="filtroRicerca" id="cognome" class="myInput" placeholder="cognome">
+			<input type="text" name="filtroRicerca" id="nazione" class="myInput" placeholder="nazione">
+			<input type="text" name="filtroRicerca" id="dataNascita" class="myInput" placeholder="data di nascita">
+			<input type="text" name="filtroRicerca" id="vivoMorto" class="myInput" placeholder="vivo o morto">
+			<input type="text" name="filtroRicerca" id="dataMorte" class="myInput" placeholder="data di nascita">
 		</div>
 
 
@@ -68,7 +74,12 @@
 							<td> <?php echo $riga["nazione"]; ?> </td>
 							<td> <?php echo $riga["dataNascita"]; ?> </td>
 							<td> <?php echo $riga["tipo"]; ?> </td>
-							<td> <?php echo $riga["dataMorte"]; ?> </td>
+							<td> <?php if($riga["dataMorte"] != null){
+								echo $riga["dataMorte"]; 
+								}else{
+									echo "--------------";}
+									?> 
+							</td>
 						</tr>
 						<?php
 					}
