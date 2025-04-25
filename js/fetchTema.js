@@ -15,7 +15,7 @@ function cerca() {
    //console.log(formData);
 
 //,body: obj
-   fetch('../queries/select.php', {
+   fetch('../queries/select_tema.php', {
 
       method: 'POST',
       header: {
