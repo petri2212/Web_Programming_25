@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Tema</title>
+	<title>Autore</title>
 	<link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -25,95 +25,53 @@
 		</header>
 
 		<div class="filtro">
-		<!-- <form name="myform" method="POST">
-		    <input id="n1" name="name" type="text"/>
-		    <input type="submit" value="Cerca"/>
-		  </form> -->	
-		
-		  <form name="myform" method="POST">
-			<input type="text" name="Descrizione" id="n1" class="myInput" placeholder="Descrizione">
-			<input type="submit" class="invio" value="Cerca" id="idInvio"/>
+            <form id= "form" name="myform" method="POST">
+			    <input type="text" name="Descrizione" id="n1" class="myInput" placeholder="Descrizione">
+			    <input type="submit" class="invio" value="Cerca"  id="idInvio" onclick="cerca()"/>
 			</form>
 		</div>
 
-		<div class="contenuto">
+		<div class="contenuto" id="cont1">
 			<?php
-	if(count($_POST)==0 || $_POST["Descrizione"]=="")
-	{           			
-		try {
-			// query
-			$result = $conn->query("SELECT * FROM tema");
-		} catch (PDOException $e) {
-			echo "DB Error on Query: " . $e->getMessage();
-			$error = true;
-		}
-		if (!$error) {
-			?>
-			<table class="tabella">
-				<tr class="testata">
-					<th>Codice </th>
-					<th>Descrizione </th>
-				</tr>
-				<?php
-				$i = 0;
-				foreach ($result as $riga) {
-					$i = $i + 1;
-					$classRiga = 'class="rigaDispari"';
-					if ($i % 2 == 0) {
-						$classRiga = 'class="rigaPari"';
-					}
-					?>
-					<tr <?php echo $classRiga; ?>>
-							<td> <?php echo $riga["codice"]; ?> </td>
-							<td> <?php echo $riga["descrizione"]; ?> </td>
-						</tr>
-
-					
-					<?php
-				}
-				?>
-			</table>
-
-				<?php
-			}
-		}  else {  
-			$name=$_POST["Descrizione"];
-			$query="SELECT * FROM tema " .
-							"WHERE descrizione LIKE '%" . $name ."%' ";
-		  echo "<p>Query: " . $query . "</p>";
 			try {
-				$result = $conn->query($query);
-			} catch(PDOException$e) {
+				// query
+				$result = $conn->query("SELECT * FROM tema");
+			} catch (PDOException $e) {
 				echo "DB Error on Query: " . $e->getMessage();
 				$error = true;
 			}
-			if(!$error)
-			{           
-	?>
-					<table class="tabella">
-						<tr class="testata">
-							<th>Descrizione che contiene: <?php echo $name; ?> </th> 
+			if (!$error) {
+				?>
+				<table class="tabella">
+					<tr class="testata">
+						<th>Codice </th>
+						<th>Descrizione </th>
+					</tr>
+					<?php
+					$i = 0;
+					foreach ($result as $riga) {
+						$i = $i + 1;
+						$classRiga = 'class="rigaDispari"';
+						if ($i % 2 == 0) {
+							$classRiga = 'class="rigaPari"';
+						}
+						?>
+
+						<tr <?php echo $classRiga; ?>>
+							<td> <?php echo $riga["codice"]; ?> </td>
+							<td> <?php echo $riga["descrizione"]; ?> </td>
 						</tr>
-	<?php
-			$i=0;
-			foreach($result as $riga) {
-				$i=$i+1;
-				$classRiga='class="rigaDispari"';
-				if($i%2==0) {
-					$classRiga='class="rigaPari"';
-				}
-	?>
-						<tr <?php	echo $classRiga; ?> > 
-							<td > <?php echo $riga["descrizione"]; ?> </td> 
-						</tr>
-	<?php } ?>
+						<?php
+					}
+					?>
 				</table>
-			<?php }  } ?>
-
-
+				<?php
+			}
+			?>
 		</div>
-
 	</div>
+
+	<script src = "../js/fetchTema.js"></script>
 </body>
 
 </html>
