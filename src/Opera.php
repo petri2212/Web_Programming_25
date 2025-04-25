@@ -24,7 +24,15 @@
 
 		<div class="filtro">
 			<p3>Filtro Ricerca</p3>
-			<input type="text" name="filtroRicerca" class="myInput">
+			<input type="text" name="filtroRicerca" id="codice" class="myInput" placeholder="codice">
+			<input type="text" name="filtroRicerca" id="autore" class="myInput" placeholder="autore">
+			<input type="text" name="filtroRicerca" id="titolo" class="myInput" placeholder="titolo">
+			<input type="text" name="filtroRicerca" id="annoAcquisto" class="myInput" placeholder="anno di acquisto">
+			<input type="text" name="filtroRicerca" id="annoRealizzazione" class="myInput" placeholder="anno di realizzazione">
+			<input type="text" name="filtroRicerca" id="tipo" class="myInput" placeholder="tipo">
+			<input type="text" name="filtroRicerca" id="sala" class="myInput" placeholder="numero sala">
+
+			<input type="submit" class="invio" value="Cerca"/>
 		</div>
 
 		<div class="contenuto">
@@ -42,7 +50,7 @@
 					<tr class="testata">
 						<th>Codice </th>
 						<th>Autore </th>
-						<th>titolo </th>
+						<th>Titolo </th>
 						<th>Anno Acquisto </th>
 						<th>Anno realizzazione </th>
 						<th>Tipo</th>

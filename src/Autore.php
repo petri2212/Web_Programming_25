@@ -32,7 +32,7 @@
 			<input type="text" name="filtroRicerca" id="nazione" class="myInput" placeholder="nazione">
 			<input type="text" name="filtroRicerca" id="dataNascita" class="myInput" placeholder="data di nascita">
 			<input type="text" name="filtroRicerca" id="vivoMorto" class="myInput" placeholder="vivo o morto">
-			<input type="text" name="filtroRicerca" id="dataMorte" class="myInput" placeholder="data di nascita">
+			<input type="text" name="filtroRicerca" id="dataMorte" class="myInput" placeholder="data di morte">
 
 			<input type="submit" class="invio" value="Cerca"/>
 		</div>
@@ -57,7 +57,7 @@
 						<th>Cognome </th>
 						<th>Nazione </th>
 						<th>Data Nascita </th>
-						<th>VIVO/MORTO </th>
+						<th>Vivo/Morto </th>
 						<th>Data Morte </th>
 					</tr>
 					<?php

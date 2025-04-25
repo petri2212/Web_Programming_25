@@ -20,7 +20,7 @@ ol {
     list-style-type: none;
     font-size: 30px;
     margin: 0;
-    padding: 0px 20px;
+    padding: 0;
     overflow: hidden;
     position: relative;
     float: left;
@@ -31,18 +31,21 @@ li a {
     color: #212529;
     text-align: center;
     position: relative;
+    left: -10px;
     padding: 20px;
-    width: 100px;
+    width: 140px;
     text-decoration: none;
     border-radius: 25px;
-    transition: background-color 0.4s ease, transform 0.4s ease;
+    transition: 0.3s ease;
+    -webkit-transition:0.3s ease;
 }
 
-li a:hover, li a .active {
+li a:hover, li a.active {
     color: #212529;
-    padding: 20px 27px;
+    padding: 20px 40px;
     font-weight: bolder;
-    transition: font-weight 0s, all 0.35s ease;
+    transition: all 0.3s;
+    -webkit-transition:0.3s ease;
 }
 
 a {
@@ -55,7 +58,7 @@ a:hover {
 
 h1 {
     font-size: 200%;
-    color: #E9ECEF;
+    color: #f6f8f9;
 }
 
 p3 {
@@ -70,7 +73,6 @@ p3 {
     font-size: 18px;
     border-radius: 3px;
     margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 
@@ -129,6 +131,7 @@ tr th{
 .invio {
     min-width: 180px;
     color: #fff;
+    padding-top: 100px;
     padding: 5px 10px;
     font-weight: bold;
     cursor: pointer;
@@ -139,14 +142,15 @@ tr th{
     border-radius: 5px;
     border: 2px solid #434f5a;
     background: #434f5a;
+    margin-top: 10px;
   }
   .invio:hover {
     background: #fff;
     color: #434f5a
   }
 .rigaPari { 
-	background: #ebeeee;
+	background: #f7fbfc;
 }
 .rigaDispari {  
-	background: #adb5bd;
+	background: #cadbee;
 }
