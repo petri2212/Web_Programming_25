@@ -45,7 +45,7 @@
 				<table class="tabella">
 					<tr class="testata">
 						<th>Codice </th>
-						<th>Descrizione </th>
+						<th>Nome </th>
 					</tr>
 					<?php
 					$i = 0;

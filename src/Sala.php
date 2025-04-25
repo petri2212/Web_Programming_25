@@ -23,13 +23,15 @@
 		</header>
 
 		<div class="filtro">
-			<input type="text" name="filtroRicerca" id="Nome" class="myInput" placeholder="Nome">
-			<input type="text" name="filtroRicerca" id="Superficie" class="myInput" placeholder="Superficie">
-			<input type="text" name="filtroRicerca" id="Tema_Sala" class="myInput" placeholder="Tema Sala">
-			<input type="submit" class="invio" value="Cerca" id="idInvio"/>
+		<form id= "form" name="myform" method="POST">
+			<input type="text" name="Nome" id="n1" class="myInput" placeholder="Nome">
+			<input type="text" name="Superficie" id="s1" class="myInput" placeholder="Superficie">
+			<input type="text" name="Tema_Sala" id="t1" class="myInput" placeholder="Tema Sala">
+			<input type="submit" class="invio" value="Cerca" id="idInvio" onclick="cerca()"/>
+		</form>
 		</div>
 
-		<div class="contenuto">
+		<div class="contenuto" id="cont2">
 
 		<?php	      			
 			try {
@@ -43,7 +45,7 @@
 				?>
 				<table class="tabella">
 					<tr class="testata">
-						<th>Numero </th>
+						<th>Codice </th>
 						<th>Nome </th>
 						<th>Superficie </th>
 						<th>Tema Sala </th>
@@ -71,9 +73,9 @@
 				<?php
 			}
 			?>
-
 		</div>
 	</div>
+	<script src = "../js/fetchSala.js"></script>
 </body>
 
 </html>
