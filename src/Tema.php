@@ -32,7 +32,7 @@
 		
 		  <form name="myform" method="POST">
 			<input type="text" name="Descrizione" id="n1" class="myInput" placeholder="Descrizione">
-			<input type="submit" value="Cerca" id="idInvio"/>
+			<input type="submit" class="invio" value="Cerca" id="idInvio"/>
 			</form>
 		</div>
 
