@@ -1,34 +1,34 @@
 <?php
 require_once('config.php');
 
-$Nome = $connessione ->real_escape_string($_POST['Nome'] ?? null );
-$Superficie = $connessione ->real_escape_string($_POST['Superficie'] ?? null);
-$Tema_s = $connessione ->real_escape_string($_POST['Tema_Sala'] ?? null);
+$Nome = $connessione->real_escape_string($_POST['Nome'] ?? null);
+$Superficie = $connessione->real_escape_string($_POST['Superficie'] ?? null);
+$Tema_s = $connessione->real_escape_string($_POST['Tema_Sala'] ?? null);
 
-    $sql = "SELECT * FROM sala ";
-    $count = 0;
+$sql = "SELECT * FROM sala ";
+$count = 0;
 
-    if($Tema_s != NULL && $count == 0){
-        $sql .= "WHERE temaSala = '$Tema_s'";
-        $count++;
-    }elseif($Tema_s != NULL ){
-        $sql .= "AND temaSala = '$Tema_s'";
-        $count++;
-    }
+if ($Tema_s != NULL && $count == 0) {
+    $sql .= "WHERE temaSala = '$Tema_s'";
+    $count++;
+} elseif ($Tema_s != NULL) {
+    $sql .= "AND temaSala = '$Tema_s'";
+    $count++;
+}
 
-    if(!($Nome == NULL ) && $count == 0){
-        $sql .= "WHERE nome LIKE '%" . $Nome ."%'";
-        $count++;
-    }elseif($Nome != NULL){
-        $sql .= "AND nome LIKE '%" . $Nome ."%'";
-    }
+if (!($Nome == NULL) && $count == 0) {
+    $sql .= "WHERE nome LIKE '%" . $Nome . "%'";
+    $count++;
+} elseif ($Nome != NULL) {
+    $sql .= "AND nome LIKE '%" . $Nome . "%'";
+}
 
-    if(!($Superficie == NULL) && $count ==0){
-        $sql .= "WHERE superficie = '$Superficie'";
-        $count++;
-    } elseif($Superficie != NULL){
-        $sql .= "AND superficie = '$Superficie'";
-    }
+if (!($Superficie == NULL) && $count == 0) {
+    $sql .= "WHERE superficie = '$Superficie'";
+    $count++;
+} elseif ($Superficie != NULL) {
+    $sql .= "AND superficie = '$Superficie'";
+}
 
 
 if ($result = $connessione->query($sql)) {
@@ -40,7 +40,7 @@ if ($result = $connessione->query($sql)) {
         $tmp['superficie'] = $row['superficie'];
         $tmp['temaSala'] = $row['temaSala'];
         array_push($data, $tmp);
-        
+
 
     }
     echo json_encode($data);

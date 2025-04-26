@@ -1,9 +1,9 @@
 <?php
 require_once('config.php');
 
-$descrizione = $connessione ->real_escape_string($_POST['Descrizione']);
+$descrizione = $connessione->real_escape_string($_POST['Descrizione']);
 
-$sql = "SELECT * FROM tema WHERE descrizione LIKE '%" . $descrizione ."%' ";//WHERE descrizione = "Arte classica" WHERE  descrizione = $descrizione
+$sql = "SELECT * FROM tema WHERE descrizione LIKE '%" . $descrizione . "%' ";//WHERE descrizione = "Arte classica" WHERE  descrizione = $descrizione
 
 if ($result = $connessione->query($sql)) {
     $data = [];
