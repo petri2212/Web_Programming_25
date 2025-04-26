@@ -4,6 +4,7 @@ let contenuto = document.getElementById("contenuto");
 
 
 function cerca() {
+   window.history.replaceState({}, document.title, window.location.pathname);
    event.preventDefault();
 
    const form = document.querySelector("#form");

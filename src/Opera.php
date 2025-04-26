@@ -28,8 +28,8 @@
 			<form id="form" name="myform" method="POST">
 				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
 				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">
-				<input type="number" min="1900" max="2100" name="AnnoAquisto" id="aa" class="myInput" placeholder="anno di acquisto">
-				<input type="number" min="1900" max="2100" name="AnnoRealizzazione" id="ar" class="myInput" placeholder="anno di realizzazione">
+				<input type="number" min="2000" max="2020" name="AnnoAquisto" id="aa" class="myInput" placeholder="anno di acquisto">
+				<input type="number" min="1990" max="2020" name="AnnoRealizzazione" id="ar" class="myInput" placeholder="anno di realizzazione">
 
 				<select id="Tipo" name="Tipo" class="myInput">
 					<option value="">-- Tipologia opera --</option>
@@ -73,7 +73,7 @@
 
 						<li <?php echo $classRiga; ?>>
 							<div class="col"> <?php echo $riga["codice"]; ?> </div>
-							<div class="col"> <?php echo $riga["autore"]; ?> </div>
+							<div class="col"> <a href="Autore.php?nome=<?php echo $riga["autore"]; ?>"><?php echo $riga["autore"]; ?> </a></div>
 							<div class="col"> <?php echo $riga["titolo"]; ?> </div>
 							<div class="col"> <?php echo $riga["annoAcquisto"]; ?> </div>
 							<div class="col"> <?php echo $riga["annoRealizzazione"]; ?> </div>
