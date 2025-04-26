@@ -23,7 +23,6 @@
 		</header>
 
 		<div class="filtro">
-			<p3>Filtro Ricerca</p3>
 			<input type="text" name="filtroRicerca" id="codice" class="myInput" placeholder="codice">
 			<input type="text" name="filtroRicerca" id="autore" class="myInput" placeholder="autore">
 			<input type="text" name="filtroRicerca" id="titolo" class="myInput" placeholder="titolo">
@@ -51,8 +50,8 @@
 						<th>Codice </th>
 						<th>Autore </th>
 						<th>Titolo </th>
-						<th>Anno Acquisto </th>
-						<th>Anno realizzazione </th>
+						<th>Anno <br>acquisto </th>
+						<th>Anno <br>realizzazione </th>
 						<th>Tipo</th>
 						<th>Esposta in sala </th>
 					</tr>

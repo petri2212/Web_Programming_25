@@ -48,7 +48,7 @@
 						<th>Codice </th>
 						<th>Nome </th>
 						<th>Superficie </th>
-						<th>Tema Sala </th>
+						<th>Tema <br>Sala </th>
 					</tr>
 					<?php
 					$i = 0;
