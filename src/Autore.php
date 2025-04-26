@@ -27,15 +27,22 @@
 		</header>
 
 		<div class="filtro">
-			<input type="text" name="filtroRicerca" id="codice" class="myInput" placeholder="codice">
-			<input type="text" name="filtroRicerca" id="nome" class="myInput" placeholder="nome">
-			<input type="text" name="filtroRicerca" id="cognome" class="myInput" placeholder="cognome">
-			<input type="text" name="filtroRicerca" id="nazione" class="myInput" placeholder="nazione">
-			<input type="text" name="filtroRicerca" id="dataNascita" class="myInput" placeholder="data di nascita">
-			<input type="text" name="filtroRicerca" id="vivoMorto" class="myInput" placeholder="vivo o morto">
-			<input type="text" name="filtroRicerca" id="dataMorte" class="myInput" placeholder="data di morte">
+			<form id="form" name="myform" method="POST">
+				<input type="text" name="Nome" id="n" class="myInput" placeholder="nome">
+				<input type="text" name="Cognome" id="cg" class="myInput" placeholder="cognome">
+				<input type="text" name="Nazione" id="n" class="myInput" placeholder="nazione">
+				<input type="date" name="DataNascita" id="dn" class="myInput" placeholder="data di nascita">
 
-			<input type="submit" class="invio" value="Cerca" />
+				<select id="VivoMorto" name="VivoMorto" class="myInput">
+				<option value="">-- Seleziona un'opzione --</option>
+					<option value="vivo">Vivo</option>
+					<option value="morto">Morto</option>
+				</select>
+
+				<input type="date" name="DataMorte" id="m1" class="myInput" placeholder="data di morte">
+
+				<input type="submit" class="invio" value="Cerca" id="idInvio" onclick="cerca()" />
+			</form>
 		</div>
 
 
@@ -50,7 +57,7 @@
 				$error = true;
 			}
 			if (!$error) {
-			?>
+				?>
 				<ul class="tabella">
 					<nav class="fissa">
 						<li class="testata">
@@ -68,7 +75,7 @@
 					$i = 0;
 					foreach ($result as $riga) {
 						$classRiga = 'class="riga"';
-					?>
+						?>
 
 						<li <?php echo $classRiga; ?>>
 							<div class="col"><a href=""><?php echo $riga["codice"]; ?></a></div>
@@ -78,28 +85,25 @@
 							<div class="col"> <?php echo $riga["dataNascita"]; ?> </div>
 							<div class="col"> <?php echo $riga["tipo"]; ?> </div>
 							<div class="col"> <?php if ($riga["dataMorte"] != null) {
-													echo $riga["dataMorte"];
-												} else {
-													echo "--------------";
-												}
-												?>
+								echo $riga["dataMorte"];
+							} else {
+								echo "--------------";
+							}
+							?>
 							</div>
 						</li>
-					<?php
+						<?php
 					}
 					?>
 				</ul>
-			<?php
+				<?php
 			}
 			?>
-			<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
-
-			<script src="../js/arrowUp.js"></script>
-
 		</div>
-
 	</div>
-
+	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
+	<script src="../js/arrowUp.js"></script>
+	<script src="../js/fetchAutore.js"></script>
 
 </body>
 

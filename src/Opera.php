@@ -25,7 +25,7 @@
 		</header>
 
 		<div class="filtro">
-			<input type="text" name="filtroRicerca" id="codice" class="myInput" placeholder="codice">
+			
 			<input type="text" name="filtroRicerca" id="autore" class="myInput" placeholder="autore">
 			<input type="text" name="filtroRicerca" id="titolo" class="myInput" placeholder="titolo">
 			<input type="text" name="filtroRicerca" id="annoAcquisto" class="myInput" placeholder="anno di acquisto">

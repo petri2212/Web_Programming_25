@@ -1,6 +1,6 @@
 
 let informazioni;
-let contenuto = document.getElementById("cont1");
+let contenuto = document.getElementById("contenuto");
 
 
 function cerca() {
