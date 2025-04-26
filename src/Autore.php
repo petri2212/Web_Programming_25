@@ -23,7 +23,7 @@
 		?>
 
 		<header>
-			<h1>AutoreDb</h1>
+			<h1>Autore DB</h1>
 		</header>
 
 		<div class="filtro">
@@ -34,7 +34,7 @@
 				<input type="date" name="DataNascita" id="dn" class="myInput" placeholder="data di nascita">
 
 				<select id="VivoMorto" name="VivoMorto" class="myInput">
-				<option value="">-- Seleziona un'opzione --</option>
+				<option value="">-- Stato d'essere --</option>
 					<option value="vivo">Vivo</option>
 					<option value="morto">Morto</option>
 				</select>

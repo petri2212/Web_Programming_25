@@ -23,7 +23,7 @@
 		?>
 
 		<header>
-			<h1>TemaDb</h1>
+			<h1>Tema DB</h1>
 		</header>
 
 		<div class="filtro">

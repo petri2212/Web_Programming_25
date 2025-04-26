@@ -21,7 +21,7 @@
 		include 'connect.php';
 		?>
 		<header>
-			<h1>SalaDb</h1>
+			<h1>Sala DB</h1>
 		</header>
 
 		<div class="filtro">
