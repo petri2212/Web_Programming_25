@@ -7,6 +7,7 @@
 	<title>Autore</title>
 	<link rel="stylesheet" href="../css/style.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -93,7 +94,7 @@
 			?>
 			<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
 
-			<script src="/Web_Programming_25/js/arrowUp.js"></script>
+			<script src="../js/arrowUp.js"></script>
 
 		</div>
 

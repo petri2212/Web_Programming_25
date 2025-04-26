@@ -6,6 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Opera</title>
 	<link rel="stylesheet" href="../css/style.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -31,10 +33,10 @@
 			<input type="text" name="filtroRicerca" id="tipo" class="myInput" placeholder="tipo">
 			<input type="text" name="filtroRicerca" id="sala" class="myInput" placeholder="numero sala">
 
-			<input type="submit" class="invio" value="Cerca"/>
+			<input type="submit" class="invio" value="Cerca" />
 		</div>
 
-		<div class="contenuto">
+		<div class="contenuto" id="contenuto">
 			<?php
 			try {
 				// query
@@ -44,43 +46,44 @@
 				$error = true;
 			}
 			if (!$error) {
-				?>
-				<table class="tabella">
-					<tr class="testata">
-						<th>Codice </th>
-						<th>Autore </th>
-						<th>Titolo </th>
-						<th>Anno <br>acquisto </th>
-						<th>Anno <br>realizzazione </th>
-						<th>Tipo</th>
-						<th>Esposta in sala </th>
-					</tr>
+			?>
+				<ul class="tabella">
+					<nav class="fissa">
+						<li class="testata">
+							<div class="col">Codice </div>
+							<div class="col">Autore </div>
+							<div class="col">Titolo </div>
+							<div class="col">Anno acquisto </div>
+							<div class="col">Anno realizzazione </div>
+							<div class="col">Tipo </div>
+							<div class="col">Esposta in sala </div>
+						</li>
+					</nav>
 					<?php
-					$i = 0;
 					foreach ($result as $riga) {
-						$i = $i + 1;
-						$classRiga = 'class="rigaDispari"';
-						if ($i % 2 == 0) {
-							$classRiga = 'class="rigaPari"';
-						}
-						?>
+						$classRiga = 'class="riga"';
+					?>
 
-						<tr <?php echo $classRiga; ?>>
-							<td> <?php echo $riga["codice"]; ?> </td>
-							<td> <?php echo $riga["autore"]; ?> </td>
-							<td> <?php echo $riga["titolo"]; ?> </td>
-							<td> <?php echo $riga["annoAcquisto"]; ?> </td>
-							<td> <?php echo $riga["annoRealizzazione"]; ?> </td>
-							<td> <?php echo $riga["tipo"]; ?> </td>
-							<td> <?php echo $riga["espostaInSala"]; ?> </td>
-						</tr>
-						<?php
+						<li <?php echo $classRiga; ?>>
+							<div class="col"> <?php echo $riga["codice"]; ?> </div>
+							<div class="col"> <?php echo $riga["autore"]; ?> </div>
+							<div class="col"> <?php echo $riga["titolo"]; ?> </div>
+							<div class="col"> <?php echo $riga["annoAcquisto"]; ?> </div>
+							<div class="col"> <?php echo $riga["annoRealizzazione"]; ?> </div>
+							<div class="col"> <?php echo $riga["tipo"]; ?> </div>
+							<div class="col"> <?php echo $riga["espostaInSala"]; ?> </div>
+						</li>
+					<?php
 					}
 					?>
-				</table>
-				<?php
+				</ul>
+			<?php
 			}
 			?>
+
+			<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
+
+			<script src="../js/arrowUp.js"></script>
 		</div>
 	</div>
 </body>
