@@ -21,19 +21,26 @@
 		include 'connect.php';
 		?>
 		<header>
-			<h1>OperaDb</h1>
+			<h1>Opera DB</h1>
 		</header>
 
 		<div class="filtro">
-			
-			<input type="text" name="filtroRicerca" id="autore" class="myInput" placeholder="autore">
-			<input type="text" name="filtroRicerca" id="titolo" class="myInput" placeholder="titolo">
-			<input type="text" name="filtroRicerca" id="annoAcquisto" class="myInput" placeholder="anno di acquisto">
-			<input type="text" name="filtroRicerca" id="annoRealizzazione" class="myInput" placeholder="anno di realizzazione">
-			<input type="text" name="filtroRicerca" id="tipo" class="myInput" placeholder="tipo">
-			<input type="text" name="filtroRicerca" id="sala" class="myInput" placeholder="numero sala">
+			<form id="form" name="myform" method="POST">
+				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
+				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">
+				<input type="number" min="1900" max="2100" name="AnnoAquisto" id="aa" class="myInput" placeholder="anno di acquisto">
+				<input type="number" min="1900" max="2100" name="AnnoRealizzazione" id="ar" class="myInput" placeholder="anno di realizzazione">
 
-			<input type="submit" class="invio" value="Cerca" />
+				<select id="Tipo" name="Tipo" class="myInput">
+					<option value="">-- Tipologia opera --</option>
+					<option value="quadro">quadro</option>
+					<option value="scultura">scultura</option>
+				</select>
+
+				<input type="text" name="NumeroSala" id="s" class="myInput" placeholder="numero sala">
+
+				<input type="submit" class="invio" value="Cerca" id="idInvio" onclick="cerca()" />
+			</form>
 		</div>
 
 		<div class="contenuto" id="contenuto">
@@ -46,7 +53,7 @@
 				$error = true;
 			}
 			if (!$error) {
-			?>
+				?>
 				<ul class="tabella">
 					<nav class="fissa">
 						<li class="testata">
@@ -62,7 +69,7 @@
 					<?php
 					foreach ($result as $riga) {
 						$classRiga = 'class="riga"';
-					?>
+						?>
 
 						<li <?php echo $classRiga; ?>>
 							<div class="col"> <?php echo $riga["codice"]; ?> </div>
@@ -73,20 +80,21 @@
 							<div class="col"> <?php echo $riga["tipo"]; ?> </div>
 							<div class="col"> <?php echo $riga["espostaInSala"]; ?> </div>
 						</li>
-					<?php
+						<?php
 					}
 					?>
 				</ul>
-			<?php
+				<?php
 			}
 			?>
 
-			
+
 		</div>
 	</div>
 	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
 
-			<script src="../js/arrowUp.js"></script>
+	<script src="../js/arrowUp.js"></script>
+	<script src="../js/fetchOpera.js"></script>
 </body>
 
 </html>
