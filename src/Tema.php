@@ -31,7 +31,7 @@
 			</form>
 		</div>
 
-		<div class="contenuto" id="cont1">
+		<div class="contenuto" id="contenuto">
 			<?php
 			try {
 				// query
