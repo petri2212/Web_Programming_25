@@ -43,40 +43,39 @@
 				echo "DB Error on Query: " . $e->getMessage();
 				$error = true;
 			}
-			if (!$error) {
+			if (!$error)
 			?>
-				<ul class="tabella">
-					<nav class="fissa">
-						<li class="testata">
-							<div class="col">Codice </div>
-							<div class="col">Nome </div>
-							<div class="col">Superficie </div>
-							<div class="col">Tema Sala </div>
-						</li>
-					</nav>
-					<?php
-					foreach ($result as $riga) {
-						$classRiga = 'class="riga"';
-					?>
-						<li <?php echo $classRiga; ?>>
-							<div class="col"> <?php echo $riga["numero"]; ?> </div>
-							<div class="col"> <?php echo $riga["nome"]; ?> </div>
-							<div class="col"> <?php echo $riga["superficie"]; ?> </div>
-							<div class="col"> <?php echo $riga["temaSala"]; ?> </div>
-						</li>
-					<?php
-					}
-					?>
-				</ul>
-			<?php
+			<ul class="tabella">
+				<nav class="fissa">
+					<li class="testata">
+						<div class="col">Codice </div>
+						<div class="col">Nome </div>
+						<div class="col">Superficie </div>
+						<div class="col">Tema Sala </div>
+					</li>
+				</nav>
+				<?php
+			foreach ($result as $riga) {
+				$classRiga = 'class="riga"';
+				?>
+					<li <?php echo $classRiga; ?>>
+						<div class="col"> <?php echo $riga["numero"]; ?> </div>
+						<div class="col"> <?php echo $riga["nome"]; ?> </div>
+						<div class="col"> <?php echo $riga["superficie"]; ?> </div>
+						<div class="col"> <?php echo $riga["temaSala"]; ?> </div>
+					</li>
+				<?php
 			}
+				?>
+			</ul>
+			<?php
+
 			?>
 
-			<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
-
-			<script src="../js/arrowUp.js"></script>
 		</div>
 	</div>
+	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
+	<script src="../js/arrowUp.js"></script>
 	<script src="../js/fetchSala.js"></script>
 </body>
 

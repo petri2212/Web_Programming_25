@@ -67,12 +67,11 @@
 			}
 				?>
 
-				<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
-
-				<script src="../js/arrowUp.js"></script>
 		</div>
 	</div>
+	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
 
+	<script src="../js/arrowUp.js"></script>
 	<script src="../js/fetchTema.js"></script>
 </body>
 
