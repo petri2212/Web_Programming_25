@@ -1,33 +1,36 @@
 <?php
 require_once('config.php');
 
-//$descrizione = $connessione ->real_escape_string($_POST['Descrizione']);
-$Nome = $connessione ->real_escape_string($_POST['Nome'] );
-$Superficie = $connessione ->real_escape_string($_POST['Superficie'] );
-$Tema_s = $connessione ->real_escape_string($_POST['Tema_Sala'] );
+$Nome = $connessione ->real_escape_string($_POST['Nome'] ?? null );
+$Superficie = $connessione ->real_escape_string($_POST['Superficie'] ?? null);
+$Tema_s = $connessione ->real_escape_string($_POST['Tema_Sala'] ?? null);
 
-$Tema_s  = NULL;
-/*
-if($Superficie == ''){
-    $sql = "SELECT * FROM sala  ";
-}else{
+    $sql = "SELECT * FROM sala ";
+    $count = 0;
 
-    $sql = "SELECT * FROM sala WHERE superficie = '$Superficie' AND nome LIKE '%" . $Nome ."%' ";
-}
-    */
+    if($Tema_s != NULL && $count == 0){
+        $sql .= "WHERE temaSala = '$Tema_s'";
+        $count++;
+    }elseif($Tema_s != NULL ){
+        $sql .= "AND temaSala = '$Tema_s'";
+        $count++;
+    }
 
-       // $sql = "SELECT * FROM sala WHERE temaSala = $Tema_s AND superficie = '$Superficie' AND nome LIKE '%" . $Nome ."%'";
-//$sql = "SELECT * FROM sala WHERE ($Tema_s IS NULL OR temaSala = $Tema_s";
+    if(!($Nome == NULL ) && $count == 0){
+        $sql .= "WHERE nome LIKE '%" . $Nome ."%'";
+        $count++;
+    }elseif($Nome != NULL){
+        $sql .= "AND nome LIKE '%" . $Nome ."%'";
+    }
+
+    if(!($Superficie == NULL) && $count ==0){
+        $sql .= "WHERE superficie = '$Superficie'";
+        $count++;
+    } elseif($Superficie != NULL){
+        $sql .= "AND superficie = '$Superficie'";
+    }
 
 
-   //$sql = "SELECT * FROM sala WHERE temaSala = '$Tema_s' AND nome LIKE '%" . $Nome ."%' ";
-   //$sql = "SELECT * FROM sala WHERE  temaSala = $Tema_s  ";
-
-
-   
-
-//$sql = "SELECT * FROM sala WHERE superficie = '$Superficie' ";//WHERE descrizione = "Arte classica" WHERE  descrizione = $descrizione
-//nome LIKE '%" . $Nome ."%' AND
 if ($result = $connessione->query($sql)) {
     $data = [];
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -37,18 +40,12 @@ if ($result = $connessione->query($sql)) {
         $tmp['superficie'] = $row['superficie'];
         $tmp['temaSala'] = $row['temaSala'];
         array_push($data, $tmp);
+        
 
     }
     echo json_encode($data);
 }
 
-
-
-
-
-
-
-
-
+$count = 0;
 
 ?>
