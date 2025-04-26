@@ -27,9 +27,9 @@ function cerca() {
          console.log('dati ricevuti: ', data);
          let tabella = ` 
 
-                    <ul class="tabella">
+            <ul class="tabella">
 					<nav class="fissa">
-						<li class="testata">
+					   <li class="testata">
 							<div class="col">Codice </div>
 							<div class="col">Nome </div>
 							<div class="col">Cognome </div>
@@ -43,8 +43,8 @@ function cerca() {
                     </ul>
                     `;
 
-          contenuto.innerHTML = tabella;
-        // contenuto.insertAdjacentHTML('beforeend', tabella);
+         contenuto.innerHTML = tabella;
+         // contenuto.insertAdjacentHTML('beforeend', tabella);
       })
       .catch((error) => {
          console.log('errore: ', error);
@@ -55,9 +55,8 @@ function generaRighe(data) {
    let righe = '';
    let riga = '';
    let classRiga = 'class="riga"';
-   let i = 0;
    data.forEach(data => {
-    if(data.dataMorte == null){
+      if (data.dataMorte == null) {
          riga = `
                 <li ${classRiga}>
 							<div class="col">${data.codice}</div>
@@ -70,8 +69,8 @@ function generaRighe(data) {
 						</li>
                 `;
 
-    }else{
-       riga = `
+      } else {
+         riga = `
                 <li ${classRiga}>
 							<div class="col">${data.codice}</div>
 							<div class="col"> ${data.nome}</div>
@@ -82,7 +81,7 @@ function generaRighe(data) {
 							<div class="col"> ${data.dataMorte}</div>
 						</li>
                 `;
-            }
+      }
       righe += riga;
    });
    return righe;

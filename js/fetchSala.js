@@ -11,18 +11,6 @@ function cerca() {
    const obj = Object.fromEntries(formData)
    console.log(obj)
    console.log(formData)
-
-   /*  ricordati di fare il reset del forum dopo l'utilizzo
-   let form1= document.getElementById("form")
-   form1.reset()
-*/
-
-
-
-
-   //console.log(formData);
-
-//,body: obj
    fetch('../queries/select_sala.php', {
 
       method: 'POST',
@@ -37,56 +25,37 @@ function cerca() {
          informazioni = data;
          console.log('dati ricevuti: ', data);
          let tabella = ` 
-                    <table class="tabella">
-					<tr class="testata">
-						<th>Codice </th>
-						<th>Descrizione </th>
-            <th>Superficie </th>
-						<th>Tema Sala </th>
-					</tr>
+            <ul class="tabella">
+               <nav class="fissa">
+					   <li class="testata">
+						   <div class="col">Codice </div>
+						   <div class="col">Descrizione </div>
+                     <div class="col">Superficie </div>
+						   <div class="col">Tema Sala </div>
+					   </li>
+               </nav>
                         ${generaRighe(data)}
-                    </table>
+                    </ul>
                     `;
-         //let tabellaContainer = document.querySelector("#pippo");
-
           contenuto.innerHTML = tabella;
         // contenuto.insertAdjacentHTML('beforeend', tabella);
-         //tabellaContainer.insertAdjacentHTML('beforeend', tabella);
-
-         //  tabellaContainer.in
-         //tabellaContainer.innerHTML(tabella)
       })
       .catch((error) => {
          console.log('errore: ', error);
-
-         /*
-                             .then(response => response.text())
-           .then(data => {     try {
-             console.log(JSON.parse(data));
-           } catch (e) {
-             console.error('Error parsing JSON:', data);
-           }   
-         */
-
       });
 }
 
 function generaRighe(data) {
    let righe = '';
-   let classRiga = '';
-   let i = 0;
+   let riga = '';
+   let classRiga = 'class="riga"';
    data.forEach(data => {
-      i = i + 1;
-      classRiga = 'class="rigaDispari"';
-      if (i % 2 == 0) {
-         classRiga = 'class="rigaPari"';
-      }
-      let riga = `
-                <tr ${classRiga}>
-                     <td> ${data.numero} </td>
-                     <td> ${data.nome} </td>
-                     <td> ${data.superficie} </td>
-                     <td> ${data.temaSala} </td>
+         riga = `
+                <li ${classRiga}>
+                     <div class="col"> ${data.numero} </div>
+                     <div class="col"> ${data.nome} </div>
+                     <div class="col"> ${data.superficie} </div>
+                     <div class="col"> ${data.temaSala} </div>
                 </tr>
                 `;
       righe += riga;

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+  $(document).ready(function() {
     var contenitore = $('#contenuto');
     var link = $('#tornaSu');
 
@@ -15,3 +15,5 @@ $(document).ready(function() {
       contenitore.animate({ scrollTop: 0 }, 300); 
     });
   });
+
+
