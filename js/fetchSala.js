@@ -13,7 +13,7 @@ function cerca() {
    console.log(formData)
 
    /*  ricordati di fare il reset del forum dopo l'utilizzo
-    let form1= document.getElementById("form")
+   let form1= document.getElementById("form")
    form1.reset()
 */
 
@@ -49,8 +49,8 @@ function cerca() {
                     `;
          //let tabellaContainer = document.querySelector("#pippo");
 
-          //contenuto.innerHTML = tabella;
-         contenuto.insertAdjacentHTML('beforeend', tabella);
+          contenuto.innerHTML = tabella;
+        // contenuto.insertAdjacentHTML('beforeend', tabella);
          //tabellaContainer.insertAdjacentHTML('beforeend', tabella);
 
          //  tabellaContainer.in
