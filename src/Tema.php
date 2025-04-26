@@ -6,6 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Autore</title>
 	<link rel="stylesheet" href="../css/style.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -25,9 +27,9 @@
 		</header>
 
 		<div class="filtro">
-            <form id= "form" name="myform" method="POST">
-			    <input type="text" name="Descrizione" id="n1" class="myInput" placeholder="Descrizione">
-			    <input type="submit" class="invio" value="Cerca"  id="idInvio" onclick="cerca()"/>
+			<form id="form" name="myform" method="POST">
+				<input type="text" name="Descrizione" id="n1" class="myInput" placeholder="Descrizione">
+				<input type="submit" class="invio" value="Cerca" id="idInvio" onclick="cerca()" />
 			</form>
 		</div>
 
@@ -41,37 +43,37 @@
 				$error = true;
 			}
 			if (!$error) {
-				?>
-				<table class="tabella">
-					<tr class="testata">
-						<th>Codice </th>
-						<th>Nome </th>
-					</tr>
+			?>
+				<ul class="tabella">
+					<nav class="fissa">
+						<li class="testata">
+							<div class="col">Codice </div>
+							<div class="col">Nome </div>
+							</tr>
+					</nav>
 					<?php
-					$i = 0;
 					foreach ($result as $riga) {
-						$i = $i + 1;
-						$classRiga = 'class="rigaDispari"';
-						if ($i % 2 == 0) {
-							$classRiga = 'class="rigaPari"';
-						}
-						?>
-
-						<tr <?php echo $classRiga; ?>>
-							<td> <?php echo $riga["codice"]; ?> </td>
-							<td> <?php echo $riga["descrizione"]; ?> </td>
-						</tr>
-						<?php
+						$classRiga = 'class="riga"';
+					?>
+						<li <?php echo $classRiga; ?>>
+							<div class="col"> <?php echo $riga["codice"]; ?> </div>
+							<div class="col"> <?php echo $riga["descrizione"]; ?> </div>
+						</li>
+					<?php
 					}
 					?>
-				</table>
+					</table>
 				<?php
 			}
-			?>
+				?>
+
+				<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
+
+				<script src="../js/arrowUp.js"></script>
 		</div>
 	</div>
 
-	<script src = "../js/fetchTema.js"></script>
+	<script src="../js/fetchTema.js"></script>
 </body>
 
 </html>

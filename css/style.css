@@ -162,7 +162,7 @@ tr td {
     box-shadow: 0px 0px 9px 0px rgba(98, 98, 98, 0.3);
 }
 
-.tabella{
+.tabella {
     margin-top: 75px;
 }
 
@@ -192,27 +192,35 @@ tr td {
     flex-basis: 50%;
 }
 
-.fissa{
+.fissa {
     position: fixed;
     display: flex;
     margin-top: -75px;
 }
 
-.fissa .testata{
+.fissa .testata {
     width: calc(100vw - 297px);
 }
 
-#tornaSu{
+#tornaSu {
     position: fixed;
     bottom: 70px;
     right: 20px;
     color: #434f5a;
+    transition: background-color .3s,
+        opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+#tornaSu:hover {
+    color: #849cb3;
     transition: 0.3s ease;
     -webkit-transition: 0.3s ease;
 }
 
-#tornaSu:hover{
-    color: #849cb3;
-    transition: 0.3s ease;
-    -webkit-transition: 0.3s ease;
+#tornaSu.show {
+    opacity: 1;
+    visibility: visible;
 }
