@@ -73,6 +73,7 @@
 
 						<li <?php echo $classRiga; ?>>
 							<div class="col"> <?php echo $riga["codice"]; ?> </div>
+					<!-- Se abbiamo tempo sarebbe carino implementare il link tramite una chiamata POST(<a> di per se fa solo GET) cosi da non vedere dati nella barra di ricerca-->
 							<div class="col"> <a href="Autore.php?nome=<?php echo $riga["autore"]; ?>"><?php echo $riga["autore"]; ?> </a></div>
 							<div class="col"> <?php echo $riga["titolo"]; ?> </div>
 							<div class="col"> <?php echo $riga["annoAcquisto"]; ?> </div>

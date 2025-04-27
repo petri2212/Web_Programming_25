@@ -1,6 +1,9 @@
 <?php
 require_once('config.php');
 
+$Codice = $connessione->real_escape_string($_POST['Codice'] ?? null);
+
+
 $Nome = $connessione->real_escape_string($_POST['Nome'] ?? null);
 $Cognome = $connessione->real_escape_string($_POST['Cognome'] ?? null);
 $Nazione = $connessione->real_escape_string($_POST['Nazione'] ?? null);
@@ -54,6 +57,21 @@ if (!($DataMorte == NULL) && $count == 0) {
 }
 
 //$sql = "SELECT * FROM autore WHERE tipo = 'vivo'";
+
+
+/**
+ * 
+ * 
+ * 
+ */
+if ($Codice != NULL && $count == 0) {
+    $sql .= "WHERE codice = '$Codice'";
+    $count++;
+} elseif ($Codice != NULL) {
+    $sql .= "AND codice = '$Codice '";
+    $count++;
+}
+
 
 
 if ($result = $connessione->query($sql)) {
