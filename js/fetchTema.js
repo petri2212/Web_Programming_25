@@ -69,7 +69,11 @@ function generaRighe(data) {
 
 }
 
+function canc(){
+   event.preventDefault();
 
+   document.getElementById('n1').value = "";
+}
 
 
 

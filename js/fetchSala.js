@@ -72,3 +72,11 @@ function generaRighe(data) {
    return righe;
 
 }
+
+function canc(){
+   event.preventDefault();
+
+   document.getElementById('n1').value = "";
+   document.getElementById('s1').value = "";
+   document.getElementById('t1').value = "";
+}

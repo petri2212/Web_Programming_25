@@ -83,3 +83,14 @@ function generaRighe(data) {
    return righe;
 
 }
+
+function canc(){
+   event.preventDefault();
+
+   document.getElementById('a1').value = "";
+   document.getElementById('t1').value = "";
+   document.getElementById('aa').value = "";
+   document.getElementById('ar').value = "";
+   document.getElementById('Tipo').value = "";
+   document.getElementById('NumeroSala').value = "";
+}

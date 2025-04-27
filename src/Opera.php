@@ -32,14 +32,15 @@
 				<input type="number" min="1990" max="2020" name="AnnoRealizzazione" id="ar" class="myInput" placeholder="anno di realizzazione">
 
 				<select id="Tipo" name="Tipo" class="myInput">
-					<option value="">-- Tipologia opera --</option>
+					<option value="">Tipologia opera...</option>
 					<option value="quadro">quadro</option>
 					<option value="scultura">scultura</option>
 				</select>
 
 				<input type="text" name="NumeroSala" id="s" class="myInput" placeholder="numero sala">
 
-				<input type="submit" class="invio" value="Cerca" id="idInvio" onclick="cerca()" />
+				<input type="submit" class="invio sub" value="Cerca" id="idInvio" onclick="cerca()" />
+				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc()" />
 			</form>
 		</div>
 
