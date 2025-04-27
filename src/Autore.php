@@ -78,7 +78,7 @@
 						?>
 
 						<li <?php echo $classRiga; ?>>
-							<div class="col"><a href=""><?php echo $riga["codice"]; ?></a></div>
+							<div class="col"><a href="Opera.php?nome=<?php echo $riga["codice"]; ?>"><?php echo $riga["codice"]; ?></a></div>
 							<div class="col"> <?php echo $riga["nome"]; ?> </div>
 							<div class="col"> <?php echo $riga["cognome"]; ?> </div>
 							<div class="col"> <?php echo $riga["nazione"]; ?> </div>

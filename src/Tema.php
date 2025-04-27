@@ -56,7 +56,7 @@
 						$classRiga = 'class="riga"';
 					?>
 						<li <?php echo $classRiga; ?>>
-							<div class="col"> <?php echo $riga["codice"]; ?> </div>
+							<div class="col"><a href="Sala.php?nome1=<?php echo $riga["codice"]; ?>"> <?php echo $riga["codice"]; ?> </a></div>
 							<div class="col"> <?php echo $riga["descrizione"]; ?> </div>
 						</li>
 					<?php
@@ -72,6 +72,7 @@
 	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
 	<script src="../js/arrowUp.js"></script>
 	<script src="../js/fetchTema.js"></script>
+	<script src="../js/reference.js"></script>
 </body>
 
 </html>

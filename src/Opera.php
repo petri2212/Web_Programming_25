@@ -79,7 +79,7 @@
 							<div class="col"> <?php echo $riga["annoAcquisto"]; ?> </div>
 							<div class="col"> <?php echo $riga["annoRealizzazione"]; ?> </div>
 							<div class="col"> <?php echo $riga["tipo"]; ?> </div>
-							<div class="col"> <?php echo $riga["espostaInSala"]; ?> </div>
+							<div class="col"> <a href="Sala.php?nome=<?php echo $riga["espostaInSala"]; ?>"><?php echo $riga["espostaInSala"]; ?></a> </div>
 						</li>
 						<?php
 					}
@@ -96,6 +96,7 @@
 
 	<script src="../js/arrowUp.js"></script>
 	<script src="../js/fetchOpera.js"></script>
+	<script src="../js/reference.js"></script>
 </body>
 
 </html>

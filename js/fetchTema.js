@@ -3,11 +3,20 @@ let informazioni;
 let contenuto = document.getElementById("contenuto");
 
 
-function cerca() {
-   event.preventDefault();
+function cerca(id) {
+
+  // event.preventDefault();
 
    const form = document.querySelector("#form");
    const formData = new FormData(form);
+
+   if(id != null){
+      formData.append('Codice', `${id}`);
+   }else{
+      event.preventDefault();
+   }
+
+
    const obj = Object.fromEntries(formData)
    console.log(obj)
    console.log(formData)

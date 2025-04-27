@@ -3,11 +3,21 @@ let informazioni;
 let contenuto = document.getElementById("contenuto");
 
 
-function cerca() {
-   event.preventDefault();
+function cerca(id,id1) {
+   
 
    const form = document.querySelector("#form");
    const formData = new FormData(form);
+   
+   if(id != null){
+
+
+      formData.append('Autore', `${id}`);
+   }else if(id1 != null){
+      formData.append('NumeroSala', `${id1}`);
+   }else{
+      event.preventDefault();
+   }
    const obj = Object.fromEntries(formData)
    console.log(obj)
    console.log(formData)

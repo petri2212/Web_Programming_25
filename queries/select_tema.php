@@ -1,9 +1,28 @@
 <?php
 require_once('config.php');
 
-$descrizione = $connessione->real_escape_string($_POST['Descrizione']);
+$Codice = $connessione->real_escape_string($_POST['Codice'] ?? null);
 
-$sql = "SELECT * FROM tema WHERE descrizione LIKE '%" . $descrizione . "%' ";//WHERE descrizione = "Arte classica" WHERE  descrizione = $descrizione
+$descrizione = $connessione->real_escape_string($_POST['Descrizione'] ?? null);
+
+$sql = "SELECT * FROM tema ";//WHERE descrizione = "Arte classica" WHERE  descrizione = $descrizione
+$count = 0;
+
+if (!($descrizione == NULL) && $count == 0) {
+    $sql .= "WHERE descrizione LIKE '%" . $descrizione . "%'";
+    $count++;
+} elseif ($descrizione != NULL) {
+    $sql .= "AND descrizione LIKE '%" . $descrizione . "%'";
+}
+
+if ($Codice != NULL && $count == 0) {
+    $sql .= "WHERE codice = '$Codice'";
+    $count++;
+} elseif ($Codice != NULL) {
+    $sql .= "AND codice = '$Codice '";
+    $count++;
+}
+
 
 if ($result = $connessione->query($sql)) {
     $data = [];
@@ -17,12 +36,7 @@ if ($result = $connessione->query($sql)) {
     echo json_encode($data);
 }
 
-
-
-
-
-
-
+$count = 0;
 
 
 

@@ -1,5 +1,6 @@
 <?php
 require_once('config.php');
+$Codice = $connessione->real_escape_string($_POST['Codice'] ?? null);
 
 $Nome = $connessione->real_escape_string($_POST['Nome'] ?? null);
 $Superficie = $connessione->real_escape_string($_POST['Superficie'] ?? null);
@@ -28,6 +29,15 @@ if (!($Superficie == NULL) && $count == 0) {
     $count++;
 } elseif ($Superficie != NULL) {
     $sql .= "AND superficie = '$Superficie'";
+}
+
+
+if ($Codice != NULL && $count == 0) {
+    $sql .= "WHERE numero = '$Codice'";
+    $count++;
+} elseif ($Codice != NULL) {
+    $sql .= "AND numero = '$Codice '";
+    $count++;
 }
 
 

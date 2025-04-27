@@ -59,10 +59,10 @@
 				$classRiga = 'class="riga"';
 				?>
 					<li <?php echo $classRiga; ?>>
-						<div class="col"> <?php echo $riga["numero"]; ?> </div>
+						<div class="col"> <a href="Opera.php?nome1=<?php echo $riga["numero"]; ?>"><?php echo $riga["numero"]; ?> </a></div>
 						<div class="col"> <?php echo $riga["nome"]; ?> </div>
 						<div class="col"> <?php echo $riga["superficie"]; ?> </div>
-						<div class="col"> <?php echo $riga["temaSala"]; ?> </div>
+						<div class="col"> <a href="Tema.php?nome=<?php echo $riga["temaSala"]; ?>"><?php echo $riga["temaSala"]; ?> </div>
 					</li>
 				<?php
 			}
@@ -77,6 +77,7 @@
 	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
 	<script src="../js/arrowUp.js"></script>
 	<script src="../js/fetchSala.js"></script>
+	<script src="../js/reference.js"></script>
 </body>
 
 </html>

@@ -1,14 +1,42 @@
 
 let informazioni;
 let contenuto = document.getElementById("contenuto");
+/*
+if (contenuto) {
+   const params = new URLSearchParams(window.location.search);
+   const nome = params.get('nome') ?? null; // Prende il valore di "nome"
+   
+   if (nome) {
+     //outputElement.textContent = `Ciao, ${nome}!`;
+     // Aggiungere una coppia chiave/valore
+     console.log(nome);
+     cerca(nome); 
+     /*
+     const formData = new FormData();
+     formData.append('Codice', `${nome}`);
+     const obj = Object.fromEntries(formData)
+     console.log(obj)
+     cerca();
+    
+   }
 
+}
+ */
 
-function cerca() {
+function cerca(id) {
    window.history.replaceState({}, document.title, window.location.pathname);
-   event.preventDefault();
+   
 
    const form = document.querySelector("#form");
    const formData = new FormData(form);
+
+   if(id != null){
+      formData.append('Codice', `${id}`);
+   }else{
+      event.preventDefault();
+   }
+
+
    const obj = Object.fromEntries(formData)
    console.log(obj)
    console.log(formData)

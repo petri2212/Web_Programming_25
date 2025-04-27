@@ -4,7 +4,7 @@ const outputElement = document.getElementById('contenuto');
 if (outputElement) {
   const params = new URLSearchParams(window.location.search);
   const nome = params.get('nome'); // Prende il valore di "nome"
-
+  const nome1 = params.get('nome1'); // Prende il valore di "nome"
   const formData = new FormData();
 
 
@@ -13,9 +13,10 @@ if (outputElement) {
     //outputElement.textContent = `Ciao, ${nome}!`;
     // Aggiungere una coppia chiave/valore
     formData.append('Codice', `${nome}`);
-    const obj = Object.fromEntries(formData)
-    console.log(obj)
-
+    const obj = Object.fromEntries(formData);
+    console.log(obj);
+    cerca(nome,nome1);
+    /*
     fetch('../queries/select_autore.php', {
 
         method: 'POST',
@@ -94,6 +95,13 @@ function generaRighe(data) {
     // Se non c'è il nome, pulisco l'URL
     window.history.replaceState({}, document.title, window.location.pathname);
   }*/
+}else if(nome1) {
+   cerca(nome,nome1);
+}
+
+  
+
+
 }
 
 // Se non esiste 'output', non fa nulla (pagina 1 è tranquilla)
