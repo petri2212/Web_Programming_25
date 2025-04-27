@@ -88,3 +88,14 @@ function generaRighe(data) {
    return righe;
 
 }
+
+function canc(){
+   event.preventDefault();
+
+   document.getElementById('n').value = "";
+   document.getElementById('cg').value = "";
+   document.getElementById('na').value = "";
+   document.getElementById('dn').value = "";
+   document.getElementById('m1').value = "";
+   document.getElementById('VivoMorto').value = "";
+}

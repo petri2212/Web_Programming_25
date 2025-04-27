@@ -11,7 +11,7 @@ body {
         "header header"
         "nav filtro"
         "nav contenuto";
-    grid-template-columns: 170px 1fr;
+    grid-template-columns: 190px 1fr;
     grid-template-rows: auto auto 1fr auto;
     height: 100vh;
 }
@@ -38,6 +38,8 @@ nav ol li a {
     border-radius: 25px;
     transition: 0.3s ease;
     -webkit-transition: 0.3s ease;
+    justify-content: space-between;
+    
 }
 
 nav ol li a:hover,
@@ -48,9 +50,6 @@ nav ol li a.active {
     transition: all 0.3s;
     -webkit-transition: 0.3s ease;
 }
-
-
-  
 
 a {
     color: #212529;
@@ -65,13 +64,16 @@ h1 {
     color: #f6f8f9;
 }
 
+
 .myInput {
-    width: auto;
+    width: 210px;
     position: relative;
     align-items: center;
     font-size: 18px;
     border-radius: 3px;
     margin-top: 10px;
+    border: 2px solid #2F3C48;
+    text-align: center;
 }
 
 
@@ -108,7 +110,7 @@ nav {
     grid-area: contenuto;
     background-color: #fcfcfc;
     font-size: 20px;
-    padding: 20px;
+    padding: 20px ;
     margin-bottom: 50px;
     border: 1px solid #E5E7EB;
     overflow-y: auto;
@@ -135,7 +137,6 @@ tr td {
 }
 
 .invio {
-    min-width: 180px;
     color: #fff;
     padding-top: 100px;
     padding: 5px 10px;
@@ -152,9 +153,26 @@ tr td {
     top: -1px;
 }
 
-.invio:hover {
+.invio.sub{
+    min-width: 180px;
+    border: 2px solid #434f5a;
+    background: #434f5a;
+}
+
+.invio.canc{
+    min-width: 100px;
+    border: 2px solid #d77f53;
+    background: #d77f53;
+}
+
+.invio.sub:hover {
     background: #fff;
     color: #434f5a
+}
+
+.invio.canc:hover {
+    background: #fff;
+    color: #d77f53;
 }
 
 .rigaPari {
@@ -202,14 +220,14 @@ tr td {
 }
 
 .fissa .testata {
-    width: calc(100vw - 297px);
+    width: calc(100vw - 317px);
 }
 
 #tornaSu {
     position: fixed;
     bottom: 70px;
     right: 20px;
-    color: #434f5a;
+    color: #d77f53;
     transition: background-color .3s,
         opacity .5s, visibility .5s;
     opacity: 0;
@@ -218,12 +236,16 @@ tr td {
 }
 
 #tornaSu:hover {
-    color: #849cb3;
-    transition: 0.3s ease;
-    -webkit-transition: 0.3s ease;
+    color: #ec9f75;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease;
 }
 
 #tornaSu.show {
     opacity: 1;
     visibility: visible;
+}
+
+.orange{
+    color: #d77f53;
 }
