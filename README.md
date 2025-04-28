@@ -14,3 +14,5 @@ operations for a particular table that will be given.
 3. Tabella per CRUD: Opera
 4. Interfaccia: Interfaccia 3
 5. Palette: Bianco
+
+## [ Documentation](documentation/documentation.md)
