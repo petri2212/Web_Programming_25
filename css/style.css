@@ -3,7 +3,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     color: #111827;
-    
+
 }
 
 .griglia {
@@ -40,7 +40,7 @@ nav ol li a {
     transition: 0.3s ease;
     -webkit-transition: 0.3s ease;
     justify-content: space-between;
-    
+
 }
 
 nav ol li a:hover,
@@ -65,9 +65,16 @@ h1 {
     color: #f6f8f9;
 }
 
+#VivoMorto.myInput, #Tipo.myInput{
+    width: 210px;
+    height: 31px;
+    text-align: center;
+    border-radius: 3px;
+} 
 
 .myInput {
     width: 210px;
+    height: 25px;
     position: relative;
     align-items: center;
     font-size: 18px;
@@ -111,7 +118,7 @@ nav {
     grid-area: contenuto;
     background-color: #fcfcfc;
     font-size: 20px;
-    padding: 20px ;
+    padding: 20px;
     margin-bottom: 50px;
     border: 1px solid #E5E7EB;
     overflow-y: auto;
@@ -142,6 +149,7 @@ tr td {
     padding-top: 100px;
     padding: 5px 10px;
     font-weight: bold;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
@@ -152,15 +160,16 @@ tr td {
     background: #434f5a;
     margin-top: 10px;
     top: -1px;
+    height: 32px;
 }
 
-.invio.sub{
+.invio.sub {
     min-width: 180px;
     border: 2px solid #434f5a;
     background: #434f5a;
 }
 
-.invio.canc{
+.invio.canc {
     min-width: 100px;
     border: 2px solid #d77f53;
     background: #d77f53;
@@ -176,13 +185,6 @@ tr td {
     color: #d77f53;
 }
 
-.rigaPari {
-    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.3);
-}
-
-.rigaDispari {
-    box-shadow: 0px 0px 9px 0px rgba(98, 98, 98, 0.3);
-}
 
 .tabella {
     margin-top: 75px;
@@ -234,7 +236,7 @@ tr td {
     opacity: 0;
     visibility: hidden;
     z-index: 1000;
-} 
+}
 
 #tornaSu:hover {
     color: #ec9f75;
@@ -247,28 +249,166 @@ tr td {
     visibility: visible;
 }
 
-.orange{
+.orange {
     color: #d77f53;
 }
 
-#overlay{
+#overlay {
     position: fixed;
-    /*display: none;*/
+    display: none;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    z-index: 10000;
+    z-index: 99;
+    
 }
 
-#contenutoOvelay{
+#overlay-quit{
     position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.3); 
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+}
+
+#contenutoOvelay {
+    position: fixed;
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 100;
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 0px 0px 1000px 0px rgba(67, 79, 90, 1);
 }
 
 
+/*Pulsante di selezione nell'overlay*/
+
+select,
+::picker(select) {
+    appearance: base-select;
+}
+
+
+select {
+    border: 2px solid #434f5a;
+    transition: 0.4s;
+    color: gray;
+    text-size-adjust: 10px;
+}
+
+#contenutoOvelay select {
+    width: 220px;
+    height: fit-content;
+    border: 2px solid #434f5a;
+    background: #434f5a;
+    padding: 10px;
+    transition: 0.4s;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+select:hover {
+    background: #ffffff;
+    color: #434f5a;
+}
+
+#contenutoOvelay select:hover {
+    background: #ffffff;
+    color: #434f5a;
+}
+
+select::picker-icon {
+    size: 10px;
+    color: #434f5a;
+    transition: 0.4s rotate;
+}
+
+
+#contenutoOvelay select::picker-icon {
+    color: #9dbddb;
+    transition: 0.4s rotate;
+}
+
+select:open::picker-icon {
+    rotate: 180deg;
+}
+
+::picker(select) {
+    border: none;
+}
+
+option {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+
+    border: 2px solid #ddd;
+    background: #fff;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+option:first-of-type {
+    border-radius: 8px 8px 0 0;
+}
+
+option:last-of-type {
+    border-radius: 0 0 8px 8px;
+}
+
+option:not(option:last-of-type) {
+    border-bottom: none;
+}
+
+option:nth-of-type(odd) {
+    background: #fff;
+}
+
+option:hover,
+option:focus {
+    background: #697c8c;
+    color: #fff;
+}
+
+option .icon {
+    font-size: 1.6rem;
+    text-box: trim-both cap alphabetic;
+}
+
+selectedcontent .icon {
+    display: none;
+}
+
+option:checked {
+    font-style: italic;
+}
+
+#contenutoOvelay option::checkmark {
+    font-style: normal;
+    order: 1;
+    margin-left: auto;
+    content: "";
+}
+
+::picker(select) {
+    opacity: 0;
+    transition: all 0.4s allow-discrete;
+}
+
+::picker(select):popover-open {
+    opacity: 1;
+}
+
+@starting-style {
+    ::picker(select):popover-open {
+        opacity: 0;
+    }
+}
