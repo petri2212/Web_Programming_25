@@ -3,6 +3,19 @@ let informazioni;
 let contenuto = document.getElementById("contenuto");
 
 
+const params = new URLSearchParams(window.location.search);
+  const nome = params.get('nome'); // Prende il valore di "nome"
+  const nome1 = params.get('nome1'); // Prende il valore di "nome"
+if(nome == null && nome1 == null){
+window.onload = function() {
+   cerca();
+};
+}
+
+
+
+
+
 function cerca(id) {
 
   // event.preventDefault();
@@ -59,7 +72,7 @@ function generaRighe(data) {
    data.forEach(data => {
          riga = `
                 <li ${classRiga}>
-                     <div class="col"> ${data.codice} </div>
+                     <div class="col"> <a href="Sala.php?nome1=${data.codice}">${data.codice} </a></div>
                      <div class="col"> ${data.descrizione} </div>
                 </li>
                 `;

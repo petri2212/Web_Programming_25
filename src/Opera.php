@@ -28,7 +28,7 @@
 			<form id="form" name="myform" method="POST">
 				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
 				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">
-				<input type="number" min="2000" max="2020" name="AnnoAquisto" id="aa" class="myInput" placeholder="anno di acquisto">
+				<input type="number" min="2019" max="2025" name="AnnoAquisto" id="aa" class="myInput" placeholder="anno di acquisto">
 				<input type="number" min="1990" max="2020" name="AnnoRealizzazione" id="ar" class="myInput" placeholder="anno di realizzazione">
 
 				<select id="Tipo" name="Tipo" class="myInput">
@@ -45,6 +45,7 @@
 		</div>
 
 		<div class="contenuto" id="contenuto">
+<!--
 			<?php
 			try {
 				// query
@@ -74,7 +75,7 @@
 
 						<li <?php echo $classRiga; ?>>
 							<div class="col"> <?php echo $riga["codice"]; ?> </div>
-					<!-- Se abbiamo tempo sarebbe carino implementare il link tramite una chiamata POST(<a> di per se fa solo GET) cosi da non vedere dati nella barra di ricerca-->
+					 Se abbiamo tempo sarebbe carino implementare il link tramite una chiamata POST(<a> di per se fa solo GET) cosi da non vedere dati nella barra di ricerca
 							<div class="col"> <a href="Autore.php?nome=<?php echo $riga["autore"]; ?>"><?php echo $riga["autore"]; ?> </a></div>
 							<div class="col"> <?php echo $riga["titolo"]; ?> </div>
 							<div class="col"> <?php echo $riga["annoAcquisto"]; ?> </div>
@@ -90,8 +91,9 @@
 			}
 			?>
 
-
+-->
 		</div>
+		
 	</div>
 	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
 

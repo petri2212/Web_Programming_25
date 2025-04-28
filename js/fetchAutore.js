@@ -1,6 +1,18 @@
 
 let informazioni;
 let contenuto = document.getElementById("contenuto");
+
+
+
+const params = new URLSearchParams(window.location.search);
+  const nome = params.get('nome'); // Prende il valore di "nome"
+  const nome1 = params.get('nome1'); // Prende il valore di "nome"
+if(nome == null && nome1 == null){
+window.onload = function() {
+   cerca();
+};
+}
+
 /*
 if (contenuto) {
    const params = new URLSearchParams(window.location.search);
@@ -24,8 +36,8 @@ if (contenuto) {
  */
 
 function cerca(id) {
-   window.history.replaceState({}, document.title, window.location.pathname);
-   
+   window.history.replaceState({}, document.title, window.location.pathname); //questo mi fa togliere il path come se fosse senza il GET ?nome
+   // stratagemma per non far vdere all'utente la richiesta , dovrei aggiungerlo anche nelle altre pagine cosi almeno quando refresho la pagina non ho la richiesta di nuovo
 
    const form = document.querySelector("#form");
    const formData = new FormData(form);
@@ -88,7 +100,7 @@ function generaRighe(data) {
       if (data.dataMorte == null) {
          riga = `
                 <li ${classRiga}>
-							<div class="col">${data.codice}</div>
+							<div class="col"><a href="Opera.php?nome=${data.codice}">${data.codice}</a></div>
 							<div class="col"> ${data.nome}</div>
 							<div class="col">${data.cognome}  </div>
 							<div class="col"> ${data.nazione}</div>
@@ -101,7 +113,7 @@ function generaRighe(data) {
       } else {
          riga = `
                 <li ${classRiga}>
-							<div class="col">${data.codice}</div>
+							<div class="col"><a href="Opera.php?nome=${data.codice}">${data.codice}</a></div>
 							<div class="col"> ${data.nome}</div>
 							<div class="col">${data.cognome}  </div>
 							<div class="col"> ${data.nazione}</div>
@@ -114,7 +126,7 @@ function generaRighe(data) {
       righe += riga;
    });
    return righe;
-
+//<a href="Opera.php?nome=${data.codice}"> </a>
 }
 
 function canc(){

@@ -3,6 +3,18 @@ let informazioni;
 let contenuto = document.getElementById("contenuto");
 
 
+const params = new URLSearchParams(window.location.search);
+  const nome = params.get('nome'); // Prende il valore di "nome"
+  const nome1 = params.get('nome1'); // Prende il valore di "nome"
+if(nome == null && nome1 == null){
+window.onload = function() {
+   cerca();
+};
+}
+
+
+
+
 function cerca(id,id1) {
    //event.preventDefault();
 
@@ -61,10 +73,10 @@ function generaRighe(data) {
    data.forEach(data => {
          riga = `
                 <li ${classRiga}>
-                     <div class="col"> ${data.numero} </div>
+                     <div class="col"> <a href="Opera.php?nome1=${data.numero}">${data.numero} </a></div>
                      <div class="col"> ${data.nome} </div>
                      <div class="col"> ${data.superficie} </div>
-                     <div class="col"> ${data.temaSala} </div>
+                     <div class="col"><a href="Tema.php?nome=${data.temaSala}"> ${data.temaSala} </a></div>
                 </tr>
                 `;
       righe += riga;

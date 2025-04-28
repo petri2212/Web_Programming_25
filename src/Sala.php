@@ -35,7 +35,7 @@
 		</div>
 
 		<div class="contenuto" id="contenuto">
-
+<!--
 			<?php
 			try {
 				// query
@@ -72,6 +72,7 @@
 			<?php
 
 			?>
+			-->
 
 		</div>
 	</div>

@@ -47,6 +47,7 @@
 
 
 		<div class="contenuto" id="contenuto">
+			<!--
 			<?php
 			try {
 				// query
@@ -98,6 +99,8 @@
 			<?php
 			}
 			?>
+			-->
+			
 		</div>
 	</div>
 	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x orange" aria-hidden="true"></i></a>
