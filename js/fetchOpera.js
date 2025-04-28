@@ -100,5 +100,5 @@ function canc() {
    document.getElementById('aa').value = "";
    document.getElementById('ar').value = "";
    document.getElementById('Tipo').value = "";
-   document.getElementById('NumeroSala').value = "";
+   document.getElementById('s').value = "";
 }
