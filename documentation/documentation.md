@@ -1,0 +1,7 @@
+# Documentation
+
+- Le pagine principali sono tutte in .php, ereditano tutte la nav.html e il footer.html.
+- Le varie richieste di SELECT iniziali per vedere il contenuto delle varie tabelle del DB sono gestite tramite i file fetch... .js, dove abbiamo deciso di utilizzare l'**API nativa** di JavaScript *fetch()*.  Le varie queries vengono quindi richiamate dai file .js e risiedono in dei file .php, la query varia in basea se un parametro è presente oppure no.
+- Abbiamo usato JQuery per l'animazione del pulsante **arrowUp**, quando si scrolla in basso il pulsante si mostra e attiva la sua funzionalità.
+- Per quanto riguarda i **link** che collegano le varie pagine sono stati usati il tag `<a href="">` di html e una richiesta ?GET qundi al link della nuova pagina aggiungiamo un parametro identificativo, lo script *reference.js* gestisce questa chiamata e richiama i file fetch... .js che capiscono che c'è una richiesta specifica e quindi gestiscono l'intero processo.(**Attenzione** per rendere invisibile sulla barra di ricerca il ?id=1 usiamo un una chiamata *window.history.replace* che mi cambia l'url istantaneamente)
+- E' stata  inclusa la libreria **font-awesome** per poter utilizzare alcune icone e rendere l'user experience migliore
