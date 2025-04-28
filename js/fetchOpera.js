@@ -4,26 +4,26 @@ let contenuto = document.getElementById("contenuto");
 //devo fare un controllo aggiuntivo perche window.reload quando la pagina si mostra mi 
 // cancella id e id1 quindi devo controllare solo quando si apre per la prima volta
 const params = new URLSearchParams(window.location.search);
-  const nome = params.get('nome'); // Prende il valore di "nome"
-  const nome1 = params.get('nome1'); // Prende il valore di "nome"
-if(nome == null && nome1 == null){
-window.onload = function() {
-   cerca();
-};
+const nome = params.get('nome'); // Prende il valore di "nome"
+const nome1 = params.get('nome1'); // Prende il valore di "nome"
+if (nome == null && nome1 == null) {
+   window.onload = function () {
+      cerca();
+   };
 }
 
 
-function cerca(id,id1) {
-   
+function cerca(id, id1) {
+   window.history.replaceState({}, document.title, window.location.pathname);
 
    const form = document.querySelector("#form");
    const formData = new FormData(form);
-   
-   if(id != null){
+
+   if (id != null) {
       formData.append('Autore', `${id}`);
-   }else if(id1 != null){
+   } else if (id1 != null) {
       formData.append('NumeroSala', `${id1}`);
-   }else{
+   } else {
       event.preventDefault();
    }
    const obj = Object.fromEntries(formData)
@@ -74,8 +74,8 @@ function generaRighe(data) {
    let riga = '';
    let classRiga = 'class="riga"';
    data.forEach(data => {
-     
-         riga = `
+
+      riga = `
                 <li ${classRiga}>
 							<div class="col">${data.codice}</div>
 							<div class="col"> <a href="Autore.php?nome=${data.autore}">${data.autore}</a></div>
@@ -92,7 +92,7 @@ function generaRighe(data) {
 
 }
 
-function canc(){
+function canc() {
    event.preventDefault();
 
    document.getElementById('a1').value = "";
@@ -100,5 +100,5 @@ function canc(){
    document.getElementById('aa').value = "";
    document.getElementById('ar').value = "";
    document.getElementById('Tipo').value = "";
-   document.getElementById('NumeroSala').value = "";
+   document.getElementById('s').value = "";
 }

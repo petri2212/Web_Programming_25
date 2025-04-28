@@ -16,10 +16,6 @@
 		include 'footer.html';
 		include 'nav.html';
 		?>
-		<?php
-		// possiamo includere anche pezzi di php
-		include 'connect.php';
-		?>
 		<header>
 			<h1>Sala DB</h1>
 		</header>
@@ -34,52 +30,12 @@
 			</form>
 		</div>
 
-		<div class="contenuto" id="contenuto">
-<!--
-			<?php
-			try {
-				// query
-				$result = $conn->query("SELECT * FROM sala");
-			} catch (PDOException $e) {
-				echo "DB Error on Query: " . $e->getMessage();
-				$error = true;
-			}
-			if (!$error)
-			?>
-			<ul class="tabella">
-				<nav class="fissa">
-					<li class="testata">
-						<div class="col">Codice </div>
-						<div class="col">Nome </div>
-						<div class="col">Superficie </div>
-						<div class="col">Tema Sala </div>
-					</li>
-				</nav>
-				<?php
-			foreach ($result as $riga) {
-				$classRiga = 'class="riga"';
-				?>
-					<li <?php echo $classRiga; ?>>
-						<div class="col"> <a href="Opera.php?nome1=<?php echo $riga["numero"]; ?>"><?php echo $riga["numero"]; ?> </a></div>
-						<div class="col"> <?php echo $riga["nome"]; ?> </div>
-						<div class="col"> <?php echo $riga["superficie"]; ?> </div>
-						<div class="col"> <a href="Tema.php?nome=<?php echo $riga["temaSala"]; ?>"><?php echo $riga["temaSala"]; ?> </div>
-					</li>
-				<?php
-			}
-				?>
-			</ul>
-			<?php
-
-			?>
-			-->
-
-		</div>
+		<div class="contenuto" id="contenuto"></div>
 	</div>
 	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
-	<script src="../js/arrowUp.js"></script>
-	<script src="../js/fetchSala.js"></script>
-	<script src="../js/reference.js"></script>
+	<script src="../js/arrowUp.js" defer></script>
+	<script src="../js/fetchSala.js" defer></script>
+	<script src="../js/reference.js" defer></script>
 </body>
 
 </html>

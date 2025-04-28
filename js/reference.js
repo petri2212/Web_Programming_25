@@ -1,107 +1,23 @@
-// Controlla se esiste l'elemento con id 'output'
 const outputElement = document.getElementById('contenuto');
 
 if (outputElement) {
-  const params = new URLSearchParams(window.location.search);
-  const nome = params.get('nome'); // Prende il valore di "nome"
-  const nome1 = params.get('nome1'); // Prende il valore di "nome"
-  const formData = new FormData();
+   const params = new URLSearchParams(window.location.search);
+   const nome = params.get('nome'); // Prende il valore di "nome"
+   const nome1 = params.get('nome1'); // Prende il valore di "nome1"
+   const formData = new FormData();
 
 
 
-  if (nome) {
-    //outputElement.textContent = `Ciao, ${nome}!`;
-    // Aggiungere una coppia chiave/valore
-    formData.append('Codice', `${nome}`);
-    const obj = Object.fromEntries(formData);
-    console.log(obj);
-    cerca(nome,nome1);
-    /*
-    fetch('../queries/select_autore.php', {
+   if (nome) {
+      // Aggiungere una coppia chiave/valor 
+      /*formData.append('Codice', `${nome}`);
+      const obj = Object.fromEntries(formData);
+      console.log(obj);*/
+      cerca(nome, nome1);
 
-        method: 'POST',
-        header: {
-           'Content-Type': 'application/json'
-        },
-        body: formData
-     })
-     .then(response => response.json())
-      .then(data => {
-         informazioni = data;
-         console.log('dati ricevuti: ', data);
-         let tabella = ` 
-
-            <ul class="tabella">
-					<nav class="fissa">
-					   <li class="testata">
-							<div class="col">Codice </div>
-							<div class="col">Nome </div>
-							<div class="col">Cognome </div>
-							<div class="col">Nazione </div>
-							<div class="col">Data Nascita </div>
-							<div class="col">Vivo/Morto </div>
-							<div class="col">Data Morte </div>
-						</li>
-					</nav>
-                    ${generaRighe(data)}
-                    </ul>
-                    `;
-
-         contenuto.innerHTML = tabella;
-         // contenuto.insertAdjacentHTML('beforeend', tabella);
-      })
-      .catch((error) => {
-         console.log('errore: ', error);
-      });
-}
-
-function generaRighe(data) {
-   let righe = '';
-   let riga = '';
-   let classRiga = 'class="riga"';
-   data.forEach(data => {
-      if (data.dataMorte == null) {
-         riga = `
-                <li ${classRiga}>
-							<div class="col">${data.codice}</div>
-							<div class="col"> ${data.nome}</div>
-							<div class="col">${data.cognome}  </div>
-							<div class="col"> ${data.nazione}</div>
-							<div class="col">${data.dataNascita}  </div>
-							<div class="col">${data.tipo} </div>
-							<div class="col">--------------</div>
-						</li>
-                `;
-
-      } else {
-         riga = `
-                <li ${classRiga}>
-							<div class="col">${data.codice}</div>
-							<div class="col"> ${data.nome}</div>
-							<div class="col">${data.cognome}  </div>
-							<div class="col"> ${data.nazione}</div>
-							<div class="col">${data.dataNascita}  </div>
-							<div class="col">${data.tipo} </div>
-							<div class="col"> ${data.dataMorte}</div>
-						</li>
-                `;
-      }
-      righe += riga;
-   });
-   return righe;
-
-
-  } /*else {
-    // Se non c'è il nome, pulisco l'URL
-    window.history.replaceState({}, document.title, window.location.pathname);
-  }*/
-}else if(nome1) {
-   cerca(nome,nome1);
-}
-
-  
-
+   } else if (nome1) {
+      cerca(nome, nome1);
+   }
 
 }
 
-// Se non esiste 'output', non fa nulla (pagina 1 è tranquilla)

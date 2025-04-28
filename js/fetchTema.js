@@ -4,12 +4,12 @@ let contenuto = document.getElementById("contenuto");
 
 
 const params = new URLSearchParams(window.location.search);
-  const nome = params.get('nome'); // Prende il valore di "nome"
-  const nome1 = params.get('nome1'); // Prende il valore di "nome"
-if(nome == null && nome1 == null){
-window.onload = function() {
-   cerca();
-};
+const nome = params.get('nome'); // Prende il valore di "nome"
+const nome1 = params.get('nome1'); // Prende il valore di "nome"
+if (nome == null && nome1 == null) {
+   window.onload = function () {
+      cerca();
+   };
 }
 
 
@@ -17,15 +17,15 @@ window.onload = function() {
 
 
 function cerca(id) {
-
-  // event.preventDefault();
+   window.history.replaceState({}, document.title, window.location.pathname);
+   // event.preventDefault();
 
    const form = document.querySelector("#form");
    const formData = new FormData(form);
 
-   if(id != null){
+   if (id != null) {
       formData.append('Codice', `${id}`);
-   }else{
+   } else {
       event.preventDefault();
    }
 
@@ -70,7 +70,7 @@ function generaRighe(data) {
    let riga = '';
    let classRiga = 'class="riga"';
    data.forEach(data => {
-         riga = `
+      riga = `
                 <li ${classRiga}>
                      <div class="col"> <a href="Sala.php?nome1=${data.codice}">${data.codice} </a></div>
                      <div class="col"> ${data.descrizione} </div>
@@ -82,7 +82,7 @@ function generaRighe(data) {
 
 }
 
-function canc(){
+function canc() {
    event.preventDefault();
 
    document.getElementById('n1').value = "";
