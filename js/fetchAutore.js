@@ -3,37 +3,14 @@ let informazioni;
 let contenuto = document.getElementById("contenuto");
 
 
-
 const params = new URLSearchParams(window.location.search);
-  const nome = params.get('nome'); // Prende il valore di "nome"
-  const nome1 = params.get('nome1'); // Prende il valore di "nome"
-if(nome == null && nome1 == null){
-window.onload = function() {
-   cerca();
-};
+const nome = params.get('nome'); // Prende il valore di "nome"
+const nome1 = params.get('nome1'); // Prende il valore di "nome"
+if (nome == null && nome1 == null) {
+   window.onload = function () {
+      cerca();
+   };
 }
-
-/*
-if (contenuto) {
-   const params = new URLSearchParams(window.location.search);
-   const nome = params.get('nome') ?? null; // Prende il valore di "nome"
-   
-   if (nome) {
-     //outputElement.textContent = `Ciao, ${nome}!`;
-     // Aggiungere una coppia chiave/valore
-     console.log(nome);
-     cerca(nome); 
-     /*
-     const formData = new FormData();
-     formData.append('Codice', `${nome}`);
-     const obj = Object.fromEntries(formData)
-     console.log(obj)
-     cerca();
-    
-   }
-
-}
- */
 
 function cerca(id) {
    window.history.replaceState({}, document.title, window.location.pathname); //questo mi fa togliere il path come se fosse senza il GET ?nome
@@ -42,9 +19,9 @@ function cerca(id) {
    const form = document.querySelector("#form");
    const formData = new FormData(form);
 
-   if(id != null){
+   if (id != null) {
       formData.append('Codice', `${id}`);
-   }else{
+   } else {
       event.preventDefault();
    }
 
@@ -126,10 +103,9 @@ function generaRighe(data) {
       righe += riga;
    });
    return righe;
-//<a href="Opera.php?nome=${data.codice}"> </a>
 }
 
-function canc(){
+function canc() {
    event.preventDefault();
 
    document.getElementById('n').value = "";

@@ -16,10 +16,6 @@
 		include 'footer.html';
 		include 'nav.html';
 		?>
-		<?php
-		// possiamo includere anche pezzi di php
-		include 'connect.php';
-		?>
 		<header>
 			<h1>Opera DB</h1>
 		</header>
@@ -29,8 +25,10 @@
 				<input type="button" class="invio crud" value="CRUD" id="idCanc" onclick="" />
 				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
 				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">
-				<input type="number" min="2019" max="2025" name="AnnoAquisto" id="aa" class="myInput" placeholder="anno di acquisto">
-				<input type="number" min="1959" max="2024" name="AnnoRealizzazione" id="ar" class="myInput" placeholder="anno di realizzazione">
+				<input type="number" min="2019" max="2025" name="AnnoAquisto" id="aa" class="myInput"
+					placeholder="anno di acquisto">
+				<input type="number" min="1959" max="2024" name="AnnoRealizzazione" id="ar" class="myInput"
+					placeholder="anno di realizzazione">
 
 				<select id="Tipo" name="Tipo" class="myInput">
 					<option value="">Tipologia opera...</option>
@@ -46,56 +44,7 @@
 			</form>
 		</div>
 
-		<div class="contenuto" id="contenuto">
-			<!--
-			<?php
-			try {
-				// query
-				$result = $conn->query("SELECT * FROM opera");
-			} catch (PDOException $e) {
-				echo "DB Error on Query: " . $e->getMessage();
-				$error = true;
-			}
-			if (!$error) {
-			?>
-				<ul class="tabella">
-					<nav class="fissa">
-						<li class="testata">
-							<div class="col">Codice </div>
-							<div class="col">Autore </div>
-							<div class="col">Titolo </div>
-							<div class="col">Anno acquisto </div>
-							<div class="col">Anno realizzazione </div>
-							<div class="col">Tipo </div>
-							<div class="col">Esposta in sala </div>
-						</li>
-					</nav>
-					<?php
-					foreach ($result as $riga) {
-						$classRiga = 'class="riga"';
-					?>
-
-						<li <?php echo $classRiga; ?>>
-							<div class="col"> <?php echo $riga["codice"]; ?> </div>
-					 Se abbiamo tempo sarebbe carino implementare il link tramite una chiamata POST(<a> di per se fa solo GET) cosi da non vedere dati nella barra di ricerca
-							<div class="col"> <a href="Autore.php?nome=<?php echo $riga["autore"]; ?>"><?php echo $riga["autore"]; ?> </a></div>
-							<div class="col"> <?php echo $riga["titolo"]; ?> </div>
-							<div class="col"> <?php echo $riga["annoAcquisto"]; ?> </div>
-							<div class="col"> <?php echo $riga["annoRealizzazione"]; ?> </div>
-							<div class="col"> <?php echo $riga["tipo"]; ?> </div>
-							<div class="col"> <a href="Sala.php?nome=<?php echo $riga["espostaInSala"]; ?>"><?php echo $riga["espostaInSala"]; ?></a> </div>
-						</li>
-						<?php
-					}
-						?>
-				</ul>
-				<?php
-			}
-				?>
-
--->
-			<div> L'anno di acquisto deve essere compreso tra 2019 e il 2025!<br><br><br><br><br><br><br><br><br> ciao</div>
-		</div>
+		<div class="contenuto" id="contenuto"></div>
 
 	</div>
 	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>

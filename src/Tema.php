@@ -17,11 +17,6 @@
 		include 'nav.html';
 
 		?>
-		<?php
-		// possiamo includere anche pezzi di php
-		include 'connect.php';
-		?>
-
 		<header>
 			<h1>Tema DB</h1>
 		</header>
@@ -34,44 +29,7 @@
 			</form>
 		</div>
 
-		<div class="contenuto" id="contenuto">
-			<!--
-			<?php
-			try {
-				// query
-				$result = $conn->query("SELECT * FROM tema");
-			} catch (PDOException $e) {
-				echo "DB Error on Query: " . $e->getMessage();
-				$error = true;
-			}
-			if (!$error) {
-			?>
-				<ul class="tabella">
-					<nav class="fissa">
-						<li class="testata">
-							<div class="col">Codice </div>
-							<div class="col">Nome </div>
-							</tr>
-					</nav>
-					<?php
-					foreach ($result as $riga) {
-						$classRiga = 'class="riga"';
-					?>
-						<li <?php echo $classRiga; ?>>
-							<div class="col"><a href="Sala.php?nome1=<?php echo $riga["codice"]; ?>"> <?php echo $riga["codice"]; ?> </a></div>
-							<div class="col"> <?php echo $riga["descrizione"]; ?> </div>
-						</li>
-					<?php
-					}
-					?>
-					</table>
-				<?php
-			}
-				?>
-				-->
-				
-
-		</div>
+		<div class="contenuto" id="contenuto"></div>
 	</div>
 	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
 	<script src="../js/arrowUp.js"></script>
