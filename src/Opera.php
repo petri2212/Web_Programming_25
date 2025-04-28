@@ -23,21 +23,34 @@
 		<div id="overlay">
 			<div id="contenutoOvelay">
 				<div id="text">
-					<p>Seleziona l'operazione:</p>
-					<select id="crud" name="Tipo" class="myInput">
-					<option value="">Seleziona operazione...</option>
-					<option value="create">Inserisci dati</option>
-					<option value="read">Filtra dati</option>
-					<option value="update">Aggiorna dati</option>
-					<option value="delete">Cancella dati</option>
-				</select>
+					<h2>Seleziona l'operazione che desideri effettuare:</h2>
+					<select id="crud" name="Tipo">
+						<option value="">Seleziona operazione...</option>
+						<option value="create">
+							<i class="fa fa-pencil icona" aria-hidden="true"></i>
+							<span class="opzioni">Inserisci dati</span>
+						</option>
+						<option value="read">
+							<i class="fa fa-search icona" aria-hidden="true"></i>
+							<span class="opzioni">Filtra dati</span>
+						</option>
+						<option value="update">
+							<i class="fa fa-wrench icona" aria-hidden="true"></i>
+							<span class="opzioni">Aggiorna dati</span>
+						</option>
+						<option value="delete">
+							<i class="fa fa-trash-o icona" aria-hidden="true"></i>
+							<span class="opzioni">Cancella dati</span>
+						</option>
+					</select>
 				</div>
 			</div>
+			<div id="overlay-quit" onclick="off()"></div>
 		</div>
 
 		<div class="filtro">
 			<form id="form" name="myform" method="POST" onsubmit="return cerca()">
-				<input type="button" class="invio sub" value="modifica dati" id="idCrud" />
+				<input type="button" class="invio sub" value="Modifica dati" id="idCrud" onclick="on()" />
 				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
 				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">
 				<input type="number" min="2019" max="2025" name="AnnoAquisto" id="aa" class="myInput"
@@ -46,7 +59,7 @@
 					placeholder="anno di realizzazione">
 
 				<select id="Tipo" name="Tipo" class="myInput">
-					<option value="">Tipologia opera...</option>
+					<option value="">tipologia opera...</option>
 					<option value="quadro">quadro</option>
 					<option value="scultura">scultura</option>
 				</select>
@@ -68,6 +81,7 @@
 	<script src="../js/arrowUp.js" defer></script>
 	<script src="../js/fetchOpera.js" defer></script>
 	<script src="../js/reference.js" defer></script>
+	<script src="../js/overlay.js" defer></script>
 </body>
 
 </html>

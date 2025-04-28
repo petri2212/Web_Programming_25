@@ -29,9 +29,9 @@
 				<input type="text" class="myInput" id="dn" placeholder="data di nascita" onfocus="(this.type='date')"
 					onblur="(this.type='text')">
 				<select id="VivoMorto" name="VivoMorto" class="myInput">
-					<option value="">Vivo/Morto</option>
-					<option value="vivo">Vivo</option>
-					<option value="morto">Morto</option>
+					<option value="">vivo/morto</option>
+					<option value="vivo">vivo</option>
+					<option value="morto">morto</option>
 				</select>
 				<input type="text" class="myInput" id="m1" placeholder="data di nascita" onfocus="(this.type='date')"
 					onblur="(this.type='text')">
