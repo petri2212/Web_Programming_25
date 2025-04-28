@@ -25,11 +25,12 @@
 		</header>
 
 		<div class="filtro">
-			<form id="form" name="myform" method="POST">
+			<form id="form" name="myform" method="POST" onsubmit="return cerca()">
+				<input type="button" class="invio crud" value="CRUD" id="idCanc" onclick="" />
 				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
 				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">
 				<input type="number" min="2019" max="2025" name="AnnoAquisto" id="aa" class="myInput" placeholder="anno di acquisto">
-				<input type="number" min="1990" max="2020" name="AnnoRealizzazione" id="ar" class="myInput" placeholder="anno di realizzazione">
+				<input type="number" min="1959" max="2024" name="AnnoRealizzazione" id="ar" class="myInput" placeholder="anno di realizzazione">
 
 				<select id="Tipo" name="Tipo" class="myInput">
 					<option value="">Tipologia opera...</option>
@@ -39,13 +40,14 @@
 
 				<input type="text" name="NumeroSala" id="s" class="myInput" placeholder="numero sala">
 
-				<input type="submit" class="invio sub" value="Cerca" id="idInvio" onclick="cerca()" />
+				<input type="submit" class="invio sub" value="Cerca" id="idInvio" />
 				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc()" />
+
 			</form>
 		</div>
 
 		<div class="contenuto" id="contenuto">
-<!--
+			<!--
 			<?php
 			try {
 				// query
@@ -55,7 +57,7 @@
 				$error = true;
 			}
 			if (!$error) {
-				?>
+			?>
 				<ul class="tabella">
 					<nav class="fissa">
 						<li class="testata">
@@ -71,7 +73,7 @@
 					<?php
 					foreach ($result as $riga) {
 						$classRiga = 'class="riga"';
-						?>
+					?>
 
 						<li <?php echo $classRiga; ?>>
 							<div class="col"> <?php echo $riga["codice"]; ?> </div>
@@ -85,17 +87,19 @@
 						</li>
 						<?php
 					}
-					?>
+						?>
 				</ul>
 				<?php
 			}
-			?>
+				?>
 
 -->
+			<div> L'anno di acquisto deve essere compreso tra 2019 e il 2025!<br><br><br><br><br><br><br><br><br> ciao</div>
 		</div>
-		
+
 	</div>
 	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
+
 
 	<script src="../js/arrowUp.js"></script>
 	<script src="../js/fetchOpera.js"></script>

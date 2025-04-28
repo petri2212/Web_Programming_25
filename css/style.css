@@ -3,6 +3,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     color: #111827;
+    
 }
 
 .griglia {
@@ -233,7 +234,7 @@ tr td {
     opacity: 0;
     visibility: hidden;
     z-index: 1000;
-}
+} 
 
 #tornaSu:hover {
     color: #ec9f75;
@@ -249,3 +250,4 @@ tr td {
 .orange{
     color: #d77f53;
 }
+

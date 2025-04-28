@@ -20,8 +20,6 @@ function cerca(id,id1) {
    const formData = new FormData(form);
    
    if(id != null){
-
-
       formData.append('Autore', `${id}`);
    }else if(id1 != null){
       formData.append('NumeroSala', `${id1}`);
