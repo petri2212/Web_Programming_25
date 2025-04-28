@@ -24,9 +24,24 @@
 			<h1>Opera DB</h1>
 		</header>
 
+		<div id="overlay">
+			<div id="contenutoOvelay">
+				<div id="text">
+					<p>Seleziona l'operazione:</p>
+					<select id="crud" name="Tipo" class="myInput">
+					<option value="">Seleziona operazione...</option>
+					<option value="create">Inserisci dati</option>
+					<option value="read">Filtra dati</option>
+					<option value="update">Aggiorna dati</option>
+					<option value="delete">Cancella dati</option>
+				</select>
+				</div>
+			</div>
+		</div>
+
 		<div class="filtro">
 			<form id="form" name="myform" method="POST" onsubmit="return cerca()">
-				<input type="button" class="invio crud" value="CRUD" id="idCanc" onclick="" />
+				<input type="button" class="invio sub" value="modifica dati" id="idCrud" />
 				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
 				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">
 				<input type="number" min="2019" max="2025" name="AnnoAquisto" id="aa" class="myInput" placeholder="anno di acquisto">
@@ -39,7 +54,7 @@
 				</select>
 
 				<input type="text" name="NumeroSala" id="s" class="myInput" placeholder="numero sala">
-
+				<br>
 				<input type="submit" class="invio sub" value="Cerca" id="idInvio" />
 				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc()" />
 
@@ -94,7 +109,6 @@
 				?>
 
 -->
-			<div> L'anno di acquisto deve essere compreso tra 2019 e il 2025!<br><br><br><br><br><br><br><br><br> ciao</div>
 		</div>
 
 	</div>
