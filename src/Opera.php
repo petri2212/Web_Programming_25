@@ -50,9 +50,9 @@
 	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
 
 
-	<script src="../js/arrowUp.js"></script>
-	<script src="../js/fetchOpera.js"></script>
-	<script src="../js/reference.js"></script>
+	<script src="../js/arrowUp.js" defer></script>
+	<script src="../js/fetchOpera.js" defer></script>
+	<script src="../js/reference.js" defer></script>
 </body>
 
 </html>

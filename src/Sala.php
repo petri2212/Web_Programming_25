@@ -33,9 +33,9 @@
 		<div class="contenuto" id="contenuto"></div>
 	</div>
 	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
-	<script src="../js/arrowUp.js"></script>
-	<script src="../js/fetchSala.js"></script>
-	<script src="../js/reference.js"></script>
+	<script src="../js/arrowUp.js" defer></script>
+	<script src="../js/fetchSala.js" defer></script>
+	<script src="../js/reference.js" defer></script>
 </body>
 
 </html>
