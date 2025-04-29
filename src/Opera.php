@@ -24,7 +24,7 @@
 			<div id="contenutoOvelay">
 				<div id="text">
 					<h2>Seleziona l'operazione che desideri effettuare:</h2>
-					<select id="crud" name="Tipo">
+					<select id="crud" name="Tipo" onchange="query()">
 						<option value="">Seleziona operazione...</option>
 						<option value="create">
 							<i class="fa fa-pencil icona" aria-hidden="true"></i>
@@ -43,9 +43,16 @@
 							<span class="opzioni">Cancella dati</span>
 						</option>
 					</select>
+					<div id="query">
+						prova
+					</div>
+					
 				</div>
+				
 			</div>
-			<div id="overlay-quit" onclick="off()"></div>
+			<p id="messaggioUscita">Per chiudere la finestra cliccare fuori dalla finestra bianca</p>
+			<div id="overlay-quit" onclick="off()">
+			</div>
 		</div>
 
 		<div class="filtro">
