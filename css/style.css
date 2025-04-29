@@ -395,7 +395,7 @@ option:checked {
     font-style: normal;
     order: 1;
     margin-left: auto;
-    content: "";
+    content: "✔";
 }
 
 ::picker(select) {
