@@ -156,7 +156,8 @@ function select(id, id1) {
       .then(response => response.json())
       .then(data => {
          informazioni = data;
-         console.log('dati ricevuti: ', data);
+         
+         console.log('dati ricevuti: ', informazioni);
          let tabella = ` 
 
             <ul class="tabellaOver">
@@ -168,7 +169,7 @@ function select(id, id1) {
 							<div class="colOver">Tipo</div>
 							<div class="colOver">Esposta in sala </div>
 						</li>
-                    ${generaSelect(data)}
+                    ${generaSelect(informazioni)}
                     </ul>
                     `;
 
@@ -182,16 +183,25 @@ function select(id, id1) {
 
 function generaSelect(data) {
    let select = '';
+   //sorry anto se ti rubo il lavor, ho visto che ti stampava gli autori duplicati e non in ordine quindi
+   //ho preso data e la rendo un array con i dati di autore, e unaltro array con i dati delle sale, poi 
+   //il sort fatto in quel modo serve per sortarli in base al valore del numero e non in base all'id
+   //che di nuovo sono in posizioni strane[non tocco puìiu niente i swear]
+   let informazioniAut = [...new Set(data.map(data => data.autore))].sort((a, b) => Number(a) - Number(b));
+   let informazioniSala = [...new Set(data.map(data => data.espostaInSala))].sort((a, b) => Number(a) - Number(b));
+   
+   console.log("queste sono le informazioni", informazioni);
    select += `
                <form id="formCrud" name="myformCrud" method="POST" onsubmit="return cerca()">
                <select id="autoreSelect" name="aus" class="myInput" required>
                 `;
 
-   data.forEach(data => {
+                informazioniAut.forEach(informazioniAut => {
       select += `
-					   <option value="${data.autore}">autore ${data.autore}</option>
+					   <option value="${informazioniAut}">autore ${informazioniAut}</option>
                 `;
    });
+
 
    select += `
                </select>
@@ -205,9 +215,9 @@ function generaSelect(data) {
                <select id="NumeroSala" name="ss" class="myInput" required>
                  `;
 
-   data.forEach(data => {
+                 informazioniSala.forEach(informazioniSala => {
       select += `
-                  <option value="${data.espostaInSala}">sala ${data.espostaInSala[0]}</option>
+                  <option value="${informazioniSala}">sala ${informazioniSala}</option>
                             `;
    });
 
