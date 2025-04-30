@@ -26,14 +26,14 @@
 				<input type="text" name="Nome" id="n" class="myInput" placeholder="nome">
 				<input type="text" name="Cognome" id="cg" class="myInput" placeholder="cognome">
 				<input type="text" name="Nazione" id="na" class="myInput" placeholder="nazione">
-				<input type="text" class="myInput" id="dn" placeholder="data di nascita" onfocus="(this.type='date')"
+				<input type="text" name="DataNascita" class="myInput" id="dn" placeholder="data di nascita" onfocus="(this.type='date')"
 					onblur="(this.type='text')">
 				<select id="VivoMorto" name="VivoMorto" class="myInput">
 					<option value="">vivo/morto</option>
 					<option value="vivo">vivo</option>
 					<option value="morto">morto</option>
 				</select>
-				<input type="text" class="myInput" id="m1" placeholder="data di morte" onfocus="(this.type='date')"
+				<input type="text" class="myInput" name="DataMorte" id="m1" placeholder="data di morte" onfocus="(this.type='date')"
 					onblur="(this.type='text')">
 
 				<input type="submit" class="invio sub" value="Cerca" id="idInvio" onclick="cerca()" />
