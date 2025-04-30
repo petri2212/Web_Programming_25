@@ -9,11 +9,11 @@ $AnnoRealizzazione = $connessione->real_escape_string($_POST['AnnoRealizzazioneU
 $Tipo = $connessione->real_escape_string($_POST['tipoUpdate'] ?? null);
 $NumeroSala = $connessione->real_escape_string($_POST['NumeroSalaUpdate'] ?? null);
 
-$sql = "UPDATE opera SET";
+$sql = "UPDATE opera SET ";
 $count = 0;
 
 if ($Autore != NULL && $count == 0) {
-    $sql .= " autore = '$Autore'";
+    $sql .= "autore = '$Autore'";
     $count++;
 } elseif ($Autore != NULL) {
     $sql .= ", autore = '$Autore'";
@@ -21,39 +21,41 @@ if ($Autore != NULL && $count == 0) {
 }
 
 if (!($Titolo == NULL) && $count == 0) {
-    $sql .= "WHERE titolo LIKE '%" . $Titolo . "%'";
+    $sql .= "titolo = '$Titolo'";
     $count++;
 } elseif ($Titolo != NULL) {
-    $sql .= "AND titolo LIKE '%" . $Titolo . "%'";
+    $sql .= ", titolo = '$Titolo'";
 }
 
 if (!($AnnoAquisto == NULL) && $count == 0) {
-    $sql .= "WHERE annoAcquisto = '$AnnoAquisto' ";
+    $sql .= "annoAcquisto = '$AnnoAquisto' ";
     $count++;
 } elseif ($AnnoAquisto != NULL) {
-    $sql .= "AND annoAcquisto = '$AnnoAquisto' ";
+    $sql .= ", annoAcquisto = '$AnnoAquisto' ";
 }
 
 if (!($AnnoRealizzazione == NULL) && $count == 0) {
-    $sql .= "WHERE annoRealizzazione = '$AnnoRealizzazione' ";
+    $sql .= "annoRealizzazione = '$AnnoRealizzazione' ";
     $count++;
 } elseif ($AnnoRealizzazione != NULL) {
-    $sql .= "AND annoRealizzazione = '$AnnoRealizzazione' ";
+    $sql .= ", annoRealizzazione = '$AnnoRealizzazione' ";
 }
 
 if (!($Tipo == NULL) && $count == 0) {
-    $sql .= "WHERE tipo = '$Tipo'";
+    $sql .= "tipo = '$Tipo'";
     $count++;
 } elseif ($Tipo != NULL) {
-    $sql .= "AND tipo = '$Tipo'";
+    $sql .= ", tipo = '$Tipo'";
 }
 
 if (!($NumeroSala == NULL) && $count == 0) {
-    $sql .= "WHERE espostaInSala = '$NumeroSala'";
+    $sql .= "espostaInSala = '$NumeroSala'";
     $count++;
 } elseif ($NumeroSala != NULL) {
-    $sql .= "AND espostaInSala = '$NumeroSala'";
+    $sql .= ", espostaInSala = '$NumeroSala'";
 }
+
+$sql .= "WHERE codice = '$Codice';";
 
 if($connessione->query($sql) === true){
     echo "Aggiornamento dei dati riuscito!";

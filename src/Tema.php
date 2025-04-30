@@ -31,7 +31,7 @@
 
 		<div class="contenuto" id="contenuto"></div>
 	</div>
-	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
+	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-3x" aria-hidden="true"></i></a>
 	<script src="../js/arrowUp.js" defer></script>
 	<script src="../js/fetchTema.js" defer></script>
 	<script src="../js/reference.js" defer></script>

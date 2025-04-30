@@ -93,70 +93,43 @@ function generaRighe(data) {
 
 }
 
-function canc() {
-   event.preventDefault();
-
-   document.getElementById('a1').value = "";
-   document.getElementById('t1').value = "";
-   document.getElementById('aa').value = "";
-   document.getElementById('ar').value = "";
-   document.getElementById('Tipo').value = "";
-   document.getElementById('s').value = "";
-}
-
-
-
-
-
-
-
-
 
 //Overlay
 function query() {
-
    const crudSelect = document.getElementById("crud").value;
    const contenuto = document.getElementById("query");
    const ombra = document.getElementById("contenutoOvelay");
    switch (crudSelect) {
       case "create":
          setTimeout(() => {
-            ombra.style.boxShadow =  "0px 0px 100px 0px rgba(215, 127, 83, 0.5)";
-         }, 50);
+            ombra.style.boxShadow = "0px 0px 100px 0px rgba(101, 215, 83, 0.5)";
+         }, 10);
 
          select();
 
          break;
-      case "read":
-         setTimeout(() => {
-            ombra.style.boxShadow =  "0px 0px 100px 0px rgba(129, 215, 83, 0.5)";
-         }, 50);
-         
-         contenuto.textContent = "ciao sono READ!";
-
-         break;
       case "update":
          setTimeout(() => {
-            ombra.style.boxShadow =  "0px 0px 100px 0px rgba(83, 215, 211, 0.5)";
-         }, 50);
+            ombra.style.boxShadow = "0px 0px 100px 0px rgba(83, 215, 211, 0.5)";
+         }, 10);
 
          update();
 
          break;
       case "delete":
          setTimeout(() => {
-            ombra.style.boxShadow =  "0px 0px 100px 0px rgba(215, 83, 83, 0.5)";
-         }, 50);
+            ombra.style.boxShadow = "0px 0px 100px 0px rgba(215, 83, 83, 0.5)";
+         }, 10);
 
          delete0();
 
          break;
       default:
          setTimeout(() => {
-            ombra.style.boxShadow =  "0px 0px 100px 0px rgba(67, 79, 90, 0.5)";
-         }, 50);
+            ombra.style.boxShadow = "0px 0px 100px 0px rgba(67, 79, 90, 0.5)";
+         }, 10);
 
-         contenuto.textContent = "ciao sono READ!";
+         contenuto.textContent = "";
    }
 }
 
@@ -224,18 +197,15 @@ function select(id, id1) {
 
 function generaSelect(data) {
    let select = '';
-   //sorry anto se ti rubo il lavor, ho visto che ti stampava gli autori duplicati e non in ordine quindi
-   //ho preso data e la rendo un array con i dati di autore, e unaltro array con i dati delle sale, poi 
-   //il sort fatto in quel modo serve per sortarli in base al valore del numero e non in base all'id
-   //che di nuovo sono in posizioni strane[non tocco puìiu niente i swear]
    let informazioniAut = [...new Set(data.map(data => data.autore))].sort((a, b) => Number(a) - Number(b));
    let informazioniSala = [...new Set(data.map(data => data.espostaInSala))].sort((a, b) => Number(a) - Number(b));
 
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formCrud" name="myformCrud" method="POST" onsubmit="inserisci(); cancellaValori(); ">
-                     <select id="autoreSelect" name="autoreSelect" class="myInput " required>
+                  <form id="formSelect" name="myformSelect" method="POST" onsubmit="inserisci(); cancellaValori(); ">
+                     <select id="autoreSelect" name="autoreSelect" class="myInput select" required>
+                        <option value="">null</option> 
                 `;
 
    informazioniAut.forEach(informazioniAut => {
@@ -250,11 +220,13 @@ function generaSelect(data) {
                      <input type="text" name="titoloSelect" id="titoloSelect" class="myInput" placeholder="titolo" required>
                      <input type="number" min="2019" max="2025" name="AnnoAquistoSelect" id="AnnoAquistoSelect" class="myInput " placeholder="anno di acquisto" required>
 				         <input type="number" min="1959" max="2024" name="AnnoRealizzazioneSelect" id="AnnoRealizzazioneSelect" class="myInput " placeholder="anno di realizzazione" required>
-                     <select id="tipoSelect" name="tipoSelect" class="myInput " required>
+                     <select id="tipoSelect" name="tipoSelect" class="myInput select" required>
+                        <option value="">null</option> 
                         <option value="quadro">quadro</option>
 					         <option value="scultura">scultura</option>
                      </select>
-                     <select id="NumeroSalaSelect" name="NumeroSalaSelect" class="myInput" required>
+                     <select id="NumeroSalaSelect" name="NumeroSalaSelect" class="myInput select" required>
+                     <option value="">null</option> 
                  `;
 
    informazioniSala.forEach(informazioniSala => {
@@ -266,7 +238,7 @@ function generaSelect(data) {
    select += `
                      </select>
                      <br><br><br>
-                     <input type="submit" class="invio sub" value="Inserisci" id="idInvioCrud"/>
+                     <input type="submit" class="invio" value="Inserisci" id="idInvioInsert"/>
                   </form>
 					  
                 `;
@@ -279,7 +251,7 @@ function generaSelect(data) {
 
 function inserisci() {
    event.preventDefault();
-   const form = document.querySelector("#formCrud");
+   const form = document.querySelector("#formSelect");
    const formData = new FormData(form);
    const risposta = document.getElementById("risposta");
 
@@ -289,7 +261,7 @@ function inserisci() {
 
    risposta.innerHTML = "Inserimento andato a buon fine!<div id=\"barra\"></div>";
    avviaCaricamento();
-   risposta.style.marginTop = "10%" ;
+   risposta.style.marginTop = "10%";
    setTimeout(() => {
       risposta.style.opacity = 1;
    }, 100);
@@ -298,6 +270,8 @@ function inserisci() {
    }, 2500);
 
    console.log(risposta.innerHTML);
+
+   aggiornaCerca();
 
    /*fetch('../queries/CRUD_OPERA/insert_opera.php', {
 
@@ -373,7 +347,7 @@ function update(id, id1) {
 							<div class="colOver">Tipo</div>
 							<div class="colOver">Esposta in sala</div>
 						</li>
-                    ${generaSelect(informazioni)}
+                    ${generaUpdate(informazioni)}
                     `;
 
 
@@ -387,18 +361,13 @@ function update(id, id1) {
 
 function generaUpdateCodice(data) {
    let select = '';
-   //sorry anto se ti rubo il lavor, ho visto che ti stampava gli autori duplicati e non in ordine quindi
-   //ho preso data e la rendo un array con i dati di autore, e unaltro array con i dati delle sale, poi 
-   //il sort fatto in quel modo serve per sortarli in base al valore del numero e non in base all'id
-   //che di nuovo sono in posizioni strane[non tocco puìiu niente i swear]
-   let informazioniAut = [...new Set(data.map(data => data.autore))].sort((a, b) => Number(a) - Number(b));
-   let informazioniSala = [...new Set(data.map(data => data.espostaInSala))].sort((a, b) => Number(a) - Number(b));
-
+   
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formCrud" name="myformCrud" method="POST" onsubmit="aggiorna(); cancellaValori(); ">
-                     <select id="codiceUpdate" name="codiceUpdate" class="myInput " required>    
+                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="aggiorna(); cancellaValori();">
+                     <select id="codiceUpdate" name="codiceUpdate" class="myInput update" required>
+                        <option value="">null</option> 
                 `;
 
    data.forEach(data => {
@@ -425,28 +394,30 @@ function generaUpdate(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formCrud" name="myformCrud" method="POST" onsubmit="aggiorna(); cancellaValori(); ">         
-                     <select id="autoreUpdate" name="autoreUpdate" class="myInput " required>
-                        <option value="">cadwada</option>
+                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="aggiorna(); cancellaValori();">         
+                     <select id="autoreUpdate" name="autoreUpdate" class="myInput update">
+                        <option value="">null</option> 
                 `;
 
    informazioniAut.forEach(informazioniAut => {
       select += `
-					         <option value="${informazioniAut}">cccc${informazioniAut}</option>
+					         <option value="${informazioniAut}">${informazioniAut}</option>
                 `;
    });
 
 
    select += `
                      </select>
-                     <input type="text" name="titoloUpdate" id="titoloUpdate" class="myInput" placeholder="titolo" required>
-                     <input type="number" min="2019" max="2025" name="AnnoAquistoUpdate" id="AnnoAquistoUpdate" class="myInput " placeholder="anno di acquisto" required>
-				         <input type="number" min="1959" max="2024" name="AnnoRealizzazioneUpdate" id="AnnoRealizzazioneUpdate" class="myInput " placeholder="anno di realizzazione" required>
-                     <select id="tipoUpdate" name="tipoUpdate" class="myInput " required>
+                     <input type="text" name="titoloUpdate" id="titoloUpdate" class="myInput" placeholder="titolo" >
+                     <input type="number" min="2019" max="2025" name="AnnoAquistoUpdate" id="AnnoAquistoUpdate" class="myInput " placeholder="anno di acquisto" >
+				         <input type="number" min="1959" max="2024" name="AnnoRealizzazioneUpdate" id="AnnoRealizzazioneUpdate" class="myInput " placeholder="anno di realizzazione" >
+                     <select id="tipoUpdate" name="tipoUpdate" class="myInput update" >
+                        <option value="">null</option> 
                         <option value="quadro">quadro</option>
 					         <option value="scultura">scultura</option>
                      </select>
-                     <select id="NumeroSalaUpdate" name="NumeroSalaUpdate" class="myInput" required>
+                     <select id="NumeroSalaUpdate" name="NumeroSalaUpdate" class="myInput update" >
+                        <option value="">null</option> 
                  `;
 
    informazioniSala.forEach(informazioniSala => {
@@ -457,7 +428,8 @@ function generaUpdate(data) {
 
    select += `
                      </select>
-                     <input type="submit" class="invio sub" value="Inserisci" id="idInvioCrud"/>
+                     <br><br><br>
+                     <input type="submit" class="invio sub" value="Aggiorna" id="idInvioUpdate"/>
                   </form>
 					  
                 `;
@@ -470,7 +442,7 @@ function generaUpdate(data) {
 
 function aggiorna() {
    event.preventDefault();
-   const form = document.querySelector("#formCrud");
+   const form = document.querySelector("#formUpdate");
    const formData = new FormData(form);
    const risposta = document.getElementById("risposta");
 
@@ -480,7 +452,7 @@ function aggiorna() {
 
    risposta.innerHTML = "Dati aggiornati con successo!<div id=\"barra\"></div>";
    avviaCaricamento();
-   risposta.style.marginTop = "5%" ;
+   risposta.style.marginTop = "5%";
    setTimeout(() => {
       risposta.style.opacity = 1;
    }, 100);
@@ -490,6 +462,8 @@ function aggiorna() {
 
    console.log(risposta.innerHTML);
 
+   aggiornaCerca();
+
    /*fetch('../queries/CRUD_OPERA/update_opera.php', {
 
       method: 'POST',
@@ -498,10 +472,10 @@ function aggiorna() {
       },
       body: formData
    })
-   
-   .catch((error) => {
-      risposta.innerHTML  = "Errore";
-   });*/
+
+      .catch((error) => {
+         risposta.innerHTML = "Errore";
+      });*/
 }
 
 
@@ -565,18 +539,13 @@ function delete0(id, id1) {
 
 function generaDeleteCodice(data) {
    let select = '';
-   //sorry anto se ti rubo il lavor, ho visto che ti stampava gli autori duplicati e non in ordine quindi
-   //ho preso data e la rendo un array con i dati di autore, e unaltro array con i dati delle sale, poi 
-   //il sort fatto in quel modo serve per sortarli in base al valore del numero e non in base all'id
-   //che di nuovo sono in posizioni strane[non tocco puìiu niente i swear]
-   let informazioniAut = [...new Set(data.map(data => data.autore))].sort((a, b) => Number(a) - Number(b));
-   let informazioniSala = [...new Set(data.map(data => data.espostaInSala))].sort((a, b) => Number(a) - Number(b));
-
+   
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formCrud" name="myformCrud" method="POST" onsubmit="aggiorna(); cancellaValori(); ">
-                     <select id="codiceUpdate" name="codiceUpdate" class="myInput " required>    
+                  <form id="formDelete" name="myformDelete" method="POST" onsubmit="sicurezzaOn(); cancellaValori();">
+                     <select id="codiceDelete" name="codiceDelete" class="myInput delete" required>
+                        <option value="">null</option> 
                 `;
 
    data.forEach(data => {
@@ -588,7 +557,10 @@ function generaDeleteCodice(data) {
 
 
    select += `        
-                     </select>          
+                     </select>
+                     <br><br><br>
+                     <input type="submit" class="invio InvioDelete" value="Elimina" />
+                  </form>          
                 `;
 
    return select;
@@ -598,7 +570,7 @@ function generaDeleteCodice(data) {
 
 function elimina() {
    event.preventDefault();
-   const form = document.querySelector("#formCrud");
+   const form = document.querySelector("#formDelete");
    const formData = new FormData(form);
    const risposta = document.getElementById("risposta");
 
@@ -606,9 +578,9 @@ function elimina() {
    console.log(obj);
 
 
-   risposta.innerHTML = "Dati aggiornati con successo!<div id=\"barra\"></div>";
+   risposta.innerHTML = "Dati eliminati con successo!<div id=\"barra\"></div>";
    avviaCaricamento();
-   risposta.style.marginTop = "5%" ;
+   risposta.style.marginTop = "15%";
    setTimeout(() => {
       risposta.style.opacity = 1;
    }, 100);
@@ -618,7 +590,9 @@ function elimina() {
 
    console.log(risposta.innerHTML);
 
-   /*fetch('../queries/CRUD_OPERA/insert_opera.php', {
+   aggiornaCerca();
+
+   fetch('../queries/CRUD_OPERA/delete_opera.php', {
 
       method: 'POST',
       header: {
@@ -626,25 +600,67 @@ function elimina() {
       },
       body: formData
    })
-   
-   .catch((error) => {
-      risposta.innerHTML  = "Errore";
-   });*/
+
+      .catch((error) => {
+         risposta.innerHTML = "Errore";
+      });
 
 
+
+}
+
+function sicurezzaOn() {
+   console.log("sei sicuro?")
+   document.getElementById("overlayDelete").style.display = "block";
+
+}
+
+function sicurezzaOff() {
+   document.getElementById("overlayDelete").style.display = "none";
 
 }
 
 
 
 function cancellaValori() {
+   const crudSelect = document.getElementById("crud").value;
    event.preventDefault();
 
-   document.getElementById("titoloSelect").value = "";
-   document.getElementById("AnnoAquistoSelect").value = "";
-   document.getElementById("AnnoRealizzazioneSelect").value = "";
+   switch (crudSelect) {
+      case "create":
+         document.getElementById("autoreSelect").value = "";
+         document.getElementById("titoloSelect").value = "";
+         document.getElementById("AnnoAquistoSelect").value = "";
+         document.getElementById("AnnoRealizzazioneSelect").value = "";
+         document.getElementById("tipoSelect").value = "";
+         document.getElementById("NumeroSalaSelect").value = "";
+         break;
+      case "update":
+         document.getElementById("codiceUpdate").value = "";
+         document.getElementById("autoreUpdate").value = "";
+         document.getElementById("titoloUpdate").value = "";
+         document.getElementById("AnnoAquistoUpdate").value = "";
+         document.getElementById("AnnoRealizzazioneUpdate").value = "";
+         document.getElementById("tipoUpdate").value = "";
+         document.getElementById("NumeroSalaUpdate").value = "";
+         break;
+      case "delete":
+         document.getElementById("codiceDelete").value = "";
+         break;
+      default:
 
-   //nel caso renderla generale con uno switch case per il CRUD
+
+   }
+}
+
+function aggiornaCerca() {
+   document.getElementById("a1").value = "";
+   document.getElementById("t1").value = "";
+   document.getElementById("aa").value = "";
+   document.getElementById("ar").value = "";
+   document.getElementById("Tipo").value = "";
+   document.getElementById("s").value = "";
+   cerca();
 }
 
 //barra di caricamento

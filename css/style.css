@@ -74,16 +74,18 @@ h1 {
     padding: 4px 8px;
 }
 
-#autoreSelect.myInput,
-#tipoSelect.myInput,
-#NumeroSalaSelect.myInput,
-#codiceUpdate.myInput {
+.myInput.select,
+.myInput.update,
+.myInput.delete{
     width: 15.2%;
     height: 31px;
     text-align: center;
     border-radius: 3px;
     padding: 4px 8px;
+    position: relative;
+    
 }
+
 
 #t1s.myInput,
 #aas.myInput,
@@ -200,6 +202,24 @@ tr td {
     background: #d77f53;
 }
 
+.invio#idInvioInsert {
+    min-width: 180px;
+    border: 2px solid #4da33f;
+    background: #4da33f;
+}
+
+.invio#idInvioUpdate {
+    min-width: 180px;
+    border: 2px solid #3b9895;
+    background: #3b9895;
+}
+
+.invio.InvioDelete {
+    min-width: 180px;
+    border: 2px solid #a53a3a;
+    background: #a53a3a;
+}
+
 .invio.sub:hover {
     background: #fff;
     color: #434f5a
@@ -210,6 +230,20 @@ tr td {
     color: #d77f53;
 }
 
+.invio#idInvioInsert:hover {
+    background: #fff;
+    color: #4da33f;
+}
+
+.invio#idInvioUpdate:hover {
+    background: #fff;
+    color: #3b9895;
+}
+
+.invio.InvioDelete:hover {
+    background: #fff;
+    color: #a53a3a;
+}
 
 .tabella {
     margin-top: 75px;
@@ -279,6 +313,7 @@ tr td {
     color: #d77f53;
 }
 
+/*Overlay CRUD*/
 #overlay {
     position: fixed;
     display: none;
@@ -320,6 +355,7 @@ tr td {
 }
 
 
+
 #messaggioUscita {
     box-shadow: 0px 0px 10px 0px rgba(215, 127, 83, 1);
     background-color: #ec9f75;
@@ -333,7 +369,7 @@ tr td {
     display: block;
     position: relative;
     left: 15%;
-    top: 6%;
+    top: 11%;
     z-index: 101;
     opacity: 1;
 }
@@ -345,6 +381,39 @@ tr td {
     overflow-y: auto;
 }
 
+/*Overlay delete*/
+#overlayDelete {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 102;
+    overflow-y: hidden;
+
+}
+
+#contenutoOvelayDelete {
+    position: fixed;
+    width: 40%;
+    height: 30%;
+    top: 30%;
+    left: 30%;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 103;
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 0px 0px 100px 0px rgba(67, 79, 90, 1);
+    transition: all 0.3s ease-in;
+    overflow: hidden;
+}
+
+#textDelete{
+    position: relative;
+    top: 30%;
+}
 
 /*Pulsante di selezione nell'overlay*/
 
@@ -408,7 +477,6 @@ option {
     display: flex;
     justify-content: flex-start;
     gap: 20px;
-
     border: 2px solid #ddd;
     background: #fff;
     padding: 10px;

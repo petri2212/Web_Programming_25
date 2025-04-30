@@ -35,7 +35,7 @@
 				</select>
 				<input type="text" class="myInput" name="DataMorte" id="m1" placeholder="data di morte" onfocus="(this.type='date')"
 					onblur="(this.type='text')">
-
+				
 				<input type="submit" class="invio sub" value="Cerca" id="idInvio" onclick="cerca()" />
 				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc()" />
 			</form>
@@ -45,7 +45,7 @@
 
 		<div class="contenuto" id="contenuto"></div>
 	</div>
-	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
+	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-3x" aria-hidden="true"></i></a>
 	<script src="../js/arrowUp.js" defer></script>
 	<script src="../js/fetchAutore.js" defer></script>
 	<!-- Collegamento al file JS esterno -->

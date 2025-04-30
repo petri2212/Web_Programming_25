@@ -19,7 +19,7 @@
 		<header>
 			<h1>Opera DB</h1>
 		</header>
-
+		<!-- Overlay CRUD-->
 		<div id="overlay">
 			<div id="contenutoOvelay">
 				<div id="text">
@@ -30,10 +30,6 @@
 							<i class="fa fa-pencil icona" aria-hidden="true"></i>
 							<span class="opzioni">Inserisci dati</span>
 						</option>
-						<option value="read">
-							<i class="fa fa-search icona" aria-hidden="true"></i>
-							<span class="opzioni">Filtra dati</span>
-						</option>
 						<option value="update">
 							<i class="fa fa-wrench icona" aria-hidden="true"></i>
 							<span class="opzioni">Aggiorna dati</span>
@@ -43,21 +39,25 @@
 							<span class="opzioni">Cancella dati</span>
 						</option>
 					</select>
-					<div id="query">
-
-					</div>
-					<div id="risposta">
-						adwa
-					</div>
-
+					<div id="query"></div>
+					<div id="risposta"></div>
 				</div>
-
 			</div>
 			<p id="messaggioUscita">Per chiudere cliccare fuori dalla finestra bianca</p>
 			<div id="overlay-quit" onclick="off()">
 			</div>
 		</div>
-
+		<!-- Overlay Delete -->
+		<div id="overlayDelete">
+			<div id="contenutoOvelayDelete">
+				<div id="textDelete">
+					<h2>Sei sicuro di voler eliminare la riga?</h2>
+					<input type="button" class="invio sub" value="Annulla" id="elimina" onclick="cancellaValori(); sicurezzaOff();"/>
+					<input type="button" class="invio InvioDelete" value="Elimina" id="elimina" onclick="cancellaValori(); sicurezzaOff(); elimina();"/>
+				</div>
+			</div>
+		</div>
+		<!-- filtro -->
 		<div class="filtro">
 			<form id="form" name="myform" method="POST" onsubmit="return cerca()">
 				<input type="button" class="invio sub" value="Modifica dati" id="idCrud" onclick="on()" />
@@ -77,7 +77,7 @@
 				<input type="text" name="NumeroSala" id="s" class="myInput" placeholder="numero sala">
 				<br>
 				<input type="submit" class="invio sub" value="Cerca" id="idInvio" />
-				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc()" />
+				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="aggiornaCerca()" />
 
 			</form>
 		</div>
@@ -85,7 +85,7 @@
 		<div class="contenuto" id="contenuto"></div>
 
 	</div>
-	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
+	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-3x" aria-hidden="true"></i></a>
 
 
 	<script src="../js/arrowUp.js" defer></script>
