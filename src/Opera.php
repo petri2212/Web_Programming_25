@@ -44,11 +44,14 @@
 						</option>
 					</select>
 					<div id="query">
-						prova 
+
 					</div>
-					
+					<div id="risposta">
+						adwa
+					</div>
+
 				</div>
-				
+
 			</div>
 			<p id="messaggioUscita">Per chiudere cliccare fuori dalla finestra bianca</p>
 			<div id="overlay-quit" onclick="off()">

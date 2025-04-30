@@ -76,8 +76,9 @@ h1 {
 
 #autoreSelect.myInput,
 #tipoSelect.myInput,
-#NumeroSalaSelect.myInput{
-    width: 16%;
+#NumeroSalaSelect.myInput,
+#codiceUpdate.myInput {
+    width: 15.2%;
     height: 31px;
     text-align: center;
     border-radius: 3px;
@@ -87,7 +88,7 @@ h1 {
 #t1s.myInput,
 #aas.myInput,
 #ars.myInput {
-    width: 16%;
+    width: 15.2%;
     text-align: center;
 }
 
@@ -111,6 +112,9 @@ hr {
     height: 2px;
     background-color: #ccc;
     margin: 20px 0;
+    width: 80%;
+    position: relative;
+    left: 10%;
 }
 
 .invisible {
@@ -209,6 +213,7 @@ tr td {
 
 .tabella {
     margin-top: 75px;
+    margin-bottom: 15px;
 }
 
 .tabella li {
@@ -296,7 +301,7 @@ tr td {
     background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(2px);
     z-index: 100;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
 #contenutoOvelay {
@@ -310,7 +315,8 @@ tr td {
     border-radius: 3px;
     text-align: center;
     box-shadow: 0px 0px 100px 0px rgba(67, 79, 90, 1);
-    overflow-y: auto;
+    transition: all 0.3s ease-in;
+    overflow: hidden;
 }
 
 
@@ -334,7 +340,7 @@ tr td {
 
 #query {
     position: relative;
-    top: 40px;
+    top: 20px;
     z-index: 100;
     overflow-y: auto;
 }
@@ -466,9 +472,17 @@ option:checked {
     }
 }
 
-.tabellaOver {
-    width: 94%;
+
+.tabellaOver#tabellaOverInsert {
+    width: 93%;
     justify-content: space-between;
+}
+
+.tabellaOver#tabellaOverUpdate {
+    width: 15.2%;
+    justify-content: space-between;
+    position: relative;
+    left: 39.5%;
 }
 
 .tabellaOver li {
@@ -496,5 +510,26 @@ option:checked {
 }
 
 .tabellaOver .colOver {
-    flex-basis: 50%;
+    flex-basis: 100%;
+    justify-content: space-between;
+}
+
+#risposta {
+    display: block;
+    height: 40px;
+    margin-top: 10%;
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#barra {
+    width: 0%;
+    height: 4px;
+    background: #ec9f75;
+    transition: width 0.5s linear;
+    position: relative;
+    left: 39.9%;
+    top: 0;
 }
