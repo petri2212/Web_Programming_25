@@ -63,6 +63,7 @@ function cerca(id) {
 
          contenuto.innerHTML = tabella;
          // contenuto.insertAdjacentHTML('beforeend', tabella);
+        
       })
       .catch((error) => {
          console.log('errore: ', error);

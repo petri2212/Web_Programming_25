@@ -71,7 +71,27 @@ h1 {
     height: 31px;
     text-align: center;
     border-radius: 3px;
+    padding: 4px 8px;
 }
+
+#autoreSelect.myInput,
+#tipoSelect.myInput,
+#NumeroSalaSelect.myInput{
+    width: 16%;
+    height: 31px;
+    text-align: center;
+    border-radius: 3px;
+    padding: 4px 8px;
+}
+
+#t1s.myInput,
+#aas.myInput,
+#ars.myInput {
+    width: 16%;
+    text-align: center;
+}
+
+
 
 .myInput {
     width: 210px;
@@ -122,7 +142,7 @@ nav {
     padding: 20px;
     margin-bottom: 50px;
     border: 1px solid #E5E7EB;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 footer {
@@ -227,7 +247,7 @@ tr td {
     width: calc(100vw - 317px);
 }
 
-#tornaSu {
+.tornaSu {
     position: fixed;
     bottom: 70px;
     right: 20px;
@@ -239,13 +259,13 @@ tr td {
     z-index: 1000;
 }
 
-#tornaSu:hover {
+.tornaSu:hover {
     color: #ec9f75;
     transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease;
 }
 
-#tornaSu.show {
+.tornaSu.show {
     opacity: 1;
     visibility: visible;
 }
@@ -263,6 +283,7 @@ tr td {
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 99;
+    overflow-y: hidden;
 
 }
 
@@ -275,6 +296,7 @@ tr td {
     background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(2px);
     z-index: 100;
+    overflow-y: auto;
 }
 
 #contenutoOvelay {
@@ -288,7 +310,9 @@ tr td {
     border-radius: 3px;
     text-align: center;
     box-shadow: 0px 0px 100px 0px rgba(67, 79, 90, 1);
+    overflow-y: auto;
 }
+
 
 #messaggioUscita {
     box-shadow: 0px 0px 10px 0px rgba(215, 127, 83, 1);
@@ -308,9 +332,11 @@ tr td {
     opacity: 1;
 }
 
-#query{
+#query {
     position: relative;
     top: 40px;
+    z-index: 100;
+    overflow-y: auto;
 }
 
 
@@ -329,7 +355,7 @@ select {
     text-size-adjust: 10px;
 }
 
-#contenutoOvelay select {
+#contenutoOvelay #crud {
     width: 220px;
     height: fit-content;
     border: 2px solid #434f5a;
@@ -340,15 +366,17 @@ select {
     font-weight: bold;
 }
 
+
 select:hover {
     background: #ffffff;
     color: #434f5a;
 }
 
-#contenutoOvelay select:hover {
+#contenutoOvelay #crud:hover {
     background: #ffffff;
     color: #434f5a;
 }
+
 
 select::picker-icon {
     size: 10px;
@@ -357,7 +385,7 @@ select::picker-icon {
 }
 
 
-#contenutoOvelay select::picker-icon {
+#contenutoOvelay #crud::picker-icon {
     color: #9dbddb;
     transition: 0.4s rotate;
 }
@@ -416,7 +444,7 @@ option:checked {
     font-style: italic;
 }
 
-#contenutoOvelay option::checkmark {
+#contenutoOvelay #crud option::checkmark {
     font-style: normal;
     order: 1;
     margin-left: auto;
@@ -464,11 +492,9 @@ option:checked {
     background-color: #ffffff;
     box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
+    justify-content: space-between;
 }
 
 .tabellaOver .colOver {
     flex-basis: 50%;
 }
-
-
-

@@ -156,7 +156,7 @@ function select(id, id1) {
       .then(response => response.json())
       .then(data => {
          informazioni = data;
-         
+
          console.log('dati ricevuti: ', informazioni);
          let tabella = ` 
 
@@ -170,7 +170,6 @@ function select(id, id1) {
 							<div class="colOver">Esposta in sala </div>
 						</li>
                     ${generaSelect(informazioni)}
-                    </ul>
                     `;
 
          contOverlay.innerHTML = tabella;
@@ -189,37 +188,44 @@ function generaSelect(data) {
    //che di nuovo sono in posizioni strane[non tocco puìiu niente i swear]
    let informazioniAut = [...new Set(data.map(data => data.autore))].sort((a, b) => Number(a) - Number(b));
    let informazioniSala = [...new Set(data.map(data => data.espostaInSala))].sort((a, b) => Number(a) - Number(b));
-   
+
    console.log("queste sono le informazioni", informazioni);
    select += `
-               <form id="formCrud" name="myformCrud" method="POST" onsubmit="return cerca()">
-               <select id="autoreSelect" name="aus" class="myInput" required>
+               
+                  <form id="formCrud" name="myformCrud" method="POST" onsubmit="return cerca()">
+                     <select id="autoreSelect" name="aus" class="myInput " required>
                 `;
 
-                informazioniAut.forEach(informazioniAut => {
+   informazioniAut.forEach(informazioniAut => {
       select += `
-					   <option value="${informazioniAut}">autore ${informazioniAut}</option>
+					         <option value="${informazioniAut}">autore ${informazioniAut}</option>
                 `;
    });
 
 
    select += `
-               </select>
-               <input type="text" name="titoloSelect" id="t1s" class="myInput" placeholder="titolo" required>
-               <input type="number" min="2019" max="2025" name="AnnoAquistoSelect" id="aas" class="myInput" placeholder="anno di acquisto" required>
-				   <input type="number" min="1959" max="2024" name="AnnoRealizzazioneSelect" id="ars" class="myInput" placeholder="anno di realizzazione" required>
-               <select id="tipoSelect" name="tis" class="myInput" required>
-                  <option value="quadro">quadro</option>
-					   <option value="scultura">scultura</option>
-               </select>
-               <select id="NumeroSala" name="ss" class="myInput" required>
+                     </select>
+                     <input type="text" name="titoloSelect" id="t1s" class="myInput" placeholder="titolo" required>
+                     <input type="number" min="2019" max="2025" name="AnnoAquistoSelect" id="aas" class="myInput " placeholder="anno di acquisto" required>
+				         <input type="number" min="1959" max="2024" name="AnnoRealizzazioneSelect" id="ars" class="myInput " placeholder="anno di realizzazione" required>
+                     <select id="tipoSelect" name="tis" class="myInput " required>
+                        <option value="quadro">quadro</option>
+					         <option value="scultura">scultura</option>
+                     </select>
+                     <select id="NumeroSalaSelect" name="ss" class="myInput" required>
                  `;
 
-                 informazioniSala.forEach(informazioniSala => {
+   informazioniSala.forEach(informazioniSala => {
       select += `
-                  <option value="${informazioniSala}">sala ${informazioniSala}</option>
+                        <option value="${informazioniSala}">sala ${informazioniSala}</option>
                             `;
    });
+
+   select += `
+                     </select>
+                  </form>
+					  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>><br><br>ciao
+                `;
 
 
 

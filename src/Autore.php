@@ -33,7 +33,7 @@
 					<option value="vivo">vivo</option>
 					<option value="morto">morto</option>
 				</select>
-				<input type="text" class="myInput" id="m1" placeholder="data di nascita" onfocus="(this.type='date')"
+				<input type="text" class="myInput" id="m1" placeholder="data di morte" onfocus="(this.type='date')"
 					onblur="(this.type='text')">
 
 				<input type="submit" class="invio sub" value="Cerca" id="idInvio" onclick="cerca()" />
@@ -45,7 +45,7 @@
 
 		<div class="contenuto" id="contenuto"></div>
 	</div>
-	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
+	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
 	<script src="../js/arrowUp.js" defer></script>
 	<script src="../js/fetchAutore.js" defer></script>
 	<!-- Collegamento al file JS esterno -->

@@ -44,13 +44,13 @@
 						</option>
 					</select>
 					<div id="query">
-						prova
+						prova 
 					</div>
 					
 				</div>
 				
 			</div>
-			<p id="messaggioUscita">Per chiudere la finestra cliccare fuori dalla finestra bianca</p>
+			<p id="messaggioUscita">Per chiudere cliccare fuori dalla finestra bianca</p>
 			<div id="overlay-quit" onclick="off()">
 			</div>
 		</div>
@@ -82,7 +82,7 @@
 		<div class="contenuto" id="contenuto"></div>
 
 	</div>
-	<a id="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
+	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></a>
 
 
 	<script src="../js/arrowUp.js" defer></script>

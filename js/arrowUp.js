@@ -1,6 +1,7 @@
+
 $(document).ready(function () {
   var contenitore = $('#contenuto');
-  var link = $('#tornaSu');
+  var link = $('.tornaSu');
 
   contenitore.scroll(function () {
     if (contenitore.scrollTop() > 100) {
@@ -15,5 +16,7 @@ $(document).ready(function () {
     contenitore.animate({ scrollTop: 0 }, 300);
   });
 });
+
+
 
 
