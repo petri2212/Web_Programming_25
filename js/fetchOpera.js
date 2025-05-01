@@ -2,6 +2,7 @@
 let informazioni;
 let contenuto = document.getElementById("contenuto");
 let contOverlay = document.getElementById("query");
+let formDataDelete = "";
 //devo fare un controllo aggiuntivo perche window.reload quando la pagina si mostra mi 
 // cancella id e id1 quindi devo controllare solo quando si apre per la prima volta
 const params = new URLSearchParams(window.location.search);
@@ -203,7 +204,7 @@ function generaSelect(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formSelect" name="myformSelect" method="POST" onsubmit="inserisci(); cancellaValori(); ">
+                  <form id="formSelect" name="myformSelect" method="POST" onsubmit="inserisci(); cancellaValori(); aggiornaCerca();">
                      <select id="autoreSelect" name="autoreSelect" class="myInput select" required>
                         <option value="">null</option> 
                 `;
@@ -273,7 +274,7 @@ function inserisci() {
 
    aggiornaCerca();
 
-   /*fetch('../queries/CRUD_OPERA/insert_opera.php', {
+   fetch('../queries/CRUD_OPERA/insert_opera.php', {
 
       method: 'POST',
       header: {
@@ -284,7 +285,7 @@ function inserisci() {
    
    .catch((error) => {
       risposta.innerHTML  = "Errore";
-   });*/
+   });
 }
 
 
@@ -365,7 +366,7 @@ function generaUpdateCodice(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="aggiorna(); cancellaValori();">
+                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="aggiorna(); cancellaValori(); aggiornaCerca();">
                      <select id="codiceUpdate" name="codiceUpdate" class="myInput update" required>
                         <option value="">null</option> 
                 `;
@@ -394,7 +395,7 @@ function generaUpdate(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="aggiorna(); cancellaValori();">         
+                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="aggiorna(); cancellaValori(); aggiornaCerca();">         
                      <select id="autoreUpdate" name="autoreUpdate" class="myInput update">
                         <option value="">null</option> 
                 `;
@@ -464,7 +465,7 @@ function aggiorna() {
 
    aggiornaCerca();
 
-   /*fetch('../queries/CRUD_OPERA/update_opera.php', {
+   fetch('../queries/CRUD_OPERA/update_opera.php', {
 
       method: 'POST',
       header: {
@@ -475,7 +476,7 @@ function aggiorna() {
 
       .catch((error) => {
          risposta.innerHTML = "Errore";
-      });*/
+      });
 }
 
 
@@ -543,7 +544,7 @@ function generaDeleteCodice(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formDelete" name="myformDelete" method="POST" onsubmit="sicurezzaOn(); cancellaValori();">
+                  <form id="formDelete" name="myformDelete" method="POST" onsubmit="sicurezzaOn(); cancellaValori(); aggiornaCerca();">
                      <select id="codiceDelete" name="codiceDelete" class="myInput delete" required>
                         <option value="">null</option> 
                 `;
@@ -559,7 +560,7 @@ function generaDeleteCodice(data) {
    select += `        
                      </select>
                      <br><br><br>
-                     <input type="submit" class="invio InvioDelete" value="Elimina" />
+                     <input type="submit" class="invio InvioDelete" value="Elimina"/>
                   </form>          
                 `;
 
@@ -568,15 +569,12 @@ function generaDeleteCodice(data) {
 }
 
 
+
 function elimina() {
    event.preventDefault();
-   const form = document.querySelector("#formDelete");
-   const formData = new FormData(form);
-   const risposta = document.getElementById("risposta");
-
-   const obj = Object.fromEntries(formData);
+   const obj = Object.fromEntries(formDataDelete);
    console.log(obj);
-
+  
 
    risposta.innerHTML = "Dati eliminati con successo!<div id=\"barra\"></div>";
    avviaCaricamento();
@@ -598,7 +596,7 @@ function elimina() {
       header: {
          'Content-Type': 'application/json'
       },
-      body: formData
+      body: formDataDelete
    })
 
       .catch((error) => {
@@ -610,12 +608,20 @@ function elimina() {
 }
 
 function sicurezzaOn() {
+   event.preventDefault();
+   const form = document.querySelector("#formDelete");
+   formDataDelete = new FormData(form);
+   const obj = Object.fromEntries(formDataDelete);
+   console.log(obj);
    console.log("sei sicuro?")
    document.getElementById("overlayDelete").style.display = "block";
+
 
 }
 
 function sicurezzaOff() {
+   
+   event.preventDefault();
    document.getElementById("overlayDelete").style.display = "none";
 
 }

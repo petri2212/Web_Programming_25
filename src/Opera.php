@@ -52,8 +52,8 @@
 			<div id="contenutoOvelayDelete">
 				<div id="textDelete">
 					<h2>Sei sicuro di voler eliminare la riga?</h2>
-					<input type="button" class="invio sub" value="Annulla" id="elimina" onclick="cancellaValori(); sicurezzaOff();"/>
-					<input type="button" class="invio InvioDelete" value="Elimina" id="elimina" onclick="cancellaValori(); sicurezzaOff(); elimina();"/>
+					<input type="button" class="invio sub" value="Annulla" id="annulla" onclick="cancellaValori(); sicurezzaOff();"/>
+					<input type="button" class="invio InvioDelete" value="Elimina" id="elimina" onclick="cancellaValori(); sicurezzaOff(); elimina(); delete0(); aggiornaCerca();"/>
 				</div>
 			</div>
 		</div>
