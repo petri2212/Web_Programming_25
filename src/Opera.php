@@ -51,18 +51,22 @@
 		<div id="overlayDelete" class="overlayDelete">
 			<div id="contenutoOvelayDelete" class="contenutoOvelayDelete">
 				<div id="textDelete" class="textDelete">
+					<span class="rosso"><i class="fa fa-trash fa-4x" aria-hidden="true"></i></span>
+					<h2>Attenzione</h2><br>
 					<h2>Sei sicuro di voler eliminare la riga?</h2>
-					<input type="button" class="invio sub" value="Annulla" id="annulla" onclick="cancellaValori(); sicurezzaOff();"/>
-					<input type="button" class="invio InvioDelete" value="Elimina" id="elimina" onclick="cancellaValori(); sicurezzaOff(); elimina(); delete0(); aggiornaCerca();"/>
+					<input type="button" class="invio sub" value="Annulla" id="annulla" onclick="cancellaValori(); sicurezzaOff();" />
+					<input type="button" class="invio InvioDelete" value="Elimina" id="elimina" onclick="cancellaValori(); sicurezzaOff(); elimina(); delete0(); aggiornaCerca();" />
 				</div>
 			</div>
 		</div>
 		<!-- Overlay messaggio controllo-->
 		<div id="overlayMessaggio" class="overlayDelete">
-			<div id="contenutoOvelayMessaggio" class="contenutoOvelayDelete">
+			<div id="contenutoOvelayMessaggio" class="contenutoOvelayMessaggio">
 				<div id="textMessaggio" class="textDelete">
-					<h2>ANNO DI ACQUISTO deve essere maggiore o uguale dell'ANNO DI REALIZZAZIONE!</h2>
-					<input type="button" class="invio sub" value="Ok" id="Ok" onclick="overlayMessaggioOff()"/>
+					<span class="rosso"><i class="fa fa-exclamation fa-4x" aria-hidden="true"></i></span>
+					<h2>Attenzione</h2><br>
+					<h3>ANNO DI ACQUISTO deve essere maggiore o uguale dell'ANNO DI REALIZZAZIONE!</h3>
+					<input type="button" class="invio sub" value="Ok" id="Ok" onclick="overlayMessaggioOff()" />
 				</div>
 			</div>
 		</div>

@@ -309,9 +309,7 @@ tr td {
     visibility: visible;
 }
 
-.orange {
-    color: #d77f53;
-}
+
 
 /*Overlay CRUD*/
 #overlay {
@@ -405,14 +403,40 @@ tr td {
     z-index: 103;
     border-radius: 3px;
     text-align: center;
-    box-shadow: 0px 0px 100px 0px rgba(67, 79, 90, 1);
+    border: 3px solid rgba(215, 83, 83, 1);
+    box-shadow: 0px 0px 100px 0px rgba(215, 83, 83, 1);
     transition: all 0.3s ease-in;
     overflow: hidden;
 }
 
+.contenutoOvelayMessaggio {
+    position: fixed;
+    width: 40%;
+    height: 30%;
+    top: 30%;
+    left: 30%;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 103;
+    border-radius: 3px;
+    text-align: center;
+    border: 3px solid rgb(240, 201, 44);
+    box-shadow: 0px 0px 100px 0px rgb(240, 240, 44);
+    transition: all 0.3s ease-in;
+    overflow: hidden;
+}
+
+.rosso{
+    color: rgb(215, 83, 83);
+}
+
 .textDelete{
     position: relative;
-    top: 30%;
+    top: 8%;
+}
+
+#textMessaggio{
+    position: relative;
+    top: 8%;
 }
 
 /*Pulsante di selezione nell'overlay*/
@@ -547,10 +571,10 @@ option:checked {
 }
 
 .tabellaOver#tabellaOverUpdate {
-    width: 15.2%;
-    justify-content: space-between;
+    width: 15%;
+    text-align: center;
     position: relative;
-    left: 39.5%;
+    left: 39.8%;
 }
 
 .tabellaOver li {
@@ -580,6 +604,11 @@ option:checked {
 .tabellaOver .colOver {
     flex-basis: 100%;
     justify-content: space-between;
+}
+
+.tabellaOver#tabellaOverUpdate .colOver {
+    display: flex;
+    justify-content: center;
 }
 
 #risposta {
