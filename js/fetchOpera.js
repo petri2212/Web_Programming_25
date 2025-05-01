@@ -282,10 +282,10 @@ function inserisci() {
       },
       body: formData
    })
-   
-   .catch((error) => {
-      risposta.innerHTML  = "Errore";
-   });
+
+      .catch((error) => {
+         risposta.innerHTML = "Errore";
+      });
 }
 
 
@@ -362,11 +362,11 @@ function update(id, id1) {
 
 function generaUpdateCodice(data) {
    let select = '';
-   
+
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="aggiorna(); cancellaValori(); aggiornaCerca();">
+                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmit()">
                      <select id="codiceUpdate" name="codiceUpdate" class="myInput update" required>
                         <option value="">null</option> 
                 `;
@@ -395,7 +395,7 @@ function generaUpdate(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="aggiorna(); cancellaValori(); aggiornaCerca();">         
+                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmit()">         
                      <select id="autoreUpdate" name="autoreUpdate" class="myInput update">
                         <option value="">null</option> 
                 `;
@@ -479,8 +479,40 @@ function aggiorna() {
       });
 }
 
+function gestisciSubmit() {
+   if (!controlloInput()){
+      return false;
+   } else{
+      aggiorna(); 
+      cancellaValori(); 
+      aggiornaCerca();
+      return true;
+   }
+ 
+}
 
+function controlloInput() {
+   const annoAc = parseInt(document.getElementById('AnnoAquistoUpdate').value);
+   const annoRe = parseInt(document.getElementById('AnnoRealizzazioneUpdate').value);
+   
+   console.log(annoAc);
+   console.log(annoRe);
+   if (annoAc < annoRe) {
+      overlayMessaggioOn();
+      return false;
+    }
+    return true;
+}
 
+function overlayMessaggioOn(){
+   const overlayMessaggio = document.getElementById('overlayMessaggio');
+   overlayMessaggio.style.display = "block";
+}
+
+function overlayMessaggioOff(){
+   const overlayMessaggio = document.getElementById('overlayMessaggio');
+   overlayMessaggio.style.display = "none";
+}
 
 
 
@@ -540,7 +572,7 @@ function delete0(id, id1) {
 
 function generaDeleteCodice(data) {
    let select = '';
-   
+
    console.log("queste sono le informazioni", informazioni);
    select += `
                
@@ -574,7 +606,7 @@ function elimina() {
    event.preventDefault();
    const obj = Object.fromEntries(formDataDelete);
    console.log(obj);
-  
+
 
    risposta.innerHTML = "Dati eliminati con successo!<div id=\"barra\"></div>";
    avviaCaricamento();
@@ -620,7 +652,7 @@ function sicurezzaOn() {
 }
 
 function sicurezzaOff() {
-   
+
    event.preventDefault();
    document.getElementById("overlayDelete").style.display = "none";
 

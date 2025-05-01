@@ -48,12 +48,21 @@
 			</div>
 		</div>
 		<!-- Overlay Delete -->
-		<div id="overlayDelete">
-			<div id="contenutoOvelayDelete">
-				<div id="textDelete">
+		<div id="overlayDelete" class="overlayDelete">
+			<div id="contenutoOvelayDelete" class="contenutoOvelayDelete">
+				<div id="textDelete" class="textDelete">
 					<h2>Sei sicuro di voler eliminare la riga?</h2>
 					<input type="button" class="invio sub" value="Annulla" id="annulla" onclick="cancellaValori(); sicurezzaOff();"/>
 					<input type="button" class="invio InvioDelete" value="Elimina" id="elimina" onclick="cancellaValori(); sicurezzaOff(); elimina(); delete0(); aggiornaCerca();"/>
+				</div>
+			</div>
+		</div>
+		<!-- Overlay messaggio controllo-->
+		<div id="overlayMessaggio" class="overlayDelete">
+			<div id="contenutoOvelayMessaggio" class="contenutoOvelayDelete">
+				<div id="textMessaggio" class="textDelete">
+					<h2>ANNO DI ACQUISTO deve essere maggiore o uguale dell'ANNO DI REALIZZAZIONE!</h2>
+					<input type="button" class="invio sub" value="Ok" id="Ok" onclick="overlayMessaggioOff()"/>
 				</div>
 			</div>
 		</div>
