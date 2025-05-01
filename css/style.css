@@ -246,8 +246,8 @@ tr td {
 }
 
 .tabella {
-    margin-top: 75px;
-    margin-bottom: 15px;
+    margin-top: 65px;
+    margin-bottom: 5px;
 }
 
 .tabella li {
@@ -279,7 +279,7 @@ tr td {
 .fissa {
     position: fixed;
     display: flex;
-    margin-top: -75px;
+    margin-top: -65px;
 }
 
 .fissa .testata {
@@ -295,7 +295,7 @@ tr td {
         opacity .5s, visibility .5s;
     opacity: 0;
     visibility: hidden;
-    z-index: 1000;
+    z-index: 2;
 }
 
 .tornaSu:hover {
