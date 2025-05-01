@@ -7,8 +7,19 @@ $AnnoAquisto = $connessione->real_escape_string($_POST['AnnoAquistoSelect'] ?? n
 $AnnoRealizzazione = $connessione->real_escape_string($_POST['AnnoRealizzazioneSelect'] ?? null);
 $Tipo = $connessione->real_escape_string($_POST['tipoSelect'] ?? null);
 $NumeroSala = $connessione->real_escape_string($_POST['NumeroSalaSelect'] ?? null);
+$max_codice;
 
-$sql = "INSERT INTO opera (codice,autore,titolo,annoAcquisto,annoRealizzazione,tipo,espostaInSala) VALUES (null,'$Autore','$Titolo','$AnnoAquisto', '$AnnoRealizzazione', '$Tipo', '$NumeroSala')";
+$query = "SELECT MAX(codice) AS max_codice FROM opera;";
+
+if ($result = $connessione->query($query)) {
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)) {      
+        $max_codice = $row['max_codice'];
+    }
+}
+$max_codice++;
+
+$sql = "INSERT INTO opera (codice,autore,titolo,annoAcquisto,annoRealizzazione,tipo,espostaInSala) VALUES ('$max_codice','$Autore','$Titolo','$AnnoAquisto', '$AnnoRealizzazione', '$Tipo', '$NumeroSala')";
+
 
 if($connessione->query($sql) === true){
     echo "Inserimento riuscito!";
