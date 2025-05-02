@@ -48,13 +48,13 @@ function cerca(id) {
             <ul class="tabella">
 					<nav class="fissa">
 					   <li class="testata">
-							<div class="col">Codice </div>
-							<div class="col">Nome </div>
-							<div class="col">Cognome </div>
-							<div class="col">Nazione </div>
-							<div class="col">Data Nascita </div>
-							<div class="col">Vivo/Morto </div>
-							<div class="col">Data Morte </div>
+							<div class="col" onclick="riordina(informazioni, 1)">Codice ⮃</div>
+							<div class="col" onclick="riordina(informazioni, 2)">Nome ⮃</div>
+							<div class="col" onclick="riordina(informazioni, 3)">Cognome ⮃</div>
+							<div class="col" onclick="riordina(informazioni, 4)">Nazione ⮃</div>
+							<div class="col" onclick="riordina(informazioni, 5)">Data Nascita ⮃</div>
+							<div class="col" onclick="riordina(informazioni, 6)">Vivo/Morto ⮃</div>
+							<div class="col" onclick="riordina(informazioni, 7)">Data Morte ⮃</div>
 						</li>
 					</nav>
                     ${generaRighe(data)}
@@ -70,10 +70,11 @@ function cerca(id) {
       });
 }
 
-function generaRighe(data) {
+function generaRighe(data,id) {
    let righe = '';
    let riga = '';
    let classRiga = 'class="riga"';
+
    data.forEach(data => {
       if (data.dataMorte == null) {
          riga = `
@@ -115,4 +116,29 @@ function canc() {
    document.getElementById('dn').value = "";
    document.getElementById('m1').value = "";
    document.getElementById('VivoMorto').value = "";
+}
+
+function riordina(data, id){
+  // contenuto.textContent="PISTRELI";
+
+  let tabella = ` 
+
+  <ul class="tabella">
+     <nav class="fissa">
+        <li class="testata">
+           <div class="col" onclick="riordina(informazioni, 1)">Codice ⮃</div>
+           <div class="col" onclick="riordina(informazioni, 2)">Nome ⮃</div>
+           <div class="col" onclick="riordina(informazioni, 3)">Cognome ⮃</div>
+           <div class="col" onclick="riordina(informazioni, 4)">Nazione ⮃</div>
+           <div class="col" onclick="riordina(informazioni, 5)">Data Nascita ⮃</div>
+           <div class="col" onclick="riordina(informazioni, 6)">Vivo/Morto ⮃</div>
+           <div class="col" onclick="riordina(informazioni, 7)">Data Morte ⮃</div>
+        </li>
+     </nav>
+          ${generaRighe(data, id)}
+          </ul>
+          `;
+
+contenuto.innerHTML = tabella; 
+
 }
