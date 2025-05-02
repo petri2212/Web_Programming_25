@@ -3,20 +3,19 @@
 <head><title>Login</title></head>
 <link rel="stylesheet" href="./login.css">
 <body>
-  <div id = "login" class="center-content" style="height: 100vh;">
+  <div id = "login" class="form_login" style="height: 100vh;">
     <h2>Login</h2>
     <form id="form" method="POST">
-      <label>Utente: <input type="text" name="username" placeholder="user"></label><br>
-      <label>Password: <input type="password" name="password" placeholder="password"></label><br>
+      <input type="text" name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
       <button type="submit" onclick="accedi()">Accedi</button>
-      <br><br>
-      <label>Utente: admin</label><br>
+      
       <label>Utente: admin</label>
+      <label>Password: admin</label>
     </form>
     <script src="./verifica_login.js" defer></script>
   </div>
  
 </body>
 </html>
-
 

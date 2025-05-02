@@ -1,0 +1,57 @@
+body{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 20px;
+}
+
+.form_login{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+    
+}
+
+
+
+.form_login input{
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.form_login button{
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+input:hover {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.94);
+}
+/*
+input{
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+button{
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-radius: 10px;
+}*/
+
+button:hover{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.94);
+}
+h2{
+
+
+}
