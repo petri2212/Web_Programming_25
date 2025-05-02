@@ -94,6 +94,16 @@ function generaRighe(data) {
 
 }
 
+function verificaLogin(){
+
+   if (sessionStorage.getItem("loggedIn") === "true") {
+      on();
+    } else {
+      window.location.href = "../src/login/login.html"; // rimanda al login
+    }
+ }
+ 
+
 
 //Overlay
 function query() {
