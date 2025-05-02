@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,7 +72,8 @@
 		<!-- filtro -->
 		<div class="filtro">
 			<form id="form" name="myform" method="POST" onsubmit="return cerca()">
-				<input type="button" class="invio sub" value="Modifica dati" id="idCrud" onclick="on()" />
+				<input type="button" class="invio sub" value="Modifica dati" id="idCrud" onclick="verificaLogin()"/>
+
 				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
 				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">
 				<input type="number" min="2019" max="2025" name="AnnoAquisto" id="aa" class="myInput"

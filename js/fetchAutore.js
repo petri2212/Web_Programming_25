@@ -118,9 +118,13 @@ function canc() {
    document.getElementById('VivoMorto').value = "";
 }
 
-function riordina(data, id){
-  // contenuto.textContent="PISTRELI";
 
+function riordina(data, id){
+   contenuto.textContent="HAHAHA LO VOLEVI RIORDINATO; E INVECE TIE 🤡";
+
+// contenuto.insertAdjacentHTML('beforeend', tabella);
+
+/*
   let tabella = ` 
 
   <ul class="tabella">
@@ -140,5 +144,8 @@ function riordina(data, id){
           `;
 
 contenuto.innerHTML = tabella; 
+*/
+
+
 
 }
