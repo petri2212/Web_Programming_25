@@ -3,11 +3,12 @@ let informazioni;
 let contenuto = document.getElementById("contenuto");
 let contOverlay = document.getElementById("query");
 let formDataDelete = "";
+
 //devo fare un controllo aggiuntivo perche window.reload quando la pagina si mostra mi 
-// cancella id e id1 quindi devo controllare solo quando si apre per la prima volta
+// cancella id_1 e id_2 quindi devo controllare solo quando si apre per la prima volta
 const params = new URLSearchParams(window.location.search);
-const id_1 = params.get('id_1'); // Prende il valore di "nome"
-const id_2 = params.get('id_2'); // Prende il valore di "nome"
+const id_1 = params.get('id_1'); // Prende il valore di "id_1"
+const id_2 = params.get('id_2'); // Prende il valore di "id_2"
 if (id_1 == null && id_2 == null) {
    window.onload = function () {
       cerca();

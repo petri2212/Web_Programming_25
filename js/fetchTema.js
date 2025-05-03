@@ -5,20 +5,15 @@ let contenuto = document.getElementById("contenuto");
 
 const params = new URLSearchParams(window.location.search);
 const id_1 = params.get('id_1'); // Prende il valore di "id_1"
-const id_2 = params.get('id_2'); // Prende il valore di "id_2"
-if (id_1 == null && id_2 == null) {
+if (id_1 == null ) {
    window.onload = function () {
       cerca();
    };
 }
 
 
-
-
-
 function cerca(id) {
    window.history.replaceState({}, document.title, window.location.pathname);
-   // event.preventDefault();
 
    const form = document.querySelector("#form");
    const formData = new FormData(form);
