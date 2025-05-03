@@ -2,21 +2,14 @@ const outputElement = document.getElementById('contenuto');
 
 if (outputElement) {
    const params = new URLSearchParams(window.location.search);
-   const nome = params.get('nome'); // Prende il valore di "nome"
-   const nome1 = params.get('nome1'); // Prende il valore di "nome1"
+   const id_1 = params.get('id_1'); // Prende il valore di "id_1"
+   const id_2 = params.get('id_2'); // Prende il valore di "id_2"
    const formData = new FormData();
 
-
-
-   if (nome) {
-      // Aggiungere una coppia chiave/valor 
-      /*formData.append('Codice', `${nome}`);
-      const obj = Object.fromEntries(formData);
-      console.log(obj);*/
-      cerca(nome, nome1);
-
-   } else if (nome1) {
-      cerca(nome, nome1);
+   if (id_1) {
+      cerca(id_1, id_2);
+   } else if (id_2) {
+      cerca(id_1, id_2);
    }
 
 }

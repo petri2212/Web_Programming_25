@@ -6,9 +6,9 @@ let formDataDelete = "";
 //devo fare un controllo aggiuntivo perche window.reload quando la pagina si mostra mi 
 // cancella id e id1 quindi devo controllare solo quando si apre per la prima volta
 const params = new URLSearchParams(window.location.search);
-const nome = params.get('nome'); // Prende il valore di "nome"
-const nome1 = params.get('nome1'); // Prende il valore di "nome"
-if (nome == null && nome1 == null) {
+const id_1 = params.get('id_1'); // Prende il valore di "nome"
+const id_2 = params.get('id_2'); // Prende il valore di "nome"
+if (id_1 == null && id_2 == null) {
    window.onload = function () {
       cerca();
    };
@@ -80,12 +80,12 @@ function generaRighe(data) {
       riga = `
                 <li ${classRiga}>
 							<div class="col">${data.codice}</div>
-							<div class="col"> <a href="Autore.php?nome=${data.autore}">${data.autore}</a></div>
+							<div class="col"> <a href="Autore.php?id_1=${data.autore}">${data.autore}</a></div>
 							<div class="col">${data.titolo}  </div>
 							<div class="col"> ${data.annoAcquisto}</div>
 							<div class="col">${data.annoRealizzazione}  </div>
 							<div class="col">${data.tipo} </div>
-							<div class="col"> <a href="Sala.php?nome=${data.espostaInSala}"> ${data.espostaInSala}</a></div>
+							<div class="col"> <a href="Sala.php?id_2=${data.espostaInSala}"> ${data.espostaInSala}</a></div>
 						</li>
                 `;
       righe += riga;
