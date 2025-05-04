@@ -95,17 +95,6 @@ function generaRighe(data) {
 
 }
 
-function verificaLogin(){
-
-   if (sessionStorage.getItem("loggedIn") === "true") {
-      on();
-    } else {
-      window.location.href = "../src/login/login.html"; // rimanda al login
-    }
- }
- 
-
-
 //Overlay
 function query() {
    const crudSelect = document.getElementById("crud").value;
@@ -491,36 +480,36 @@ function aggiorna() {
 }
 
 function gestisciSubmit() {
-   if (!controlloInput()){
+   if (!controlloInput()) {
       return false;
-   } else{
-      aggiorna(); 
-      cancellaValori(); 
+   } else {
+      aggiorna();
+      cancellaValori();
       aggiornaCerca();
       return true;
    }
- 
+
 }
 
 function controlloInput() {
    const annoAc = parseInt(document.getElementById('AnnoAquistoUpdate').value);
    const annoRe = parseInt(document.getElementById('AnnoRealizzazioneUpdate').value);
-   
+
    console.log(annoAc);
    console.log(annoRe);
    if (annoAc < annoRe) {
       overlayMessaggioOn();
       return false;
-    }
-    return true;
+   }
+   return true;
 }
 
-function overlayMessaggioOn(){
+function overlayMessaggioOn() {
    const overlayMessaggio = document.getElementById('overlayMessaggio');
    overlayMessaggio.style.display = "block";
 }
 
-function overlayMessaggioOff(){
+function overlayMessaggioOff() {
    const overlayMessaggio = document.getElementById('overlayMessaggio');
    overlayMessaggio.style.display = "none";
 }
@@ -736,4 +725,84 @@ function avviaCaricamento() {
    }, intervallo);
 }
 
+
+function accedi() {
+   event.preventDefault();
+
+   const form = document.querySelector("#loginForm");
+   const formData = new FormData(form);
+
+   const username = formData.get("username");
+   const password = formData.get("password");
+
+   const passwordbox = document.getElementById("password");
+   const contenutoOvelay = document.getElementById("contenutoOvelay");
+   const risposta = document.getElementById("messaggioLogin");
+   const messaggioUscita = document.getElementById("messaggioUscita");
+
+   if (username === "admin" && password === "admin") {
+      sessionStorage.setItem("loggedIn", "true"); // salva lo stato di login, uso sessionStorage perche si autocancella quando chiudo il browser
+
+      risposta.style.color = "green";
+      risposta.innerHTML = "Benvenuto!";
+      console.log("password CORRETTA!")
+
+      setTimeout(() => {
+         risposta.style.opacity = 1;
+      }, 100);
+
+      setTimeout(() => {
+         risposta.style.opacity = 0;
+         contenutoOvelay.style.width = "70%";
+         contenutoOvelay.style.height = "70%";
+         contenutoOvelay.style.left = "15%";
+
+         messaggioUscita.style.width = "70%";
+         messaggioUscita.style.left = "15%";
+         contenutoOvelay.style.borderRadius = "2px";
+         gestisciOverlay();
+      }, 2000);
+   } else {
+      passwordbox.classList.add("shake");
+      risposta.style.color = "red";
+      risposta.innerHTML = "Credenziali errate!";
+      setTimeout(() => {
+         passwordbox.classList.remove("shake");
+      }, 400);
+
+      risposta.style.top = "15%";
+      setTimeout(() => {
+         risposta.style.opacity = 1;
+      }, 100);
+      setTimeout(() => {
+         risposta.style.opacity = 0;
+      }, 1200);
+
+      console.log("password ERRATA!")
+   }
+}
+
+
+function gestisciOverlay() {
+   const loginPage = document.getElementById("login");
+   const textPage = document.getElementById("text");
+   const contenutoOvelay = document.getElementById("contenutoOvelay");
+   const messaggioUscita = document.getElementById("messaggioUscita");
+   on();
+   if (sessionStorage.getItem("loggedIn") === "true") {
+      loginPage.style.display = "none";
+      textPage.style.display = "block";
+      textPage.style.opacity = 1;
+   } else {
+      messaggioUscita.style.width = "25%";
+      contenutoOvelay.style.width = "25%";
+      contenutoOvelay.style.borderRadius = "40px";
+      contenutoOvelay.style.height = "50%";
+      messaggioUscita.style.left = "37.3%";
+      contenutoOvelay.style.left = "37.3%";
+      loginPage.style.display = "block";
+      textPage.style.display = "none";
+      textPage.style.opacity = 0;
+   }
+}
 

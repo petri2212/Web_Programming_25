@@ -76,7 +76,7 @@ h1 {
 
 .myInput.select,
 .myInput.update,
-.myInput.delete{
+.myInput.delete {
     width: 15.2%;
     height: 31px;
     text-align: center;
@@ -148,7 +148,7 @@ nav {
     padding: 20px;
     margin-bottom: 50px;
     border: 1px solid #E5E7EB;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 footer {
@@ -321,8 +321,8 @@ tr td {
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 99;
-    overflow-y: auto;
-
+    overflow-y: hidden;
+    transition: all 0.4s ease-in-out;
 }
 
 #overlay-quit {
@@ -343,16 +343,19 @@ tr td {
     height: 70%;
     top: 15%;
     left: 15%;
+    transition: all 0.3s ease-in-out;
     background-color: rgba(255, 255, 255, 1);
     z-index: 101;
     border-radius: 3px;
     text-align: center;
     box-shadow: 0px 0px 100px 0px rgba(67, 79, 90, 1);
-    transition: all 0.3s ease-in;
     overflow-y: auto;
 }
 
-
+#selezionaOperazione{
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
 
 #messaggioUscita {
     box-shadow: 0px 0px 10px 0px rgba(215, 127, 83, 1);
@@ -375,9 +378,12 @@ tr td {
 #query {
     position: relative;
     top: 20px;
+    margin-bottom: -100px;
     z-index: 100;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
+
+
 
 /*Overlay delete e messaggio*/
 .overlayDelete {
@@ -425,16 +431,16 @@ tr td {
     overflow: hidden;
 }
 
-.rosso{
+.rosso {
     color: rgb(215, 83, 83);
 }
 
-.textDelete{
+.textDelete {
     position: relative;
     top: 8%;
 }
 
-#textMessaggio{
+#textMessaggio {
     position: relative;
     top: 8%;
 }
@@ -629,4 +635,83 @@ option:checked {
     position: relative;
     left: 39.9%;
     top: 0;
+}
+
+
+/* login */
+
+.myInputLogin {
+    width: 310px;
+    height: 45px;
+    position: relative;
+    align-items: center;
+    font-size: 25px;
+    border-radius: 3px;
+    margin-top: 10px;
+    border: 2px solid #2F3C48;
+    text-align: center;
+}
+
+#login {
+    position: relative;
+    top: 50%;
+    transform: translate(0,-70%);
+}
+
+#loginText {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.invio.login {
+    min-width: 316px;
+    height: 50px;
+    border: 2px solid #434f5a;
+    border-radius: 3px;
+    background: #434f5a;
+    font-size: 20px;
+}
+
+.invio.login:hover {
+    background: #fff;
+    color: #434f5a
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-5px);
+    }
+
+    40% {
+        transform: translateX(5px);
+    }
+
+    60% {
+        transform: translateX(-5px);
+    }
+
+    80% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.shake {
+    animation: shake 0.2s ease-in-out 0s 2;
+    border: 1px solid red;
+}
+
+#messaggioLogin{
+    position: relative;
+    opacity: 1;
+    margin-top: 10%;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
 }
