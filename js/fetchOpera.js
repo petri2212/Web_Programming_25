@@ -175,7 +175,8 @@ function select(id, id1) {
 
          console.log('dati ricevuti: ', informazioni);
          let tabella = ` 
-
+            <hr>
+            <h3>Selezionare quale opera si intende modificare</h3>
             <ul class="tabellaOver" id="tabellaOverInsert">
 					   <li class="testataOver">
 							<div class="colOver">Autore </div>
@@ -204,7 +205,7 @@ function generaSelect(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formSelect" name="myformSelect" method="POST" onsubmit="inserisci(); cancellaValori(); aggiornaCerca();">
+                  <form id="formSelect" name="myformSelect" method="POST" onsubmit="return gestisciSubmitSelect();">
                      <select id="autoreSelect" name="autoreSelect" class="myInput select" required>
                         <option value="">null</option> 
                 `;
@@ -288,7 +289,31 @@ function inserisci() {
       });
 }
 
+function gestisciSubmitSelect() {
+   if (!controlloInputSelect()) {
+      return false;
+   } else {
+      inserisci();
+      cancellaValori();
+      aggiornaCerca();
+      return true;
+   }
 
+}
+
+
+function controlloInputSelect() {
+   const annoAc = parseInt(document.getElementById('AnnoAquistoSelect').value);
+   const annoRe = parseInt(document.getElementById('AnnoRealizzazioneSelect').value);
+
+   console.log(annoAc);
+   console.log(annoRe);
+   if (annoAc < annoRe) {
+      overlayMessaggioOn();
+      return false;
+   }
+   return true;
+}
 
 
 
@@ -366,7 +391,7 @@ function generaUpdateCodice(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmit()">
+                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmitUpdate()">
                      <select id="codiceUpdate" name="codiceUpdate" class="myInput update" required>
                         <option value="">null</option> 
                 `;
@@ -395,7 +420,7 @@ function generaUpdate(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmit()">         
+                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmitUpdate()">         
                      <select id="autoreUpdate" name="autoreUpdate" class="myInput update">
                         <option value="">null</option> 
                 `;
@@ -453,7 +478,7 @@ function aggiorna() {
 
    risposta.innerHTML = "Dati aggiornati con successo!<div id=\"barra\"></div>";
    avviaCaricamento();
-   risposta.style.marginTop = "5%";
+   risposta.style.marginTop = "10%";
    setTimeout(() => {
       risposta.style.opacity = 1;
    }, 100);
@@ -479,8 +504,8 @@ function aggiorna() {
       });
 }
 
-function gestisciSubmit() {
-   if (!controlloInput()) {
+function gestisciSubmitUpdate() {
+   if (!controlloInputUpdate()) {
       return false;
    } else {
       aggiorna();
@@ -491,7 +516,7 @@ function gestisciSubmit() {
 
 }
 
-function controlloInput() {
+function controlloInputUpdate() {
    const annoAc = parseInt(document.getElementById('AnnoAquistoUpdate').value);
    const annoRe = parseInt(document.getElementById('AnnoRealizzazioneUpdate').value);
 
@@ -692,13 +717,18 @@ function cancellaValori() {
 }
 
 function aggiornaCerca() {
-   document.getElementById("a1").value = "";
-   document.getElementById("t1").value = "";
-   document.getElementById("aa").value = "";
-   document.getElementById("ar").value = "";
-   document.getElementById("Tipo").value = "";
-   document.getElementById("s").value = "";
-   cerca();
+
+   setTimeout(() => {
+      document.getElementById("a1").value = "";
+      document.getElementById("t1").value = "";
+      document.getElementById("aa").value = "";
+      document.getElementById("ar").value = "";
+      document.getElementById("Tipo").value = "";
+      document.getElementById("s").value = "";
+      cerca();
+   }, 100);
+
+
 }
 
 //barra di caricamento

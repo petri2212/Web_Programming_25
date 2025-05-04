@@ -86,7 +86,7 @@
 		<!-- filtro -->
 		<div class="filtro">
 			<form id="form" name="myform" method="POST" onsubmit="return cerca()">
-				<input type="button" class="invio sub" value="Modifica dati" id="idCrud" onclick="gestisciOverlay()" />
+				<input type="button" class="invio sub" value="Modifica dati" id="idCrud" onclick="gestisciOverlay(); aggiornaCerca();" />
 
 				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
 				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">
