@@ -7,7 +7,8 @@
 - E' stata  inclusa la libreria **font-awesome** per poter utilizzare alcune icone e rendere l'user experience migliore.
 - E' stato deciso di creare un pulsante *cancella* che permette di cancellare i dati dal form, questa scelta è stata fatta in quanto riteniamo che l'utente debba poter visualizzare i campi che ha completato, successivamente può o cancellare oppure cercare qualcosa di più specifico tra i risultati avuti.
 - Per il CRUD abbiamo optato per un pulsante **Modifica dati** che apre un overlay sulla pagina Opera.php, dove possiamo scegliere la specifica operazione da fare oppure possiamo chiudere l'overlay e tornare a vedere il contenuto di Opera DB.
-- Per prevenire azioni stupide fatte da utenti dumb abbiamo implementatio una mini pagina *login* qunado si vuole modificare i dati del db, questo perchè supponiamo che i dati del sito siano visibili a tutti gli utenti che utilizzano il nostro sito, ma quando parliamo di modificare i dati in DB il discorso cambia visto che non tutti gli utenti sono autorizzati.
-- Per chiudere l'overlay bisogna schiacciare con il mouse sulla parte offuscata esterna al div, l'utente verrà avvisaato di questo particolare.
+- Per prevenire azioni stupide fatte da utenti dumb abbiamo implementatio una mini pagina *login* qunado si vuole modificare i dati del db, questo perchè supponiamo che i dati del sito siano visibili a tutti gli utenti che utilizzano il nostro sito, ma quando parliamo di modificare i dati in DB il discorso cambia visto che non tutti gli utenti sono autorizzati. Inoltre nella fase di "inserisci dati" e "aggiorna dati" avviene un controllo sulle due date inseribili, in quando un'opera non può essere stata acquistata prima della sua realizzazione.
+- Per chiudere l'overlay bisogna schiacciare con il mouse sulla parte offuscata esterna al div, l'utente verrà avvisato di questo particolare.
 - Se si utilizza Chrome come browser assicurarsi di avere abilitata *l'accelerazione hardware*, in quanto migliora notevolmente la velocità di risposta del sito .
+- Consigliamo di usare lo zoom della pagina al 100% (su fullHD) per una esperienza migliore.
 
