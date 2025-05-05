@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,8 +22,21 @@
 		<!-- Overlay CRUD-->
 		<div id="overlay">
 			<div id="contenutoOvelay">
+				<!-- Login-->
+				<div id="login" class="form_login">
+					<p id="loginText">Login</p>
+					<form id="loginForm" method="POST">
+						<input type="text" id="username" name="username" placeholder="Username" class="myInputLogin"><br>
+						<input type="password" id="password" name="password" placeholder="Password" class="myInputLogin"><br>
+						<button type="submit" class="invio login" onclick="accedi()">ACCEDI</button><br>
+						<label>Utente: admin</label>
+						<label>Password: admin</label>
+					</form>
+					<div id="messaggioLogin"></div>
+				</div>
+				<!-- CRUD -->
 				<div id="text">
-					<h2>Seleziona l'operazione che desideri effettuare:</h2>
+					<h2 id="selezionaOperazione">Seleziona l'operazione che desideri effettuare:</h2>
 					<select id="crud" name="Tipo" onchange="query()">
 						<option value="">Seleziona operazione...</option>
 						<option value="create">
@@ -72,7 +86,7 @@
 		<!-- filtro -->
 		<div class="filtro">
 			<form id="form" name="myform" method="POST" onsubmit="return cerca()">
-				<input type="button" class="invio sub" value="Modifica dati" id="idCrud" onclick="verificaLogin()"/>
+				<input type="button" class="invio sub" value="Modifica dati" id="idCrud" onclick="gestisciOverlay(); aggiornaCerca();" />
 
 				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
 				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">

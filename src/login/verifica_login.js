@@ -9,14 +9,12 @@ function accedi(){
     const password = formData.get("password");
 
     if (username === "admin" && password === "admin") {
-      sessionStorage.setItem("loggedIn", "true"); // salva lo stato di login
+      sessionStorage.setItem("loggedIn", "true"); // salva lo stato di login, uso sessionStorage perche si autocancella quando chiudo il browser
       window.location.href = "../Opera.php";      // reindirizza
     } else {
-      //document.getElementById("pippo").textContent = "Credenziali errate. Redirect to login wait";
-
       const risposta = document.getElementById("login");
-
       risposta.innerHTML = "Credenziali errate, atttendere!<div id=\"barra\"></div>";
+
       avviaCaricamento();
       risposta.style.marginTop = "5%";
       setTimeout(() => {
@@ -26,16 +24,6 @@ function accedi(){
         risposta.style.opacity = 0;
          window.location.href = "./login.html";
       }, 2500);
-
-
-      /*
-      setTimeout(() => {
-        console.log("2 seconds passed");
-       
-        window.location.href = "./login.html";
-      }, 2000);
-    }
-      */
   
 }
 }

@@ -3,12 +3,13 @@ let informazioni;
 let contenuto = document.getElementById("contenuto");
 let contOverlay = document.getElementById("query");
 let formDataDelete = "";
+
 //devo fare un controllo aggiuntivo perche window.reload quando la pagina si mostra mi 
-// cancella id e id1 quindi devo controllare solo quando si apre per la prima volta
+// cancella id_1 e id_2 quindi devo controllare solo quando si apre per la prima volta
 const params = new URLSearchParams(window.location.search);
-const nome = params.get('nome'); // Prende il valore di "nome"
-const nome1 = params.get('nome1'); // Prende il valore di "nome"
-if (nome == null && nome1 == null) {
+const id_1 = params.get('id_1'); // Prende il valore di "id_1"
+const id_2 = params.get('id_2'); // Prende il valore di "id_2"
+if (id_1 == null && id_2 == null) {
    window.onload = function () {
       cerca();
    };
@@ -80,12 +81,12 @@ function generaRighe(data) {
       riga = `
                 <li ${classRiga}>
 							<div class="col">${data.codice}</div>
-							<div class="col"> <a href="Autore.php?nome=${data.autore}">${data.autore}</a></div>
+							<div class="col"> <a href="Autore.php?id_1=${data.autore}">${data.autore}</a></div>
 							<div class="col">${data.titolo}  </div>
 							<div class="col"> ${data.annoAcquisto}</div>
 							<div class="col">${data.annoRealizzazione}  </div>
 							<div class="col">${data.tipo} </div>
-							<div class="col"> <a href="Sala.php?nome=${data.espostaInSala}"> ${data.espostaInSala}</a></div>
+							<div class="col"> <a href="Sala.php?id_2=${data.espostaInSala}"> ${data.espostaInSala}</a></div>
 						</li>
                 `;
       righe += riga;
@@ -93,17 +94,6 @@ function generaRighe(data) {
    return righe;
 
 }
-
-function verificaLogin(){
-
-   if (sessionStorage.getItem("loggedIn") === "true") {
-      on();
-    } else {
-      window.location.href = "../src/login/login.html"; // rimanda al login
-    }
- }
- 
-
 
 //Overlay
 function query() {
@@ -185,7 +175,8 @@ function select(id, id1) {
 
          console.log('dati ricevuti: ', informazioni);
          let tabella = ` 
-
+            <hr>
+            <h3>Selezionare quale opera si intende modificare</h3>
             <ul class="tabellaOver" id="tabellaOverInsert">
 					   <li class="testataOver">
 							<div class="colOver">Autore </div>
@@ -214,7 +205,7 @@ function generaSelect(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formSelect" name="myformSelect" method="POST" onsubmit="inserisci(); cancellaValori(); aggiornaCerca();">
+                  <form id="formSelect" name="myformSelect" method="POST" onsubmit="return gestisciSubmitSelect();">
                      <select id="autoreSelect" name="autoreSelect" class="myInput select" required>
                         <option value="">null</option> 
                 `;
@@ -298,7 +289,31 @@ function inserisci() {
       });
 }
 
+function gestisciSubmitSelect() {
+   if (!controlloInputSelect()) {
+      return false;
+   } else {
+      inserisci();
+      cancellaValori();
+      aggiornaCerca();
+      return true;
+   }
 
+}
+
+
+function controlloInputSelect() {
+   const annoAc = parseInt(document.getElementById('AnnoAquistoSelect').value);
+   const annoRe = parseInt(document.getElementById('AnnoRealizzazioneSelect').value);
+
+   console.log(annoAc);
+   console.log(annoRe);
+   if (annoAc < annoRe) {
+      overlayMessaggioOn();
+      return false;
+   }
+   return true;
+}
 
 
 
@@ -376,7 +391,7 @@ function generaUpdateCodice(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmit()">
+                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmitUpdate()">
                      <select id="codiceUpdate" name="codiceUpdate" class="myInput update" required>
                         <option value="">null</option> 
                 `;
@@ -405,7 +420,7 @@ function generaUpdate(data) {
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmit()">         
+                  <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmitUpdate()">         
                      <select id="autoreUpdate" name="autoreUpdate" class="myInput update">
                         <option value="">null</option> 
                 `;
@@ -463,7 +478,7 @@ function aggiorna() {
 
    risposta.innerHTML = "Dati aggiornati con successo!<div id=\"barra\"></div>";
    avviaCaricamento();
-   risposta.style.marginTop = "5%";
+   risposta.style.marginTop = "10%";
    setTimeout(() => {
       risposta.style.opacity = 1;
    }, 100);
@@ -489,37 +504,37 @@ function aggiorna() {
       });
 }
 
-function gestisciSubmit() {
-   if (!controlloInput()){
+function gestisciSubmitUpdate() {
+   if (!controlloInputUpdate()) {
       return false;
-   } else{
-      aggiorna(); 
-      cancellaValori(); 
+   } else {
+      aggiorna();
+      cancellaValori();
       aggiornaCerca();
       return true;
    }
- 
+
 }
 
-function controlloInput() {
+function controlloInputUpdate() {
    const annoAc = parseInt(document.getElementById('AnnoAquistoUpdate').value);
    const annoRe = parseInt(document.getElementById('AnnoRealizzazioneUpdate').value);
-   
+
    console.log(annoAc);
    console.log(annoRe);
    if (annoAc < annoRe) {
       overlayMessaggioOn();
       return false;
-    }
-    return true;
+   }
+   return true;
 }
 
-function overlayMessaggioOn(){
+function overlayMessaggioOn() {
    const overlayMessaggio = document.getElementById('overlayMessaggio');
    overlayMessaggio.style.display = "block";
 }
 
-function overlayMessaggioOff(){
+function overlayMessaggioOff() {
    const overlayMessaggio = document.getElementById('overlayMessaggio');
    overlayMessaggio.style.display = "none";
 }
@@ -702,13 +717,18 @@ function cancellaValori() {
 }
 
 function aggiornaCerca() {
-   document.getElementById("a1").value = "";
-   document.getElementById("t1").value = "";
-   document.getElementById("aa").value = "";
-   document.getElementById("ar").value = "";
-   document.getElementById("Tipo").value = "";
-   document.getElementById("s").value = "";
-   cerca();
+
+   setTimeout(() => {
+      document.getElementById("a1").value = "";
+      document.getElementById("t1").value = "";
+      document.getElementById("aa").value = "";
+      document.getElementById("ar").value = "";
+      document.getElementById("Tipo").value = "";
+      document.getElementById("s").value = "";
+      cerca();
+   }, 100);
+
+
 }
 
 //barra di caricamento
@@ -735,4 +755,84 @@ function avviaCaricamento() {
    }, intervallo);
 }
 
+
+function accedi() {
+   event.preventDefault();
+
+   const form = document.querySelector("#loginForm");
+   const formData = new FormData(form);
+
+   const username = formData.get("username");
+   const password = formData.get("password");
+
+   const passwordbox = document.getElementById("password");
+   const contenutoOvelay = document.getElementById("contenutoOvelay");
+   const risposta = document.getElementById("messaggioLogin");
+   const messaggioUscita = document.getElementById("messaggioUscita");
+
+   if (username === "admin" && password === "admin") {
+      sessionStorage.setItem("loggedIn", "true"); // salva lo stato di login, uso sessionStorage perche si autocancella quando chiudo il browser
+
+      risposta.style.color = "green";
+      risposta.innerHTML = "Benvenuto!";
+      console.log("password CORRETTA!")
+
+      setTimeout(() => {
+         risposta.style.opacity = 1;
+      }, 100);
+
+      setTimeout(() => {
+         risposta.style.opacity = 0;
+         contenutoOvelay.style.width = "70%";
+         contenutoOvelay.style.height = "70%";
+         contenutoOvelay.style.left = "15%";
+
+         messaggioUscita.style.width = "70%";
+         messaggioUscita.style.left = "15%";
+         contenutoOvelay.style.borderRadius = "2px";
+         gestisciOverlay();
+      }, 2000);
+   } else {
+      passwordbox.classList.add("shake");
+      risposta.style.color = "red";
+      risposta.innerHTML = "Credenziali errate!";
+      setTimeout(() => {
+         passwordbox.classList.remove("shake");
+      }, 400);
+
+      risposta.style.top = "15%";
+      setTimeout(() => {
+         risposta.style.opacity = 1;
+      }, 100);
+      setTimeout(() => {
+         risposta.style.opacity = 0;
+      }, 1200);
+
+      console.log("password ERRATA!")
+   }
+}
+
+
+function gestisciOverlay() {
+   const loginPage = document.getElementById("login");
+   const textPage = document.getElementById("text");
+   const contenutoOvelay = document.getElementById("contenutoOvelay");
+   const messaggioUscita = document.getElementById("messaggioUscita");
+   on();
+   if (sessionStorage.getItem("loggedIn") === "true") {
+      loginPage.style.display = "none";
+      textPage.style.display = "block";
+      textPage.style.opacity = 1;
+   } else {
+      messaggioUscita.style.width = "25%";
+      contenutoOvelay.style.width = "25%";
+      contenutoOvelay.style.borderRadius = "40px";
+      contenutoOvelay.style.height = "50%";
+      messaggioUscita.style.left = "37.3%";
+      contenutoOvelay.style.left = "37.3%";
+      loginPage.style.display = "block";
+      textPage.style.display = "none";
+      textPage.style.opacity = 0;
+   }
+}
 

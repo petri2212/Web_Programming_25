@@ -4,9 +4,8 @@ let contenuto = document.getElementById("contenuto");
 
 
 const params = new URLSearchParams(window.location.search);
-const nome = params.get('nome'); // Prende il valore di "nome"
-const nome1 = params.get('nome1'); // Prende il valore di "nome"
-if (nome == null && nome1 == null) {
+const id_1 = params.get('id_1'); // Prende il valore di "id_1"
+if (id_1 == null) {
    window.onload = function () {
       cerca();
    };
@@ -79,7 +78,7 @@ function generaRighe(data,id) {
       if (data.dataMorte == null) {
          riga = `
                 <li ${classRiga}>
-							<div class="col"><a href="Opera.php?nome=${data.codice}">${data.codice}</a></div>
+							<div class="col"><a href="Opera.php?id_1=${data.codice}">${data.codice}</a></div>
 							<div class="col"> ${data.nome}</div>
 							<div class="col">${data.cognome}  </div>
 							<div class="col"> ${data.nazione}</div>
@@ -92,7 +91,7 @@ function generaRighe(data,id) {
       } else {
          riga = `
                 <li ${classRiga}>
-							<div class="col"><a href="Opera.php?nome=${data.codice}">${data.codice}</a></div>
+							<div class="col"><a href="Opera.php?id_1=${data.codice}">${data.codice}</a></div>
 							<div class="col"> ${data.nome}</div>
 							<div class="col">${data.cognome}  </div>
 							<div class="col"> ${data.nazione}</div>

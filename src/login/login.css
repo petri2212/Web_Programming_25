@@ -16,8 +16,6 @@ body{
     
 }
 
-
-
 .form_login input{
   width: 100%;
   margin-bottom: 10px;
@@ -36,22 +34,7 @@ body{
 input:hover {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.94);
 }
-/*
-input{
-    margin: 20px 0;
-    padding: 10px 20px;
-    border-radius: 10px;
-}
-button{
-    margin: 20px 0;
-    padding: 10px 20px;
-    border-radius: 10px;
-}*/
 
 button:hover{
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.94);
-}
-h2{
-
-
 }

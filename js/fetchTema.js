@@ -4,21 +4,16 @@ let contenuto = document.getElementById("contenuto");
 
 
 const params = new URLSearchParams(window.location.search);
-const nome = params.get('nome'); // Prende il valore di "nome"
-const nome1 = params.get('nome1'); // Prende il valore di "nome"
-if (nome == null && nome1 == null) {
+const id_1 = params.get('id_1'); // Prende il valore di "id_1"
+if (id_1 == null ) {
    window.onload = function () {
       cerca();
    };
 }
 
 
-
-
-
 function cerca(id) {
    window.history.replaceState({}, document.title, window.location.pathname);
-   // event.preventDefault();
 
    const form = document.querySelector("#form");
    const formData = new FormData(form);
@@ -72,7 +67,7 @@ function generaRighe(data) {
    data.forEach(data => {
       riga = `
                 <li ${classRiga}>
-                     <div class="col"> <a href="Sala.php?nome1=${data.codice}">${data.codice} </a></div>
+                     <div class="col"> <a href="Sala.php?id_2=${data.codice}">${data.codice} </a></div>
                      <div class="col"> ${data.descrizione} </div>
                 </li>
                 `;
