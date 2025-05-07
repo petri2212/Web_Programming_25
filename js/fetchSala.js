@@ -21,10 +21,10 @@ function cerca(id, id1) {
    const form = document.querySelector("#form");
    const formData = new FormData(form);
 
-   if (id != null) {
-      formData.append('Codice', `${id}`);
-   } else if (id1 != null) {
-      formData.append('Tema_Sala', `${id1}`);
+   if (id_1 != null) {
+      formData.append('Codice', `${id_1}`);
+   } else if (id_2 != null) {
+      formData.append('Tema_Sala', `${id_2}`);
    } else {
       event.preventDefault();
    }
