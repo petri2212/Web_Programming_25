@@ -7,12 +7,15 @@ const params = new URLSearchParams(window.location.search);
 const id_1 = params.get('id_1'); // Prende il valore di "id_1"
 if (id_1 == null ) {
    window.onload = function () {
-      cerca();
+      cerca(event);
    };
 }
 
 
-function cerca(id) {
+function cerca(event, id) {
+    if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
    window.history.replaceState({}, document.title, window.location.pathname);
 
    const form = document.querySelector("#form");
@@ -20,10 +23,7 @@ function cerca(id) {
 
    if (id != null) {
       formData.append('Codice', `${id}`);
-   } else {
-      event.preventDefault();
-   }
-
+   } 
 
    const obj = Object.fromEntries(formData)
    console.log(obj)
@@ -86,10 +86,10 @@ function generaRighe(data) {
 
 }
 
-function canc() {
+function canc(event) {
    event.preventDefault();
-
    document.getElementById('n1').value = "";
+   cerca(event);
 }
 
 

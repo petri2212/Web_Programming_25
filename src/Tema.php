@@ -24,8 +24,8 @@
 		<div class="filtro">
 			<form id="form" name="myform" method="POST">
 				<input type="text" name="Descrizione" id="n1" class="myInput" placeholder="Descrizione">
-				<input type="submit" class="invio sub" value="Cerca" id="idInvio" onclick="cerca()" />
-				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc()" />
+				<input type="submit" class="invio sub" value="Cerca" id="idInvio" onclick="cerca(event)" />
+				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc(event)" />
 			</form>
 		</div>
 

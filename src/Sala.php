@@ -25,8 +25,8 @@
 				<input type="text" name="Nome" id="n1" class="myInput" placeholder="Nome">
 				<input type="text" name="Superficie" id="s1" class="myInput" placeholder="Superficie">
 				<input type="text" name="Tema_Sala" id="t1" class="myInput" placeholder="Tema Sala">
-				<input type="submit" class="invio sub" value="Cerca" id="idInvio" onclick="cerca()" />
-				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc()" />
+				<input type="submit" class="invio sub" value="Cerca" id="idInvio" onclick="cerca(event)" />
+				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc(event)" />
 			</form>
 		</div>
 

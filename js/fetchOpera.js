@@ -11,12 +11,15 @@ const id_1 = params.get('id_1'); // Prende il valore di "id_1"
 const id_2 = params.get('id_2'); // Prende il valore di "id_2"
 if (id_1 == null && id_2 == null) {
    window.onload = function () {
-      cerca();
+      cerca(event);
    };
 }
 
 //pagina principale
-function cerca(id, id1) {
+function cerca(event, id, id1) {
+   if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
    window.history.replaceState({}, document.title, window.location.pathname);
 
    const form = document.querySelector("#form");
@@ -26,8 +29,6 @@ function cerca(id, id1) {
       formData.append('Autore', `${id}`);
    } else if (id1 != null) {
       formData.append('NumeroSala', `${id1}`);
-   } else {
-      event.preventDefault();
    }
    const obj = Object.fromEntries(formData);
    console.log(obj);
@@ -721,18 +722,16 @@ function cancellaValori() {
    }
 }
 
-function aggiornaCerca() {
+function aggiornaCerca(event) {
 
-   setTimeout(() => {
-      document.getElementById("a1").value = "";
-      document.getElementById("t1").value = "";
-      document.getElementById("aa").value = "";
-      document.getElementById("ar").value = "";
-      document.getElementById("Tipo").value = "";
-      document.getElementById("s").value = "";
-      cerca();
-   }, 100);
 
+   document.getElementById("a1").value = "";
+   document.getElementById("t1").value = "";
+   document.getElementById("aa").value = "";
+   document.getElementById("ar").value = "";
+   document.getElementById("Tipo").value = "";
+   document.getElementById("s").value = "";
+   cerca(event);
 
 }
 

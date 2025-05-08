@@ -8,14 +8,17 @@ const id_1 = params.get('id_1'); // Prende il valore di "id_1"
 const id_2 = params.get('id_2'); // Prende il valore di "id_2"
 if (id_1 == null && id_2 == null) {
    window.onload = function () {
-      cerca();
+      cerca(event);
    };
 }
 
 
 
 
-function cerca(id, id1) {
+function cerca(event, id_1, id_2) {
+    if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
    window.history.replaceState({}, document.title, window.location.pathname);
 
    const form = document.querySelector("#form");
@@ -25,9 +28,7 @@ function cerca(id, id1) {
       formData.append('Codice', `${id_1}`);
    } else if (id_2 != null) {
       formData.append('Tema_Sala', `${id_2}`);
-   } else {
-      event.preventDefault();
-   }
+   } 
 
    const obj = Object.fromEntries(formData)
    console.log(obj)
@@ -94,10 +95,9 @@ function generaRighe(data) {
 
 }
 
-function canc() {
-   event.preventDefault();
-
+function canc(event) {
    document.getElementById('n1').value = "";
    document.getElementById('s1').value = "";
    document.getElementById('t1').value = "";
+   cerca(event);
 }

@@ -6,23 +6,22 @@ const params = new URLSearchParams(window.location.search);
 const id_1 = params.get('id_1'); // Prende il valore di "id_1"
 if (id_1 == null) {
    window.onload = function () {
-      cerca();
+      cerca(event);
    };
 }
 
-function cerca(id) {
+function cerca(event, id) {
+   if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
    window.history.replaceState({}, document.title, window.location.pathname); //questo mi fa togliere il path come se fosse senza il GET ?nome
    // stratagemma per non far vdere all'utente la richiesta , dovrei aggiungerlo anche nelle altre pagine cosi almeno quando refresho la pagina non ho la richiesta di nuovo
-
    const form = document.querySelector("#form");
    const formData = new FormData(form);
 
    if (id != null) {
       formData.append('Codice', `${id}`);
-   } else {
-      event.preventDefault();
-   }
-
+   } 
 
    const obj = Object.fromEntries(formData)
    console.log(obj)
@@ -117,7 +116,7 @@ function generaRighe(data, id) {
    return righe;
 }
 
-function canc() {
+function canc(event) {
    event.preventDefault();
    document.getElementById('n').value = "";
    document.getElementById('cg').value = "";
@@ -125,4 +124,5 @@ function canc() {
    document.getElementById('dn').value = "";
    document.getElementById('m1').value = "";
    document.getElementById('VivoMorto').value = "";
+   cerca(event);
 }

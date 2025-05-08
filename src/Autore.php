@@ -22,7 +22,7 @@
 		</header>
 
 		<div class="filtro">
-			<form id="form" name="myform" method="POST" onsubmit="return cerca()">
+			<form id="form" name="myform" method="POST" onsubmit="cerca(event); pagina1();">
 				<input type="text" name="Nome" id="n" class="myInput" placeholder="nome">
 				<input type="text" name="Cognome" id="cg" class="myInput" placeholder="cognome">
 				<input type="text" name="Nazione" id="na" class="myInput" placeholder="nazione">
@@ -37,7 +37,7 @@
 					onblur="(this.type='text')">
 
 				<input type="submit" class="invio sub" value="Cerca" id="idInvio" />
-				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc()" /><br>
+				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc(event); pagina1();" /><br>
 			</form>
 		</div>
 

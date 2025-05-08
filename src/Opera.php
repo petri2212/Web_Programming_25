@@ -68,7 +68,7 @@
 					<h2>Attenzione</h2><br>
 					<h2>Sei sicuro di voler eliminare la riga?</h2>
 					<input type="button" class="invio sub" value="Annulla" id="annulla" onclick="cancellaValori(); sicurezzaOff();" />
-					<input type="button" class="invio InvioDelete" value="Elimina" id="elimina" onclick="cancellaValori(); sicurezzaOff(); elimina(); delete0(); aggiornaCerca();" />
+					<input type="button" class="invio InvioDelete" value="Elimina" id="elimina" onclick="cancellaValori(); sicurezzaOff(); elimina(); delete0(); aggiornaCerca(event);" />
 				</div>
 			</div>
 		</div>
@@ -85,8 +85,8 @@
 		</div>
 		<!-- filtro -->
 		<div class="filtro">
-			<form id="form" name="myform" method="POST" onsubmit="return cerca()">
-				<input type="button" class="invio sub" value="Modifica dati" id="idCrud" onclick="gestisciOverlay(); aggiornaCerca();" />
+			<form id="form" name="myform" method="POST" onsubmit="cerca(event); pagina1();">
+				<input type="button" class="invio sub" value="Modifica dati" id="idCrud" onclick="gestisciOverlay(); aggiornaCerca(event);" />
 
 				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
 				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">
@@ -104,7 +104,7 @@
 				<input type="text" name="NumeroSala" id="s" class="myInput" placeholder="numero sala">
 				<br>
 				<input type="submit" class="invio sub" value="Cerca" id="idInvio" />
-				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="aggiornaCerca()" />
+				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="aggiornaCerca(event); pagina1();" />
 
 			</form>
 		</div>
