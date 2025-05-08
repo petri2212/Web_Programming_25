@@ -33,6 +33,7 @@
 	</div>
 	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-3x" aria-hidden="true"></i></a>
 	<script src="../js/arrowUp.js" defer></script>
+	<script src="../js/pagine.js" defer></script>
 	<script src="../js/fetchTema.js" defer></script>
 	<script src="../js/reference.js" defer></script>
 </body>

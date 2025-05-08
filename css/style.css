@@ -11,7 +11,8 @@ body {
     grid-template-areas:
         "header header"
         "nav filtro"
-        "nav contenuto";
+        "nav contenuto"
+        "nav paginazione";
     grid-template-columns: 190px 1fr;
     grid-template-rows: auto auto 1fr auto;
     height: 100vh;
@@ -145,10 +146,18 @@ nav {
     grid-area: contenuto;
     background-color: #fcfcfc;
     font-size: 20px;
-    padding: 20px;
-    margin-bottom: 50px;
+    padding: 10px;
     border: 1px solid #E5E7EB;
     overflow-y: auto;
+}
+
+.paginazione{
+    grid-area: paginazione;
+    background-color: rgba(252, 252, 252, 0.8);
+    font-size: 18px;
+    padding-bottom: -10px;
+    border: 1px solid #E5E7EB;
+    padding-top: 20px;
 }
 
 footer {
@@ -157,7 +166,7 @@ footer {
     bottom: 0%;
     color: #F8F9FA;
     background-color: #2F3C48;
-    padding: 20px;
+    padding: 6px;
 }
 
 tr th {
@@ -195,6 +204,11 @@ tr td {
     border: 2px solid #434f5a;
     background: #434f5a;
 }
+.invio.pag {
+    min-width: auto;
+    border: 2px solid #434f5a;
+    background: #434f5a;
+}
 
 .invio.canc {
     min-width: 100px;
@@ -225,6 +239,11 @@ tr td {
     color: #434f5a
 }
 
+.invio.pag:hover {
+    background: #fff;
+    color: #434f5a
+}
+
 .invio.canc:hover {
     background: #fff;
     color: #d77f53;
@@ -245,9 +264,23 @@ tr td {
     color: #a53a3a;
 }
 
+#pagSx{
+    position: relative;
+    top: -38px;
+    left: -150px;
+}
+
+#pagDx{
+    position: relative;
+    top: -38px;
+    right: -150px;
+}
+
+
 .tabella {
     margin-top: 65px;
     margin-bottom: 5px;
+    margin-right: 18px;
 }
 
 .tabella li {
@@ -272,6 +305,9 @@ tr td {
     margin-bottom: 15px;
 }
 
+.tabella .col-1 {
+    flex-basis: 10%;
+}
 .tabella .col {
     flex-basis: 50%;
 }
@@ -279,7 +315,7 @@ tr td {
 .fissa {
     position: fixed;
     display: flex;
-    margin-top: -65px;
+    margin-top: -70px;
 }
 
 .fissa .testata {

@@ -49,10 +49,12 @@ function cerca(id, id1) {
             <ul class="tabella">
                <nav class="fissa">
 					   <li class="testata">
+                     <div class="col-1" ><button type="button" class="invio pag" id="pagSx" onclick="aggiornaPagina('-')"><</button></div>
 						   <div class="col">Codice </div>
 						   <div class="col">Descrizione </div>
                      <div class="col">Superficie </div>
 						   <div class="col">Tema Sala </div>
+                     <div class="col-1" ><button type="button" class="invio pag" id="pagDx" onclick="aggiornaPagina('+')">></button></div>
 					   </li>
                </nav>
                         ${generaRighe(data)}
@@ -69,18 +71,25 @@ function cerca(id, id1) {
 function generaRighe(data) {
    let righe = '';
    let riga = '';
+   let i = 0;
    let classRiga = 'class="riga"';
    data.forEach(data => {
-      riga = `
+      if (i >= (pagina - 1) * 25 && i < pagina * 25) {
+         riga = `
                 <li ${classRiga}>
+                     <div class="col-1"></div>
                      <div class="col"> <a href="Opera.php?id_2=${data.numero}">${data.numero} </a></div>
                      <div class="col"> ${data.nome} </div>
                      <div class="col"> ${data.superficie} </div>
                      <div class="col"><a href="Tema.php?id_1=${data.temaSala}"> ${data.temaSala} </a></div>
+                     <div class="col-1"></div>
                 </tr>
                 `;
       righe += riga;
+      }
+      i++;
    });
+   numeroRighe = i;
    return righe;
 
 }

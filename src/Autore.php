@@ -22,7 +22,7 @@
 		</header>
 
 		<div class="filtro">
-			<form id="form" name="myform" method="POST">
+			<form id="form" name="myform" method="POST" onsubmit="return cerca()">
 				<input type="text" name="Nome" id="n" class="myInput" placeholder="nome">
 				<input type="text" name="Cognome" id="cg" class="myInput" placeholder="cognome">
 				<input type="text" name="Nazione" id="na" class="myInput" placeholder="nazione">
@@ -35,18 +35,29 @@
 				</select>
 				<input type="text" class="myInput" name="DataMorte" id="m1" placeholder="data di morte" onfocus="(this.type='date')"
 					onblur="(this.type='text')">
-				
-				<input type="submit" class="invio sub" value="Cerca" id="idInvio" onclick="cerca()" />
-				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc()" />
+
+				<input type="submit" class="invio sub" value="Cerca" id="idInvio" />
+				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc()" /><br>
 			</form>
 		</div>
 
 
 
-		<div class="contenuto" id="contenuto"></div>
+		<div class="contenuto" id="contenuto">
+		</div>
+
+		<div class="paginazione">
+			<div>
+				<div id="paginazione"></div>
+				<button type="button" class="invio pag" id="pagSx" onclick="aggiornaPagina('-')">1</button>
+
+				<button type="button" class="invio pag" id="pagDx" onclick="aggiornaPagina('+')">2</button>
+			</div>
+		</div>
 	</div>
 	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-3x" aria-hidden="true"></i></a>
 	<script src="../js/arrowUp.js" defer></script>
+	<script src="../js/pagine.js" defer></script>
 	<script src="../js/fetchAutore.js" defer></script>
 	<!-- Collegamento al file JS esterno -->
 	<script src="../js/reference.js" defer></script>
