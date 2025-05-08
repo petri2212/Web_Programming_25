@@ -75,22 +75,27 @@ function cerca(id, id1) {
 function generaRighe(data) {
    let righe = '';
    let riga = '';
+   let i = 0;
    let classRiga = 'class="riga"';
    data.forEach(data => {
+      if (i >= (pagina - 1) * 25 && i < pagina * 25) {
+         riga = `
+         <li ${classRiga}>
+              <div class="col">${data.codice}</div>
+              <div class="col"> <a href="Autore.php?id_1=${data.autore}">${data.autore}</a></div>
+              <div class="col">${data.titolo}  </div>
+              <div class="col"> ${data.annoAcquisto}</div>
+              <div class="col">${data.annoRealizzazione}  </div>
+              <div class="col">${data.tipo} </div>
+              <div class="col"> <a href="Sala.php?id_2=${data.espostaInSala}"> ${data.espostaInSala}</a></div>
+           </li>
+         `;
+         righe += riga;
+      }
+      i++;
 
-      riga = `
-                <li ${classRiga}>
-							<div class="col">${data.codice}</div>
-							<div class="col"> <a href="Autore.php?id_1=${data.autore}">${data.autore}</a></div>
-							<div class="col">${data.titolo}  </div>
-							<div class="col"> ${data.annoAcquisto}</div>
-							<div class="col">${data.annoRealizzazione}  </div>
-							<div class="col">${data.tipo} </div>
-							<div class="col"> <a href="Sala.php?id_2=${data.espostaInSala}"> ${data.espostaInSala}</a></div>
-						</li>
-                `;
-      righe += riga;
    });
+   numeroRighe = i;
    return righe;
 
 }

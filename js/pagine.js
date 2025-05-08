@@ -34,12 +34,11 @@ function pulsantiDisattiavati(){
     let pulasanteSx = document.getElementById('pagSx');
     let pulasanteDx = document.getElementById('pagDx');
 
-p   pulasanteSx.innerHTML = pagina-1;
-
+    pulasanteSx.innerHTML = pagina-1;
+    pulasanteDx.innerHTML = pagina+1;
 
     
     if (pagina == 1) {
-        pulasanteSx.innerHTML = "<";
         pulasanteSx.style.background = "#fff";
         pulasanteSx.style.color = "#c9c9c9";
         pulasanteSx.style.border = "2px solid #c9c9c9";
@@ -48,7 +47,7 @@ p   pulasanteSx.innerHTML = pagina-1;
         pulasanteSx.style.background = "#434f5a";
         pulasanteSx.style.color = "#fff";
         pulasanteSx.style.border = "2px solid #434f5a";
-        pulasanteSx.style.cursor = "auto";
+        pulasanteSx.style.cursor = "pointer";
     }
 
     if (numeroRighe - pagina * 25 <= 0) {
@@ -61,6 +60,6 @@ p   pulasanteSx.innerHTML = pagina-1;
         pulasanteDx.style.background = "#434f5a";
         pulasanteDx.style.color = "#fff";
         pulasanteDx.style.border = "2px solid #434f5a";
-        pulasanteDx.style.cursor = "auto";
+        pulasanteDx.style.cursor = "pointer";
     }
 }

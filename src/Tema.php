@@ -30,6 +30,14 @@
 		</div>
 
 		<div class="contenuto" id="contenuto"></div>
+		<div class="paginazione">
+			<div>
+				<div id="paginazione"></div>
+				<button type="button" class="invio pag" id="pagSx" onclick="aggiornaPagina('-')">1</button>
+
+				<button type="button" class="invio pag" id="pagDx" onclick="aggiornaPagina('+')">2</button>
+			</div>
+		</div>
 	</div>
 	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-3x" aria-hidden="true"></i></a>
 	<script src="../js/arrowUp.js" defer></script>
