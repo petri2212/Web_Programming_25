@@ -3,10 +3,10 @@ let numeroRighe = 0;
 let paginazione = document.getElementById('paginazione');
 
 window.addEventListener("load", function() {
-    paginazione.innerHTML = "Pagina:"+(pagina)+"&emsp;&emsp;Righe:"+(((pagina-1)*25))+"-"+(pagina * 25);
+    paginazione.innerHTML = "Righe:"+(((pagina-1)*25))+"-"+(pagina * 25);
     setTimeout(() => {
         pulsantiDisattiavati();
-     }, 50);
+     }, 70);
   });
 
 function aggiornaPagina(valore) {
@@ -25,7 +25,7 @@ function aggiornaPagina(valore) {
         
         contenitore.animate({ scrollTop: 0 }, 300);
     }
-    paginazione.innerHTML = "Pagina:"+(pagina)+"&emsp;&emsp;Righe:"+((pagina-1)*25)+"-"+(pagina * 25);
+    paginazione.innerHTML = "Righe:"+((pagina-1)*25)+"-"+(pagina * 25);
     pulsantiDisattiavati();
     console.log(pagina);
 }
