@@ -16,8 +16,8 @@ function cerca(event, id) {
     if (event && typeof event.preventDefault === 'function') {
       event.preventDefault();
    }
-   window.history.replaceState({}, document.title, window.location.pathname);
-
+   //window.history.replaceState({}, document.title, window.location.pathname);
+   console.log(id)
    const form = document.querySelector("#form");
    const formData = new FormData(form);
 
