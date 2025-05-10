@@ -78,8 +78,8 @@ h1 {
 .myInput.select,
 .myInput.update,
 .myInput.delete {
-    width: 12%;
-    height: 31px;
+    width: 11%;
+    height: 30px;
     text-align: center;
     border-radius: 3px;
     padding: 4px 8px;
@@ -108,6 +108,7 @@ h1 {
     border: 2px solid #2F3C48;
     text-align: center;
 }
+
 
 
 hr {
@@ -319,7 +320,7 @@ tr td {
 }
 
 .fissa .testata {
-    width: calc(100vw - 317px);
+    width: calc(100vw - 314px);
 }
 
 .tornaSu {
@@ -758,15 +759,23 @@ option:checked {
   position: relative;
   display: inline-block;
 }
-#autoreSelect,#NumeroSalaSelect {
+.autocompleteInput {
   border: 2px solid #2F3C48;
   background-color: #ffffff;
-  font-size: 16px;
-  
+  font-size: 18px;
+  text-align: center;
 }
-#autoreSelect,#NumeroSalaSelect[type=text] {
+.autocompleteInput[type=text] {
   background-color: #ffffff;
   width: 200px;
+  height: 25px;
+  border: 2px solid #2F3C48;
+  border-radius: 3px;
+}
+
+.autocompleteInput[type=text].opera {
+  background-color: #ffffff;
+  width: 600px;
   height: 25px;
   border: 2px solid #2F3C48;
   border-radius: 3px;
@@ -782,7 +791,7 @@ option:checked {
   top: 100%;
   left: -1px;
   right: 0;
-  width: 205px;
+  width: 100%;
 }
 .autocomplete-items div {
   cursor: pointer;

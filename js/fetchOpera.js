@@ -4,7 +4,9 @@ let contenuto = document.getElementById("contenuto");
 let contOverlay = document.getElementById("query");
 let formDataDelete = "";
 let autoriArray = [];
+let nomeAutoriArray = [];
 let saleArray = [];
+let opereArray = [];
 
 //devo fare un controllo aggiuntivo perche window.reload quando la pagina si mostra mi 
 // cancella id_1 e id_2 quindi devo controllare solo quando si apre per la prima volta
@@ -129,6 +131,12 @@ function query() {
 
          update();
 
+         setTimeout(() => {
+            autocomplete(document.getElementById("codiceUpdate"), opereArray);
+            autocomplete(document.getElementById("autoreUpdate"), autoriArray);
+            autocomplete(document.getElementById("NumeroSalaUpdate"), saleArray);
+         }, 100);
+
          break;
       case "delete":
          setTimeout(() => {
@@ -210,7 +218,7 @@ function select(id, id1) {
       });
 }
 
-function genetareAutoriArray(event) {
+function generareAutoriArray(event) {
    if (event && typeof event.preventDefault === 'function') {
       event.preventDefault();
    }
@@ -244,14 +252,13 @@ function genetareAutoriArray(event) {
          for (let i = 0; i < idAutore.length; i++) {
             autoriArray.push(`${idAutore[i]} - ${cognomeAutore[i]} ${nomeAutore[i]}`);
          }
-
       })
       .catch((error) => {
          console.log('errore: ', error);
       });
 }
 
-function genetareSaleArray(event) {
+function generareSaleArray(event) {
    if (event && typeof event.preventDefault === 'function') {
       event.preventDefault();
    }
@@ -292,14 +299,14 @@ function genetareSaleArray(event) {
 
 function generaSelect() {
    let select = '';
-   genetareAutoriArray(event);
-   genetareSaleArray(event);
+   generareAutoriArray(event);
+   generareSaleArray(event);
    console.log("queste sono le informazioni", informazioni);
    select += `
                
                   <form id="formSelect" autocomplete="off" name="myformSelect" method="POST" onsubmit="return gestisciSubmitSelect();">
                      <div class="autocomplete">
-                        <input id="autoreSelect" type="text" name="autoreSelect" placeholder="Cerca autore..." required>
+                        <input id="autoreSelect" type="text" name="autoreSelect" class="autocompleteInput" placeholder="Cerca autore..." required>
                      </div>
                      
 
@@ -313,7 +320,7 @@ function generaSelect() {
                      </select>
 
                      <div class="autocomplete">
-                        <input id="NumeroSalaSelect" type="text" name="NumeroSalaSelect" placeholder="Cerca sala..." required>
+                        <input id="NumeroSalaSelect" type="text" name="NumeroSalaSelect" class="autocompleteInput" placeholder="Cerca sala..." required>
                      </div>
                      
 
@@ -352,7 +359,7 @@ function inserisci() {
    console.log(risposta.innerHTML);
 
    aggiornaCerca();
-   
+
    fetch('../queries/CRUD_OPERA/insert_opera.php', {
 
       method: 'POST',
@@ -396,8 +403,6 @@ function controlloInputSelect() {
       return false;
    }
 
-   console.log(annoAc);
-   console.log(annoRe);
    if (annoAc < annoRe) {
       overlayMessaggioOn("anno");
       return false;
@@ -448,10 +453,10 @@ function update(id, id1) {
                <h3>Selezionare quale opera si intende modificare</h3>
                <ul class="tabellaOver" id="tabellaOverUpdate">
 					   <li class="testataOver" >
-                     <div class="colOver">Codice</div>
+                     <div class="colOver">Opera</div>
 						</li>
                </ul>
-                    ${generaUpdateCodice(informazioni)}
+                    ${generaUpdateCodice()}
                <hr>
                <h4>Inserire i nuovi valori nei parametri da modificare</h4>
                <ul class="tabellaOver" id="tabellaOverInsert">
@@ -463,7 +468,7 @@ function update(id, id1) {
 							<div class="colOver">Tipo</div>
 							<div class="colOver">Esposta in sala</div>
 						</li>
-                    ${generaUpdate(informazioni)}
+                    ${generaUpdate()}
                     `;
 
 
@@ -475,75 +480,134 @@ function update(id, id1) {
       });
 }
 
-function generaUpdateCodice(data) {
-   let select = '';
+function generareOpereArray(event) {
+   if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
+   window.history.replaceState({}, document.title, window.location.pathname);
 
-   console.log("queste sono le informazioni", informazioni);
+   const form = document.querySelector("#form");
+   const formData = new FormData(form);
+   const obj = Object.fromEntries(formData)
+   console.log(obj)
+   console.log(formData)
+
+   fetch('../queries/CRUD_OPERA/select_opera.php', {
+
+      method: 'POST',
+      header: {
+         'Content-Type': 'application/json'
+      },
+      body: formData
+   })
+
+      .then(response => response.json())
+      .then(data => {
+         informazioni = data;
+
+         console.log('dati ricevuti: ', informazioni);
+
+         let titoliOpera = informazioni.map(informazioni => informazioni.titolo);
+         let autoriOpere = informazioni.map(informazioni => informazioni.autore);
+         getNomeAutori(autoriOpere, event).then(() => {
+            for (let i = 0; i < titoliOpera.length; i++) {
+               opereArray.push(`${titoliOpera[i]} - ${nomeAutoriArray[i]}`);
+            }
+         });
+
+
+         console.log(opereArray);
+      })
+      .catch((error) => {
+         console.log('errore: ', error);
+      });
+}
+
+function getNomeAutori(idAutoriOpere, event) {
+   if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
+   window.history.replaceState({}, document.title, window.location.pathname);
+
+   const form = document.querySelector("#form");
+   const formData = new FormData(form);
+
+   return fetch('../queries/select_autore.php', {
+      method: 'POST',
+      header: {
+         'Content-Type': 'application/json'
+      },
+      body: formData
+   })
+   .then(response => response.json())
+   .then(data => {
+      informazioni = data;
+
+      console.log('dati ricevuti: ', informazioni);
+
+      let idAutore = [...new Set(informazioni.map(info => info.codice))];
+      let nomeAutore = informazioni.map(info => info.nome);
+      let cognomeAutore = informazioni.map(info => info.cognome);
+      let autoreMap = {};
+
+      for (let i = 0; i < idAutore.length; i++) {
+         autoreMap[idAutore[i]] = `${cognomeAutore[i]} ${nomeAutore[i]}`;
+      }
+
+      // Pulisce l’array per evitare duplicazioni
+      nomeAutoriArray.length = 0;
+
+      for (let i = 0; i < idAutoriOpere.length; i++) {
+         if (autoreMap[idAutoriOpere[i]]) {
+            nomeAutoriArray.push(autoreMap[idAutoriOpere[i]]);
+         }
+      }
+   });
+}
+
+
+function generaUpdateCodice() {
+   let select = '';
+   generareOpereArray(event);
+
    select += `
                
                   <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmitUpdate()">
-                     <select id="codiceUpdate" name="codiceUpdate" class="myInput update" required>
-                        <option value="">null</option> 
-                `;
-
-   data.forEach(data => {
-      select += `
-                        <option value="${data.codice}">${data.codice}</option>      
-    `;
-
-   });
-
-
-   select += `        
-                     </select>          
+                     <div class="autocomplete">
+                        <input id="codiceUpdate" type="text" name="codiceUpdate" class="autocompleteInput opera" placeholder="Cerca opera..." required>
+                     </div>             
                 `;
 
    return select;
 
 }
 
-function generaUpdate(data) {
+function generaUpdate() {
    let select = '';
-   let informazioniAut = [...new Set(data.map(data => data.autore))].sort((a, b) => Number(a) - Number(b));
-   let informazioniSala = [...new Set(data.map(data => data.espostaInSala))].sort((a, b) => Number(a) - Number(b));
+   generareAutoriArray(event);
+   generareSaleArray(event);
 
-   console.log("queste sono le informazioni", informazioni);
    select += `
                
                   <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmitUpdate()">         
-                     <select id="autoreUpdate" name="autoreUpdate" class="myInput update">
-                        <option value="">null</option> 
-                `;
 
-   informazioniAut.forEach(informazioniAut => {
-      select += `
-					         <option value="${informazioniAut}">${informazioniAut}</option>
-                `;
-   });
+                     <div class="autocomplete">
+                        <input id="autoreUpdate" type="text" name="autoreUpdate" class="autocompleteInput" placeholder="Cerca autore..." required>
+                     </div>
 
-
-   select += `
-                     </select>
                      <input type="text" name="titoloUpdate" id="titoloUpdate" class="myInput" placeholder="titolo" >
                      <input type="number" min="2019" max="2025" name="AnnoAquistoUpdate" id="AnnoAquistoUpdate" class="myInput " placeholder="anno di acquisto" >
 				         <input type="number" min="1959" max="2024" name="AnnoRealizzazioneUpdate" id="AnnoRealizzazioneUpdate" class="myInput " placeholder="anno di realizzazione" >
                      <select id="tipoUpdate" name="tipoUpdate" class="myInput update" >
-                        <option value="">null</option> 
+                        <option value="">Tipo...</option> 
                         <option value="quadro">quadro</option>
 					         <option value="scultura">scultura</option>
                      </select>
-                     <select id="NumeroSalaUpdate" name="NumeroSalaUpdate" class="myInput update" >
-                        <option value="">null</option> 
-                 `;
+                  
+                     <div class="autocomplete">
+                        <input id="NumeroSalaUpdate" type="text" name="NumeroSalaUpdate" class="autocompleteInput" placeholder="Cerca sala..." required>
+                     </div>
 
-   informazioniSala.forEach(informazioniSala => {
-      select += `
-                        <option value="${informazioniSala}">sala ${informazioniSala}</option>
-                            `;
-   });
-
-   select += `
-                     </select>
                      <br><br><br>
                      <input type="submit" class="invio sub" value="Aggiorna" id="idInvioUpdate"/>
                   </form>
@@ -609,11 +673,27 @@ function gestisciSubmitUpdate() {
 function controlloInputUpdate() {
    const annoAc = parseInt(document.getElementById('AnnoAquistoUpdate').value);
    const annoRe = parseInt(document.getElementById('AnnoRealizzazioneUpdate').value);
+   const opera = document.getElementById('codiceUpdate').value;
+   const autore = document.getElementById('autoreUpdate').value;
+   const sala = document.getElementById('NumeroSalaUpdate').value;
 
-   console.log(annoAc);
-   console.log(annoRe);
+   if (!(opereArray.includes(opera))) {
+      overlayMessaggioOn("opera");
+      return false;
+   }
+
+   if (!(autoriArray.includes(autore))) {
+      overlayMessaggioOn("autore");
+      return false;
+   }
+
+   if (!(saleArray.includes(sala))) {
+      overlayMessaggioOn("sala");
+      return false;
+   }
+
    if (annoAc < annoRe) {
-      overlayMessaggioOn();
+      overlayMessaggioOn("anno");
       return false;
    }
    return true;
@@ -629,13 +709,18 @@ function overlayMessaggioOn(messaggio) {
          overlayMessaggio.style.display = "block";
          break;
       case "autore":
-         testoMessaggio.innerHTML = "L'AUTORE selezionato NON è presente nella lista degli autori!"
+         testoMessaggio.innerHTML = "L'AUTORE inserito NON è presente nella lista degli autori!"
          overlayMessaggio.style.display = "block";
          break;
       case "sala":
-         testoMessaggio.innerHTML = "LA SALA selezionata NON è presente nella lista delle sale!"
+         testoMessaggio.innerHTML = "LA SALA inserita NON è presente nella lista delle sale!"
          overlayMessaggio.style.display = "block";
          break;
+      case "opera":
+         testoMessaggio.innerHTML = "L'OPERA inserita NON è presente nella lista delle opere!"
+         overlayMessaggio.style.display = "block";
+         break;
+
       default:
 
    }
