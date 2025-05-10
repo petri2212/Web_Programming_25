@@ -46,8 +46,9 @@ function cerca(event, id) {
                <nav class="fissa">
 					   <li class="testata">
                      
-						   <div class="col">Codice </div>
+						   
 						   <div class="col">Descrizione </div>
+                     <div class="col">Numero di sale con questo tema </div>
                      
 					   </li>
                </nav>
@@ -72,8 +73,9 @@ function generaRighe(data) {
          riga = `
                 <li ${classRiga}>
                      
-                     <div class="col"> <a href="Sala.php?id_2=${data.codice}">${data.codice} </a></div>
+                    
                      <div class="col"> ${data.descrizione} </div>
+                      <div class="col"><a href="Sala.php?id_2=${data.codice}"> ${data.conteggio} </a></div>
                      
                 </li>
                 `;

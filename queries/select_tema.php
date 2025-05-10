@@ -5,8 +5,9 @@ $Codice = $connessione->real_escape_string($_POST['Codice'] ?? null);
 
 $descrizione = $connessione->real_escape_string($_POST['Descrizione'] ?? null);
 
-$sql = "SELECT * FROM tema ";//WHERE descrizione = "Arte classica" WHERE  descrizione = $descrizione
+$sql = "SELECT COUNT(temaSala) AS conteggio, codice, descrizione  FROM tema JOIN sala ON tema.codice = sala.temaSala ";//WHERE descrizione = "Arte classica" WHERE  descrizione = $descrizione
 $count = 0;
+//SELECT COUNT(temaSala)AS conteggio, numero,descrizione FROM `tema` FULL JOIN `sala`ON codice=temaSala GROUP BY codice;
 
 if (!($descrizione == NULL) && $count == 0) {
     $sql .= "WHERE descrizione LIKE '%" . $descrizione . "%'";
@@ -19,9 +20,11 @@ if ($Codice != NULL && $count == 0) {
     $sql .= "WHERE codice = '$Codice'";
     $count++;
 } elseif ($Codice != NULL) {
-    $sql .= "AND codice = '$Codice '";
+    $sql .= "AND codice = '$Codice'";
     $count++;
 }
+
+$sql .= " GROUP BY codice";
 
 
 if ($result = $connessione->query($sql)) {
@@ -30,6 +33,7 @@ if ($result = $connessione->query($sql)) {
         $tep;
         $tmp['codice'] = $row['codice'];
         $tmp['descrizione'] = $row['descrizione'];
+        $tmp['conteggio'] = $row['conteggio'];
         array_push($data, $tmp);
 
     }

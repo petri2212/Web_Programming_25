@@ -27,7 +27,7 @@ function cerca(event, id_1, id_2) {
    if (id_1 != null) {
       formData.append('Codice', `${id_1}`);
    } else if (id_2 != null) {
-      formData.append('Tema_Sala', `${id_2}`);
+      formData.append('Codice', `${id_2}`);
    } 
 
    const obj = Object.fromEntries(formData)
@@ -51,11 +51,12 @@ function cerca(event, id_1, id_2) {
                <nav class="fissa">
 					   <li class="testata">
                      
-						   <div class="col">Codice </div>
-						   <div class="col">Descrizione </div>
+						   
+                     
+						   <div class="col">Nome </div>
                      <div class="col">Superficie </div>
 						   <div class="col">Tema Sala </div>
-                     
+                     <div class="col">Numero di opere in sala </div>
 					   </li>
                </nav>
                         ${generaRighe(data)}
@@ -78,12 +79,10 @@ function generaRighe(data) {
       if (i >= (pagina - 1) * 25 && i < pagina * 25) {
          riga = `
                 <li ${classRiga}>
-                     
-                     <div class="col"> <a href="Opera.php?id_2=${data.numero}">${data.numero} </a></div>
                      <div class="col"> ${data.nome} </div>
                      <div class="col"> ${data.superficie} </div>
-                     <div class="col"><a href="Tema.php?id_1=${data.temaSala}"> ${data.temaSala} </a></div>
-                     
+                     <div class="col"><a href="Tema.php?id_1=${data.temaSala}"> ${data.descrizione} </a></div>
+                       <div class="col">  <a href="Opera.php?id_2=${data.numero}">${data.Quadri_in_sala} </a></div>
                 </tr>
                 `;
       righe += riga;
