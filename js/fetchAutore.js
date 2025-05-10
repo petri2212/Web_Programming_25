@@ -90,7 +90,7 @@ function generaRighe(data, id) {
                         <div class="col">${data.dataNascita}  </div>
                         <div class="col">${data.tipo} </div>
                        <!-- <div class="col">--------------</div> -->
-                            <div class="col">🐻🐻🐻🐻🐻🐻</div>
+                            <div class="col">✞✞✞✞✞✞</div>
                         <div class="col"><a href="Opera.php?id_1=${data.codice}">${data.num_opere}</a></div>
                         
                      </li>

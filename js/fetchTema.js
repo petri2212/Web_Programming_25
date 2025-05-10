@@ -75,7 +75,7 @@ function generaRighe(data) {
                      
                     
                      <div class="col"> ${data.descrizione} </div>
-                      <div class="col"><a href="Sala.php?id_2=${data.descrizione}"> ${data.conteggio} </a></div>
+                      <div class="col"><a href="Sala.php?id_1=${data.descrizione}"> ${data.conteggio} </a></div>
                      
                 </li>
                 `;

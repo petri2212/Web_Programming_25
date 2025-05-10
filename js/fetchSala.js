@@ -25,9 +25,9 @@ function cerca(event, id_1, id_2) {
    const formData = new FormData(form);
 
    if (id_1 != null) {
-      formData.append('Codice', `${id_1}`);
+      formData.append('Tema_Sala', `${id_1}`);
    } else if (id_2 != null) {
-      formData.append('Tema_Sala', `${id_2}`);
+      formData.append('Codice', `${id_2}`);
    } 
 
    const obj = Object.fromEntries(formData)
