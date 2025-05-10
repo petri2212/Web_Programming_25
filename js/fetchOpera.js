@@ -85,7 +85,7 @@ function generaRighe(data) {
          riga = `
          <li ${classRiga}>
               <!--<div class="col">${data.codice}</div>-->
-              <div class="col"> <a href="Autore.php?id_1=${data.autore}">${data.nome} ${data.cognome}</a></div>
+              <div class="col"> <a href="Autore.php?id_1=${data.autore}">${data.full_name}</a></div>
               <div class="col">${data.titolo}  </div>
               <div class="col"> ${data.annoAcquisto}</div>
               <div class="col">${data.annoRealizzazione}  </div>

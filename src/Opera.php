@@ -88,7 +88,7 @@
 			<form id="form" name="myform" method="POST" onsubmit="cerca(event); pagina1();">
 				<input type="button" class="invio sub" value="Modifica dati" id="idCrud" onclick="gestisciOverlay(); aggiornaCerca(event);" />
 
-				<input type="text" name="Autore" id="a1" class="myInput" placeholder="autore">
+				<input type="text" name="NomeAutore" id="a1" class="myInput" placeholder="autore">
 				<input type="text" name="Titolo" id="t1" class="myInput" placeholder="titolo">
 				<input type="number" min="2019" max="2025" name="AnnoAquisto" id="aa" class="myInput"
 					placeholder="anno di acquisto">
@@ -101,7 +101,7 @@
 					<option value="scultura">scultura</option>
 				</select>
 
-				<input type="text" name="NumeroSala" id="s" class="myInput" placeholder="nome sala">
+				<input type="text" name="NomeSala" id="s" class="myInput" placeholder="nome sala">
 				<br>
 				<input type="submit" class="invio sub" value="Cerca" id="idInvio" />
 				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="aggiornaCerca(event); pagina1();" />
