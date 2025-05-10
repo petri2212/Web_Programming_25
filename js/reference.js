@@ -7,9 +7,9 @@ if (outputElement) {
    const formData = new FormData();
 
    if (id_1) {
-      cerca(id_1, id_2);
+      cerca(null, id_1, null);
    } else if (id_2) {
-      cerca(id_1, id_2);
+      cerca(null, null, id_2);
    }
 
 }
