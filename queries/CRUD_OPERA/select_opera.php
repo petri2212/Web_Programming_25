@@ -8,7 +8,8 @@ $AnnoRealizzazione = $connessione->real_escape_string($_POST['AnnoRealizzazione'
 $Tipo = $connessione->real_escape_string($_POST['Tipo'] ?? null);
 $NumeroSala = $connessione->real_escape_string($_POST['NumeroSala'] ?? null);
 
-$sql = "SELECT * FROM opera ";
+$sql = "SELECT opera.codice, autore, autore.nome, autore.cognome, titolo, annoAcquisto, annoRealizzazione, opera.tipo, espostaInSala, sala.nome AS nome_sala FROM opera JOIN sala ON 
+        opera.espostaInSala = sala.numero JOIN autore ON opera.autore = autore.codice ";
 $count = 0;
 
 if ($Autore != NULL && $count == 0) {
@@ -54,6 +55,7 @@ if (!($NumeroSala == NULL) && $count == 0) {
     $sql .= "AND espostaInSala = '$NumeroSala'";
 }
 
+ $sql .= "ORDER BY opera.codice ASC";
 
 if ($result = $connessione->query($sql)) {
     $data = [];
@@ -66,6 +68,9 @@ if ($result = $connessione->query($sql)) {
         $tmp['annoRealizzazione'] = $row['annoRealizzazione'];
         $tmp['tipo'] = $row['tipo'];
         $tmp['espostaInSala'] = $row['espostaInSala'];
+        $tmp['nome'] = $row['nome'];
+        $tmp['cognome'] = $row['cognome'];
+        $tmp['nome_sala'] = $row['nome_sala'];
 
         array_push($data, $tmp);
 

@@ -101,7 +101,7 @@
 					<option value="scultura">scultura</option>
 				</select>
 
-				<input type="text" name="NumeroSala" id="s" class="myInput" placeholder="numero sala">
+				<input type="text" name="NumeroSala" id="s" class="myInput" placeholder="nome sala">
 				<br>
 				<input type="submit" class="invio sub" value="Cerca" id="idInvio" />
 				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="aggiornaCerca(event); pagina1();" />
