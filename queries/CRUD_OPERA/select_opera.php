@@ -74,6 +74,27 @@ if (!($NomeSala == NULL) && $count == 0) {
 //Yeah
  $sql .= "ORDER BY opera.codice ASC";
 
+$stmt = $connessione->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$data = [];
+while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+       $tep;
+        $tmp['codice'] = $row['codice'];
+        $tmp['autore'] = $row['autore'];
+        $tmp['titolo'] = $row['titolo'];
+        $tmp['annoAcquisto'] = $row['annoAcquisto'];
+        $tmp['annoRealizzazione'] = $row['annoRealizzazione'];
+        $tmp['tipo'] = $row['tipo'];
+        $tmp['espostaInSala'] = $row['espostaInSala'];
+        $tmp['full_name'] = $row['full_name'];
+        $tmp['nome_sala'] = $row['nome_sala'];
+
+        array_push($data, $tmp);
+}
+ echo json_encode($data);
+/*
 if ($result = $connessione->query($sql)) {
     $data = [];
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -92,7 +113,7 @@ if ($result = $connessione->query($sql)) {
 
     }
     echo json_encode($data);
-}
+}*/
 
 $count = 0;
 

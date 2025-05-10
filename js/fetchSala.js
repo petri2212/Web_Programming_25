@@ -27,7 +27,7 @@ function cerca(event, id_1, id_2) {
    if (id_1 != null) {
       formData.append('Codice', `${id_1}`);
    } else if (id_2 != null) {
-      formData.append('Codice', `${id_2}`);
+      formData.append('Tema_Sala', `${id_2}`);
    } 
 
    const obj = Object.fromEntries(formData)
@@ -82,7 +82,7 @@ function generaRighe(data) {
                      <div class="col"> ${data.nome} </div>
                      <div class="col"> ${data.superficie} </div>
                      <div class="col"><a href="Tema.php?id_1=${data.temaSala}"> ${data.descrizione} </a></div>
-                       <div class="col">  <a href="Opera.php?id_2=${data.numero}">${data.Quadri_in_sala} </a></div>
+                     <div class="col">  <a href="Opera.php?id_2=${data.numero}">${data.Quadri_in_sala} </a></div>
                 </tr>
                 `;
       righe += riga;

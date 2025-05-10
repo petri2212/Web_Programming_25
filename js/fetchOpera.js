@@ -352,7 +352,7 @@ function inserisci() {
    console.log(risposta.innerHTML);
 
    aggiornaCerca();
-   /*
+   
    fetch('../queries/CRUD_OPERA/insert_opera.php', {
 
       method: 'POST',
@@ -364,7 +364,7 @@ function inserisci() {
 
       .catch((error) => {
          risposta.innerHTML = "Errore";
-      });*/
+      });
 }
 
 function gestisciSubmitSelect() {

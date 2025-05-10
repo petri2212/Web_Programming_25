@@ -64,8 +64,26 @@ if ($Codice != NULL && $count == 0) {
 
 $sql .= " GROUP BY autore.codice";
 
+$stmt = $connessione->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
 
+$data = [];
+while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+      $tep;
+        $tmp['codice'] = $row['codice'];
+        $tmp['nome'] = $row['nome'];
+        $tmp['cognome'] = $row['cognome'];
+        $tmp['nazione'] = $row['nazione'];
+        $tmp['dataNascita'] = $row['dataNascita'];
+        $tmp['tipo'] = $row['tipo'];
+        $tmp['dataMorte'] = $row['dataMorte'];
+        $tmp['num_opere'] = $row['num_opere'];
 
+        array_push($data, $tmp);
+}
+ echo json_encode($data);
+/*
 if ($result = $connessione->query($sql)) {
     $data = [];
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -83,7 +101,7 @@ if ($result = $connessione->query($sql)) {
 
     }
     echo json_encode($data);
-}
+}*/
 
 $count = 0;
 

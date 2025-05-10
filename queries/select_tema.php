@@ -26,7 +26,20 @@ if ($Codice != NULL && $count == 0) {
 
 $sql .= " GROUP BY codice";
 
+$stmt = $connessione->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
 
+$data = [];
+while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+     $tep;
+        $tmp['codice'] = $row['codice'];
+        $tmp['descrizione'] = $row['descrizione'];
+        $tmp['conteggio'] = $row['conteggio'];
+        array_push($data, $tmp);
+}
+ echo json_encode($data);
+/*
 if ($result = $connessione->query($sql)) {
     $data = [];
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -38,10 +51,7 @@ if ($result = $connessione->query($sql)) {
 
     }
     echo json_encode($data);
-}
+}*/
 
 $count = 0;
-
-
-
 ?>

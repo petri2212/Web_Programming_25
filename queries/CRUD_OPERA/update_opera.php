@@ -56,8 +56,9 @@ if (!($NumeroSala == NULL) && $count == 0) {
 }
 
 $sql .= "WHERE codice = '$Codice';";
-
-if($connessione->query($sql) === true){
+$stmt = $connessione->prepare($sql);
+$stmt->execute();
+if(!$stmt->execute()){
     echo "Aggiornamento dei dati riuscito!";
 }else{
     echo "Aggiornamento dei dati fallito!";

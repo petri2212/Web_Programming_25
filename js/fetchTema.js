@@ -16,7 +16,7 @@ function cerca(event, id) {
     if (event && typeof event.preventDefault === 'function') {
       event.preventDefault();
    }
-   //window.history.replaceState({}, document.title, window.location.pathname);
+   window.history.replaceState({}, document.title, window.location.pathname);
    console.log(id)
    const form = document.querySelector("#form");
    const formData = new FormData(form);
@@ -75,7 +75,7 @@ function generaRighe(data) {
                      
                     
                      <div class="col"> ${data.descrizione} </div>
-                      <div class="col"><a href="Sala.php?id_2=${data.codice}"> ${data.conteggio} </a></div>
+                      <div class="col"><a href="Sala.php?id_2=${data.descrizione}"> ${data.conteggio} </a></div>
                      
                 </li>
                 `;

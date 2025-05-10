@@ -20,11 +20,16 @@ $max_codice++;
 
 $sql = "INSERT INTO opera (codice,autore,titolo,annoAcquisto,annoRealizzazione,tipo,espostaInSala) VALUES ('$max_codice','$Autore','$Titolo','$AnnoAquisto', '$AnnoRealizzazione', '$Tipo', '$NumeroSala')";
 
+$stmt = $connessione->prepare($sql);
+if (!$stmt) {
+    die("Prepare failed: " . $connessione->error);
+}
 
-if($connessione->query($sql) === true){
+if(!$stmt->execute()){
     echo "Inserimento riuscito!";
 }else{
-    echo "Inserimento fallito!";
+    echo "Inserimento fallito!". $stmt->error;;
 }
+
 
 ?>
