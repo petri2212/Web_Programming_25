@@ -71,7 +71,7 @@ if (!($NomeSala == NULL) && $count == 0) {
 } elseif ($NomeSala != NULL) {
     $sql .= "AND sala.nome LIKE '%" . $NomeSala . "%'";
 }
-
+//Yeah
  $sql .= "ORDER BY opera.codice ASC";
 
 if ($result = $connessione->query($sql)) {
