@@ -9,7 +9,7 @@ $DataNascita = $connessione->real_escape_string($_POST['DataNascita'] ?? null);
 $tipo = $connessione->real_escape_string($_POST['VivoMorto'] ?? null);
 $DataMorte = $connessione->real_escape_string($_POST['DataMorte'] ?? null);
 
-$sql = "SELECT * FROM autore ";
+$sql = "SELECT autore.codice, nome, cognome, nazione,dataNascita, autore.tipo, dataMorte, COUNT(opera.codice) AS num_opere FROM autore JOIN opera ON autore.codice = opera.autore ";
 $count = 0;
 
 if ($Nome != NULL && $count == 0) {
@@ -53,22 +53,16 @@ if (!($DataMorte == NULL) && $count == 0) {
 } elseif ($DataMorte != NULL) {
     $sql .= "AND dataMorte = '$DataMorte' ";
 }
-
-//$sql = "SELECT * FROM autore WHERE tipo = 'vivo'";
-
-
-/**
- * 
- * 
- * 
- */
 if ($Codice != NULL && $count == 0) {
-    $sql .= "WHERE codice = '$Codice'";
+    $sql .= "WHERE autore.codice = '$Codice'";
     $count++;
 } elseif ($Codice != NULL) {
-    $sql .= "AND codice = '$Codice '";
+    $sql .= "AND autore.codice = '$Codice '";
     $count++;
 }
+
+
+$sql .= " GROUP BY autore.codice";
 
 
 
@@ -83,6 +77,7 @@ if ($result = $connessione->query($sql)) {
         $tmp['dataNascita'] = $row['dataNascita'];
         $tmp['tipo'] = $row['tipo'];
         $tmp['dataMorte'] = $row['dataMorte'];
+        $tmp['num_opere'] = $row['num_opere'];
 
         array_push($data, $tmp);
 

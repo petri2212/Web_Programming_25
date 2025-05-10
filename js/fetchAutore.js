@@ -47,13 +47,14 @@ function cerca(event, id) {
 					<nav class="fissa">
 					   <li class="testata">
                      
-							<div class="col" >Codice</div>
+							
 							<div class="col" >Nome</div>
 							<div class="col" >Cognome</div>
 							<div class="col" >Nazione</div>
 							<div class="col" >Data Nascita</div>
 							<div class="col" >Vivo/Morto</div>
 							<div class="col" >Data Morte</div>
+                     <div class="col" >Numero opere realizzate</div>
                      
 						</li>
 					</nav>
@@ -82,13 +83,15 @@ function generaRighe(data, id) {
             riga = `
                    <li ${classRiga}>
                         
-                        <div class="col"><a href="Opera.php?id_1=${data.codice}">${data.codice}</a></div>
+                        
                         <div class="col"> ${data.nome}</div>
                         <div class="col">${data.cognome}  </div>
                         <div class="col"> ${data.nazione}</div>
                         <div class="col">${data.dataNascita}  </div>
                         <div class="col">${data.tipo} </div>
-                        <div class="col">--------------</div>
+                       <!-- <div class="col">--------------</div> -->
+                            <div class="col">🐻🐻🐻🐻🐻🐻</div>
+                        <div class="col"><a href="Opera.php?id_1=${data.codice}">${data.num_opere}</a></div>
                         
                      </li>
                    `;
@@ -97,14 +100,14 @@ function generaRighe(data, id) {
             riga = `
                    <li ${classRiga}>
                         
-                        <div class="col"><a href="Opera.php?id_1=${data.codice}">${data.codice}</a></div>
+                        
                         <div class="col"> ${data.nome}</div>
                         <div class="col">${data.cognome}  </div>
                         <div class="col"> ${data.nazione}</div>
                         <div class="col">${data.dataNascita}  </div>
                         <div class="col">${data.tipo} </div>
                         <div class="col"> ${data.dataMorte}</div>
-                        
+                        <div class="col"><a href="Opera.php?id_1=${data.codice}">${data.num_opere}</a></div>
                      </li>
                    `;
          }

@@ -54,7 +54,7 @@ function cerca(event, id, id1) {
             <ul class="tabella">
 					<nav class="fissa">
 					   <li class="testata">
-							<div class="col">Codice </div>
+							  <!--<div class="col">Codice </div>-->
 							<div class="col">Autore </div>
 							<div class="col">Titolo </div>
 							<div class="col">Anno acquisto </div>
@@ -84,7 +84,7 @@ function generaRighe(data) {
       if (i >= (pagina - 1) * 25 && i < pagina * 25) {
          riga = `
          <li ${classRiga}>
-              <div class="col">${data.codice}</div>
+              <!--<div class="col">${data.codice}</div>-->
               <div class="col"> <a href="Autore.php?id_1=${data.autore}">${data.autore}</a></div>
               <div class="col">${data.titolo}  </div>
               <div class="col"> ${data.annoAcquisto}</div>
