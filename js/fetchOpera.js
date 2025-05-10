@@ -3,6 +3,8 @@ let informazioni;
 let contenuto = document.getElementById("contenuto");
 let contOverlay = document.getElementById("query");
 let formDataDelete = "";
+let autoriArray = [];
+let saleArray = [];
 
 //devo fare un controllo aggiuntivo perche window.reload quando la pagina si mostra mi 
 // cancella id_1 e id_2 quindi devo controllare solo quando si apre per la prima volta
@@ -114,6 +116,11 @@ function query() {
 
          select();
 
+         setTimeout(() => {
+            autocomplete(document.getElementById("autoreSelect"), autoriArray);
+            autocomplete(document.getElementById("NumeroSalaSelect"), saleArray);
+         }, 100);
+
          break;
       case "update":
          setTimeout(() => {
@@ -192,7 +199,7 @@ function select(id, id1) {
 							<div class="colOver">Tipo</div>
 							<div class="colOver">Esposta in sala </div>
 						</li>
-                    ${generaSelect(informazioni)}
+                    ${generaSelect()}
                     `;
 
          contOverlay.innerHTML = tabella;
@@ -203,48 +210,113 @@ function select(id, id1) {
       });
 }
 
-function generaSelect(data) {
-   let select = '';
-   let informazioniAut = [...new Set(data.map(data => data.autore))].sort((a, b) => Number(a) - Number(b));
-   let informazioniSala = [...new Set(data.map(data => data.espostaInSala))].sort((a, b) => Number(a) - Number(b));
+function genetareAutoriArray(event) {
+   if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
+   window.history.replaceState({}, document.title, window.location.pathname);
 
+   const form = document.querySelector("#form");
+   const formData = new FormData(form);
+   const obj = Object.fromEntries(formData)
+   console.log(obj)
+   console.log(formData)
+
+   fetch('../queries/select_autore.php', {
+
+      method: 'POST',
+      header: {
+         'Content-Type': 'application/json'
+      },
+      body: formData
+   })
+
+      .then(response => response.json())
+      .then(data => {
+         informazioni = data;
+
+         console.log('dati ricevuti: ', informazioni);
+
+         let idAutore = [...new Set(informazioni.map(informazioni => informazioni.codice))];
+         let nomeAutore = informazioni.map(informazioni => informazioni.nome);
+         let cognomeAutore = informazioni.map(informazioni => informazioni.cognome);
+
+         for (let i = 0; i < idAutore.length; i++) {
+            autoriArray.push(`${idAutore[i]} - ${cognomeAutore[i]} ${nomeAutore[i]}`);
+         }
+
+      })
+      .catch((error) => {
+         console.log('errore: ', error);
+      });
+}
+
+function genetareSaleArray(event) {
+   if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
+   window.history.replaceState({}, document.title, window.location.pathname);
+
+   const form = document.querySelector("#form");
+   const formData = new FormData(form);
+   const obj = Object.fromEntries(formData)
+   console.log(obj)
+   console.log(formData)
+
+   fetch('../queries/select_sala.php', {
+
+      method: 'POST',
+      header: {
+         'Content-Type': 'application/json'
+      },
+      body: formData
+   })
+
+      .then(response => response.json())
+      .then(data => {
+         informazioni = data;
+
+         console.log('dati ricevuti: ', informazioni);
+
+         let nomeSale = [...new Set(informazioni.map(informazioni => informazioni.nome))];
+
+         for (let i = 0; i < nomeSale.length; i++) {
+            saleArray.push(`${nomeSale[i]}`);
+         }
+
+      })
+      .catch((error) => {
+         console.log('errore: ', error);
+      });
+}
+
+function generaSelect() {
+   let select = '';
+   genetareAutoriArray(event);
+   genetareSaleArray(event);
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formSelect" name="myformSelect" method="POST" onsubmit="return gestisciSubmitSelect();">
-                     <select id="autoreSelect" name="autoreSelect" class="myInput select" required>
-                        <option value="">null</option> 
-                `;
+                  <form id="formSelect" autocomplete="off" name="myformSelect" method="POST" onsubmit="return gestisciSubmitSelect();">
+                     <div class="autocomplete">
+                        <input id="autoreSelect" type="text" name="autoreSelect" placeholder="Cerca autore..." required>
+                     </div>
+                     
 
-   informazioniAut.forEach(informazioniAut => {
-      select += `
-					         <option value="${informazioniAut}">${informazioniAut}</option>
-                `;
-   });
-
-
-   select += `
-                     </select>
                      <input type="text" name="titoloSelect" id="titoloSelect" class="myInput" placeholder="titolo" required>
                      <input type="number" min="2019" max="2025" name="AnnoAquistoSelect" id="AnnoAquistoSelect" class="myInput " placeholder="anno di acquisto" required>
 				         <input type="number" min="1959" max="2024" name="AnnoRealizzazioneSelect" id="AnnoRealizzazioneSelect" class="myInput " placeholder="anno di realizzazione" required>
                      <select id="tipoSelect" name="tipoSelect" class="myInput select" required>
-                        <option value="">null</option> 
+                        <option value="">Tipo...</option> 
                         <option value="quadro">quadro</option>
 					         <option value="scultura">scultura</option>
                      </select>
-                     <select id="NumeroSalaSelect" name="NumeroSalaSelect" class="myInput select" required>
-                     <option value="">null</option> 
-                 `;
 
-   informazioniSala.forEach(informazioniSala => {
-      select += `
-                        <option value="${informazioniSala}">sala ${informazioniSala}</option>
-                            `;
-   });
+                     <div class="autocomplete">
+                        <input id="NumeroSalaSelect" type="text" name="NumeroSalaSelect" placeholder="Cerca sala..." required>
+                     </div>
+                     
 
-   select += `
-                     </select>
                      <br><br><br>
                      <input type="submit" class="invio" value="Inserisci" id="idInvioInsert"/>
                   </form>
@@ -280,7 +352,7 @@ function inserisci() {
    console.log(risposta.innerHTML);
 
    aggiornaCerca();
-
+   /*
    fetch('../queries/CRUD_OPERA/insert_opera.php', {
 
       method: 'POST',
@@ -292,7 +364,7 @@ function inserisci() {
 
       .catch((error) => {
          risposta.innerHTML = "Errore";
-      });
+      });*/
 }
 
 function gestisciSubmitSelect() {
@@ -311,11 +383,23 @@ function gestisciSubmitSelect() {
 function controlloInputSelect() {
    const annoAc = parseInt(document.getElementById('AnnoAquistoSelect').value);
    const annoRe = parseInt(document.getElementById('AnnoRealizzazioneSelect').value);
+   const autore = document.getElementById('autoreSelect').value;
+   const sala = document.getElementById('NumeroSalaSelect').value;
+
+   if (!(autoriArray.includes(autore))) {
+      overlayMessaggioOn("autore");
+      return false;
+   }
+
+   if (!(saleArray.includes(sala))) {
+      overlayMessaggioOn("sala");
+      return false;
+   }
 
    console.log(annoAc);
    console.log(annoRe);
    if (annoAc < annoRe) {
-      overlayMessaggioOn();
+      overlayMessaggioOn("anno");
       return false;
    }
    return true;
@@ -535,9 +619,27 @@ function controlloInputUpdate() {
    return true;
 }
 
-function overlayMessaggioOn() {
+function overlayMessaggioOn(messaggio) {
    const overlayMessaggio = document.getElementById('overlayMessaggio');
-   overlayMessaggio.style.display = "block";
+   const testoMessaggio = document.getElementById("testoMessaggioOver");
+
+   switch (messaggio) {
+      case "anno":
+         testoMessaggio.innerHTML = "ANNO DI ACQUISTO deve essere maggiore o uguale dell'ANNO DI REALIZZAZIONE!"
+         overlayMessaggio.style.display = "block";
+         break;
+      case "autore":
+         testoMessaggio.innerHTML = "L'AUTORE selezionato NON è presente nella lista degli autori!"
+         overlayMessaggio.style.display = "block";
+         break;
+      case "sala":
+         testoMessaggio.innerHTML = "LA SALA selezionata NON è presente nella lista delle sale!"
+         overlayMessaggio.style.display = "block";
+         break;
+      default:
+
+   }
+
 }
 
 function overlayMessaggioOff() {

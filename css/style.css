@@ -78,7 +78,7 @@ h1 {
 .myInput.select,
 .myInput.update,
 .myInput.delete {
-    width: 15.2%;
+    width: 12%;
     height: 31px;
     text-align: center;
     border-radius: 3px;
@@ -415,6 +415,7 @@ tr td {
     position: relative;
     top: 20px;
     margin-bottom: -100px;
+    padding-bottom: 120px;
     z-index: 100;
     overflow-y: hidden;
 }
@@ -750,4 +751,52 @@ option:checked {
     margin-top: 10%;
     font-weight: bold;
     transition: all 0.2s ease-in-out;
+}
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+#autoreSelect,#NumeroSalaSelect {
+  border: 2px solid #2F3C48;
+  background-color: #ffffff;
+  font-size: 16px;
+  
+}
+#autoreSelect,#NumeroSalaSelect[type=text] {
+  background-color: #ffffff;
+  width: 200px;
+  height: 25px;
+  border: 2px solid #2F3C48;
+  border-radius: 3px;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 2px solid #f1f1f1;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: -1px;
+  right: 0;
+  width: 205px;
+}
+.autocomplete-items div {
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 2px solid #d4d4d4;
+  padding: 8px;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #2F3C48;
+  color: #ffffff;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: #2F3C48 !important;
+  color: #ffffff;
 }

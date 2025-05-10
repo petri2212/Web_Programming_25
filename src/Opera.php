@@ -78,7 +78,7 @@
 				<div id="textMessaggio" class="textDelete">
 					<span class="rosso"><i class="fa fa-exclamation fa-4x" aria-hidden="true"></i></span>
 					<h2>Attenzione</h2><br>
-					<h3>ANNO DI ACQUISTO deve essere maggiore o uguale dell'ANNO DI REALIZZAZIONE!</h3>
+					<h3 id="testoMessaggioOver">ANNO DI ACQUISTO deve essere maggiore o uguale dell'ANNO DI REALIZZAZIONE!</h3>
 					<input type="button" class="invio sub" value="Ok" id="Ok" onclick="overlayMessaggioOff()" />
 				</div>
 			</div>
@@ -126,6 +126,7 @@
 
 	<script src="../js/arrowUp.js" defer></script>
 	<script src="../js/pagine.js" defer></script>
+	<script src="../js/suggest.js" defer></script>
 	<script src="../js/fetchOpera.js" defer></script>
 	<script src="../js/reference.js" defer></script>
 	<script src="../js/overlay.js" defer></script>
