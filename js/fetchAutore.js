@@ -71,7 +71,7 @@ function cerca(event, id) {
       });
 }
 
-function generaRighe(data, id) {
+function generaRighe(data) {
    let righe = '';
    let riga = '';
    let i = 0;
@@ -89,8 +89,7 @@ function generaRighe(data, id) {
                         <div class="col"> ${data.nazione}</div>
                         <div class="col">${data.dataNascita}  </div>
                         <div class="col">${data.tipo} </div>
-                       <!-- <div class="col">--------------</div> -->
-                            <div class="col">✞</div>
+                        <div class="col">🟩 In vita</div>
                         <div class="col"><a href="Opera.php?id_1=${data.codice}">${data.num_opere}</a></div>
                         
                      </li>
@@ -106,7 +105,7 @@ function generaRighe(data, id) {
                         <div class="col"> ${data.nazione}</div>
                         <div class="col">${data.dataNascita}  </div>
                         <div class="col">${data.tipo} </div>
-                        <div class="col"> ${data.dataMorte}</div>
+                        <div class="col">✞ ${data.dataMorte}</div>
                         <div class="col"><a href="Opera.php?id_1=${data.codice}">${data.num_opere}</a></div>
                      </li>
                    `;
