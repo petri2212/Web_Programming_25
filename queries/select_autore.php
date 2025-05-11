@@ -41,7 +41,7 @@ if (!($DataNascita == NULL) && $count == 0) {
 }
 
 if (!($tipo == NULL) && $count == 0) {
-    $sql .= "WHERE tipo = '$tipo'";
+    $sql .= "WHERE tipo = '$tipo' ";
     $count++;
 } elseif ($tipo != NULL) {
     $sql .= "AND tipo = '$tipo'";

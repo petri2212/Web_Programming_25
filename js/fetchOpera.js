@@ -114,8 +114,9 @@ function query() {
       case "create":
          setTimeout(() => {
             ombra.style.boxShadow = "0px 0px 100px 0px rgba(101, 215, 83, 0.5)";
+            contenuto.style.paddingBottom = "120px";
          }, 10);
-
+         
          select();
 
          setTimeout(() => {
@@ -127,6 +128,7 @@ function query() {
       case "update":
          setTimeout(() => {
             ombra.style.boxShadow = "0px 0px 100px 0px rgba(83, 215, 211, 0.5)";
+            contenuto.style.paddingBottom = "20px";
          }, 10);
 
          update();
@@ -144,6 +146,10 @@ function query() {
          }, 10);
 
          delete0();
+
+         setTimeout(() => {
+            autocomplete(document.getElementById("codiceDelete"), opereArray);
+         }, 100);
 
          break;
       default:
@@ -451,11 +457,6 @@ function update(id, id1) {
          let tabella = ` 
                <hr>
                <h3>Selezionare quale opera si intende modificare</h3>
-               <ul class="tabellaOver" id="tabellaOverUpdate">
-					   <li class="testataOver" >
-                     <div class="colOver">Opera</div>
-						</li>
-               </ul>
                     ${generaUpdateCodice()}
                <hr>
                <h4>Inserire i nuovi valori nei parametri da modificare</h4>
@@ -509,6 +510,8 @@ function generareOpereArray(event) {
 
          let titoliOpera = informazioni.map(informazioni => informazioni.titolo);
          let autoriOpere = informazioni.map(informazioni => informazioni.autore);
+         opereArray.length = 0;
+
          getNomeAutori(autoriOpere, event).then(() => {
             for (let i = 0; i < titoliOpera.length; i++) {
                opereArray.push(`${titoliOpera[i]} - ${nomeAutoriArray[i]}`);
@@ -592,7 +595,7 @@ function generaUpdate() {
                   <form id="formUpdate" name="myformUpdate" method="POST" onsubmit="return gestisciSubmitUpdate()">         
 
                      <div class="autocomplete">
-                        <input id="autoreUpdate" type="text" name="autoreUpdate" class="autocompleteInput" placeholder="Cerca autore..." required>
+                        <input id="autoreUpdate" type="text" name="autoreUpdate" class="autocompleteInput" placeholder="Cerca autore...">
                      </div>
 
                      <input type="text" name="titoloUpdate" id="titoloUpdate" class="myInput" placeholder="titolo" >
@@ -605,7 +608,7 @@ function generaUpdate() {
                      </select>
                   
                      <div class="autocomplete">
-                        <input id="NumeroSalaUpdate" type="text" name="NumeroSalaUpdate" class="autocompleteInput" placeholder="Cerca sala..." required>
+                        <input id="NumeroSalaUpdate" type="text" name="NumeroSalaUpdate" class="autocompleteInput" placeholder="Cerca sala...">
                      </div>
 
                      <br><br><br>
@@ -671,28 +674,40 @@ function gestisciSubmitUpdate() {
 }
 
 function controlloInputUpdate() {
-   const annoAc = parseInt(document.getElementById('AnnoAquistoUpdate').value);
-   const annoRe = parseInt(document.getElementById('AnnoRealizzazioneUpdate').value);
+   const annoAc = document.getElementById('AnnoAquistoUpdate').value;
+   const annoRe = document.getElementById('AnnoRealizzazioneUpdate').value;
    const opera = document.getElementById('codiceUpdate').value;
    const autore = document.getElementById('autoreUpdate').value;
+   const titolo = document.getElementById('titoloUpdate').value;
+   const tipo = document.getElementById('tipoUpdate').value;
    const sala = document.getElementById('NumeroSalaUpdate').value;
+
+   const annoAcInt = parseInt(annoAc);
+   const annoReInt = parseInt(annoRe);
+
+   let inputArray = [autore, titolo, annoAc, annoRe, tipo, sala];
 
    if (!(opereArray.includes(opera))) {
       overlayMessaggioOn("opera");
       return false;
    }
 
-   if (!(autoriArray.includes(autore))) {
+   if ((!(autoriArray.includes(autore))) && autore !== "") {  //true
       overlayMessaggioOn("autore");
       return false;
    }
 
-   if (!(saleArray.includes(sala))) {
+   if ((!(saleArray.includes(sala))) && sala !== "") {
       overlayMessaggioOn("sala");
       return false;
    }
 
-   if (annoAc < annoRe) {
+   if (inputArray.every(val => val.trim() === "")){
+      overlayMessaggioOn("noInput");
+      return false;
+   }
+
+   if (annoAcInt < annoReInt) {
       overlayMessaggioOn("anno");
       return false;
    }
@@ -709,15 +724,19 @@ function overlayMessaggioOn(messaggio) {
          overlayMessaggio.style.display = "block";
          break;
       case "autore":
-         testoMessaggio.innerHTML = "L'AUTORE inserito NON è presente nella lista degli autori!"
+         testoMessaggio.innerHTML = "L'AUTORE inserito NON &Egrave; PRESENTE nella lista degli autori!"
          overlayMessaggio.style.display = "block";
          break;
       case "sala":
-         testoMessaggio.innerHTML = "LA SALA inserita NON è presente nella lista delle sale!"
+         testoMessaggio.innerHTML = "LA SALA inserita NON &Egrave; PRESENTE nella lista delle sale!"
          overlayMessaggio.style.display = "block";
          break;
       case "opera":
-         testoMessaggio.innerHTML = "L'OPERA inserita NON è presente nella lista delle opere!"
+         testoMessaggio.innerHTML = "L'OPERA inserita NON &Egrave; PRESENTE nella lista delle opere!"
+         overlayMessaggio.style.display = "block";
+         break;
+      case "noInput":
+         testoMessaggio.innerHTML = "NON &Egrave; STATO inserito NESSUN NUOVO valore nei parametri!"
          overlayMessaggio.style.display = "block";
          break;
 
@@ -776,7 +795,7 @@ function delete0(id, id1) {
                      <div class="colOver">Codice</div>
 						</li>
                </ul>
-                    ${generaDeleteCodice(informazioni)}
+                    ${generaDeleteCodice()}
                     `;
 
 
@@ -788,27 +807,16 @@ function delete0(id, id1) {
       });
 }
 
-function generaDeleteCodice(data) {
+function generaDeleteCodice() {
    let select = '';
-
+   generareOpereArray();
    console.log("queste sono le informazioni", informazioni);
    select += `
                
-                  <form id="formDelete" name="myformDelete" method="POST" onsubmit="sicurezzaOn(); cancellaValori(); aggiornaCerca();">
-                     <select id="codiceDelete" name="codiceDelete" class="myInput delete" required>
-                        <option value="">null</option> 
-                `;
-
-   data.forEach(data => {
-      select += `
-                        <option value="${data.codice}">${data.codice}</option>      
-    `;
-
-   });
-
-
-   select += `        
-                     </select>
+                  <form id="formDelete" name="myformDelete" method="POST" onsubmit="sicurezzaOn();">
+                     <div class="autocomplete">
+                        <input id="codiceDelete" type="text" name="codiceDelete" class="autocompleteInput opera" placeholder="Cerca opera..." required>
+                     </div>   
                      <br><br><br>
                      <input type="submit" class="invio InvioDelete" value="Elimina"/>
                   </form>          
@@ -860,12 +868,22 @@ function elimina() {
 function sicurezzaOn() {
    event.preventDefault();
    const form = document.querySelector("#formDelete");
+   const opera = document.getElementById("codiceDelete").value;
    formDataDelete = new FormData(form);
    const obj = Object.fromEntries(formDataDelete);
    console.log(obj);
-   console.log("sei sicuro?")
-   document.getElementById("overlayDelete").style.display = "block";
 
+   
+   if (!(opereArray.includes(opera))) {
+      console.log(opera);
+      console.log(opereArray);
+      overlayMessaggioOn("opera");
+      return false;
+   }
+   document.getElementById("overlayDelete").style.display = "block";
+   cancellaValori(); 
+   aggiornaCerca();
+   return true;
 
 }
 
