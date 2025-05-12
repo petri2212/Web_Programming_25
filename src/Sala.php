@@ -22,9 +22,13 @@
 
 		<div class="filtro">
 			<form id="form" name="myform" method="POST">
-				<input type="text" name="Nome" id="n1" class="myInput" placeholder="Nome">
+				<div class="autocomplete">
+                    <input id="n1" type="text" name="Nome" class="autocompleteInput" placeholder="Cerca nome...">
+                </div>
 				<input type="text" name="Superficie" id="s1" class="myInput" placeholder="Superficie">
-				<input type="text" name="Tema_Sala" id="t1" class="myInput" placeholder="Tema Sala">
+				<div class="autocomplete">
+                    <input id="t1" type="text" name="Tema_Sala" class="autocompleteInput" placeholder="Cerca tema Sala...">
+                </div>
 				<input type="submit" class="invio sub" value="Cerca" id="idInvio" onclick="cerca(event)" />
 				<input type="button" class="invio canc" value="Cancella" id="idCanc" onclick="canc(event)" />
 			</form>
@@ -43,6 +47,7 @@
 	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-3x" aria-hidden="true"></i></a>
 	<script src="../js/arrowUp.js" defer></script>
 	<script src="../js/pagine.js" defer></script>
+	<script src="../js/suggest.js" defer></script>
 	<script src="../js/fetchSala.js" defer></script>
 	<script src="../js/reference.js" defer></script>
 </body>

@@ -2,6 +2,8 @@
 let informazioni;
 let contenuto = document.getElementById("contenuto");
 
+let temiSaleArray = [];
+let nomiSaleArray = [];
 
 const params = new URLSearchParams(window.location.search);
 const id_1 = params.get('id_1'); // Prende il valore di "id_1"
@@ -74,6 +76,8 @@ function generaRighe(data) {
    let righe = '';
    let riga = '';
    let i = 0;
+   generareTemisaleArray(event);
+   generareNomiSaleArray(event);
    let classRiga = 'class="riga"';
    data.forEach(data => {
       if (i >= (pagina - 1) * 25 && i < pagina * 25) {
@@ -90,6 +94,8 @@ function generaRighe(data) {
       i++;
    });
    numeroRighe = i;
+   autocomplete(document.getElementById("n1"), nomiSaleArray);
+   autocomplete(document.getElementById("t1"), temiSaleArray);
    return righe;
 
 }
@@ -99,4 +105,82 @@ function canc(event) {
    document.getElementById('s1').value = "";
    document.getElementById('t1').value = "";
    cerca(event);
+}
+
+function generareTemisaleArray(event) {
+   if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
+   window.history.replaceState({}, document.title, window.location.pathname);
+
+   const form = document.querySelector("#form");
+   const formData = new FormData(form);
+   const obj = Object.fromEntries(formData)
+   console.log(obj)
+   console.log(formData)
+
+   fetch('../queries/select_tema.php', {
+
+      method: 'POST',
+      header: {
+         'Content-Type': 'application/json'
+      },
+      body: formData
+   })
+
+      .then(response => response.json())
+      .then(data => {
+         informazioni = data;
+
+         console.log('dati ricevuti: ', informazioni);
+
+         let descrizione = [...new Set(informazioni.map(informazioni => informazioni.descrizione))];
+
+         for (let i = 0; i < descrizione.length; i++) {
+            temiSaleArray.push(`${descrizione[i]}`);
+         }
+
+      })
+      .catch((error) => {
+         console.log('errore: ', error);
+      });
+}
+
+function generareNomiSaleArray(event) {
+   if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
+   window.history.replaceState({}, document.title, window.location.pathname);
+
+   const form = document.querySelector("#form");
+   const formData = new FormData(form);
+   const obj = Object.fromEntries(formData)
+   console.log(obj)
+   console.log(formData)
+
+   fetch('../queries/select_sala.php', {
+
+      method: 'POST',
+      header: {
+         'Content-Type': 'application/json'
+      },
+      body: formData
+   })
+
+      .then(response => response.json())
+      .then(data => {
+         informazioni = data;
+
+         console.log('dati ricevuti: ', informazioni);
+
+         let nome = [...new Set(informazioni.map(informazioni => informazioni.nome))];
+
+         for (let i = 0; i < nome.length; i++) {
+            nomiSaleArray.push(`${nome[i]}`);
+         }
+
+      })
+      .catch((error) => {
+         console.log('errore: ', error);
+      });
 }

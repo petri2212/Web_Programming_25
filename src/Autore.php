@@ -23,9 +23,15 @@
 
 		<div class="filtro">
 			<form id="form" name="myform" method="POST" onsubmit="cerca(event); pagina1();">
-				<input type="text" name="Nome" id="n" class="myInput" placeholder="nome">
-				<input type="text" name="Cognome" id="cg" class="myInput" placeholder="cognome">
-				<input type="text" name="Nazione" id="na" class="myInput" placeholder="nazione">
+				<div class="autocomplete">
+                    <input id="n" type="text" name="Nome" class="autocompleteInput" placeholder="Cerca nome...">
+                </div>
+				<div class="autocomplete">
+                    <input id="cg" type="text" name="Cognome" class="autocompleteInput" placeholder="Cerca cognome...">
+                </div>
+				<div class="autocomplete">
+                    <input id="na" type="text" name="Nazione" class="autocompleteInput" placeholder="Cerca nazione...">
+                </div>
 				<input type="text" name="DataNascita" class="myInput" id="dn" placeholder="data di nascita" onfocus="(this.type='date')"
 					onblur="(this.type='text')">
 				<select id="VivoMorto" name="VivoMorto" class="myInput">
@@ -58,6 +64,7 @@
 	<a class="tornaSu"><i class="fa fa-arrow-circle-up fa-3x" aria-hidden="true"></i></a>
 	<script src="../js/arrowUp.js" defer></script>
 	<script src="../js/pagine.js" defer></script>
+	<script src="../js/suggest.js" defer></script>
 	<script src="../js/fetchAutore.js" defer></script>
 	<!-- Collegamento al file JS esterno -->
 	<script src="../js/reference.js" defer></script>

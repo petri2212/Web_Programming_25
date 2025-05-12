@@ -3,7 +3,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     color: #111827;
-
+    overflow-y: hidden;
 }
 
 .griglia {
@@ -786,7 +786,7 @@ option:checked {
   border: 2px solid #f1f1f1;
   border-bottom: none;
   border-top: none;
-  z-index: 99;
+  z-index: 1000;
   /*position the autocomplete items to be the same width as the container:*/
   top: 100%;
   left: -1px;

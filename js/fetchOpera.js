@@ -3,6 +3,11 @@ let informazioni;
 let contenuto = document.getElementById("contenuto");
 let contOverlay = document.getElementById("query");
 let formDataDelete = "";
+
+let autoriArrayRAW = [];
+let titoliArray = [];
+
+//CRUD
 let autoriArray = [];
 let nomeAutoriArray = [];
 let saleArray = [];
@@ -81,6 +86,9 @@ function generaRighe(data) {
    let righe = '';
    let riga = '';
    let i = 0;
+   generaInput(event);
+   generareTitoloArray(event);
+   generareSaleArray(event);
    let classRiga = 'class="riga"';
    data.forEach(data => {
       if (i >= (pagina - 1) * 25 && i < pagina * 25) {
@@ -101,9 +109,83 @@ function generaRighe(data) {
 
    });
    numeroRighe = i;
+   autocomplete(document.getElementById("a1"), autoriArrayRAW);
+   autocomplete(document.getElementById("t1"), titoliArray);
+   autocomplete(document.getElementById("s"), saleArray);
    return righe;
 
 }
+
+async function generareTitoloArray(event) {
+   if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
+   window.history.replaceState({}, document.title, window.location.pathname);
+
+   const form = document.querySelector("#form");
+   const formData = new FormData(form);
+   const obj = Object.fromEntries(formData);
+
+   try {
+      const response = await fetch('../queries/CRUD_OPERA/select_opera.php', {
+         method: 'POST',
+         body: formData
+      });
+      const data = await response.json();
+
+      informazioni = data;
+
+      let titolo = [...new Set(informazioni.map(info => info.titolo))];
+
+      titoliArray.length = 0;
+
+      for (let i = 0; i < titolo.length; i++) {
+         titoliArray.push(titolo[i]);
+      }
+
+      return true; // 👈 ritorni qualcosa per poter usare .then()
+   } catch (error) {
+      console.error('errore: ', error);
+      return false;
+   }
+}
+
+async function generaInput(event) {
+   if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
+   window.history.replaceState({}, document.title, window.location.pathname);
+
+   const form = document.querySelector("#form");
+   const formData = new FormData(form);
+   const obj = Object.fromEntries(formData);
+   
+
+   try {
+      const response = await fetch('../queries/select_autore.php', {
+         method: 'POST',
+         body: formData
+      });
+      const data = await response.json();
+
+      informazioni = data;
+
+      let nomeAutore = informazioni.map(info => info.nome);
+      let cognomeAutore = informazioni.map(info => info.cognome);
+
+      autoriArrayRAW.length = 0;
+
+      for (let i = 0; i < nomeAutore.length; i++) {
+         autoriArrayRAW.push(`${nomeAutore[i]} ${cognomeAutore[i]}`);
+      }
+
+      return true; // 👈 ritorni qualcosa per poter usare .then()
+   } catch (error) {
+      console.error('errore: ', error);
+      return false;
+   }
+}
+
 
 //Overlay
 function query() {

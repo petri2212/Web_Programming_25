@@ -1,6 +1,9 @@
 
 let informazioni;
 let contenuto = document.getElementById("contenuto");
+let nomeArray = [];
+let cognomeArray = [];
+let nazioneArray = [];
 
 const params = new URLSearchParams(window.location.search);
 const id_1 = params.get('id_1'); // Prende il valore di "id_1"
@@ -21,7 +24,7 @@ function cerca(event, id) {
 
    if (id != null) {
       formData.append('Codice', `${id}`);
-   } 
+   }
 
    const obj = Object.fromEntries(formData)
    console.log(obj)
@@ -75,6 +78,7 @@ function generaRighe(data) {
    let righe = '';
    let riga = '';
    let i = 0;
+   generaInput(event);
    let classRiga = 'class="riga"';
 
    data.forEach(data => {
@@ -115,6 +119,9 @@ function generaRighe(data) {
       i++;
    });
    numeroRighe = i;
+   autocomplete(document.getElementById("n"), nomeArray);
+   autocomplete(document.getElementById("cg"), cognomeArray);
+   autocomplete(document.getElementById("na"), nazioneArray);
    return righe;
 }
 
@@ -127,4 +134,44 @@ function canc(event) {
    document.getElementById('m1').value = "";
    document.getElementById('VivoMorto').value = "";
    cerca(event);
+}
+
+async function generaInput(event) {
+   if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+   }
+   window.history.replaceState({}, document.title, window.location.pathname);
+
+   const form = document.querySelector("#form");
+   const formData = new FormData(form);
+   const obj = Object.fromEntries(formData);
+
+   try {
+      const response = await fetch('../queries/select_autore.php', {
+         method: 'POST',
+         body: formData
+      });
+      const data = await response.json();
+
+      informazioni = data;
+
+      let nomeAutore = [...new Set(informazioni.map(info => info.nome))];
+      let cognomeAutore = [...new Set(informazioni.map(info => info.cognome))];
+      let nazioneAutore = [...new Set(informazioni.map(info => info.nazione))];
+
+      nomeArray.length = 0;
+      cognomeArray.length = 0;
+      nazioneArray.length = 0;
+
+      for (let i = 0; i < nomeAutore.length; i++) {
+         nomeArray.push(nomeAutore[i]);
+         cognomeArray.push(cognomeAutore[i]);
+         nazioneArray.push(nazioneAutore[i]);
+      }
+
+      return true; // 👈 ritorni qualcosa per poter usare .then()
+   } catch (error) {
+      console.error('errore: ', error);
+      return false;
+   }
 }
