@@ -16,3 +16,7 @@ operations for a particular table that will be given.
 5. Palette: Bianco
 
 ## [ Documentation](documentation/documentation.md)
+In questa sezione è presente la documentazione del progetto, principalmente sono state elencate le scelte architetturali e la business logic.
+
+## [ User](documentation/documentation_user.md)
+In questa sezione vengono definiti gli utenti che utilizzeranno il sito.
