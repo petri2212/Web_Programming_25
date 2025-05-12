@@ -1,13 +1,45 @@
 <?php
 require_once('../config.php');
 
-$Codice = $connessione->real_escape_string($_POST['codiceUpdate'] ?? null);
-$Autore = $connessione->real_escape_string($_POST['autoreUpdate'] ?? null);
+$Opera = $connessione->real_escape_string($_POST['codiceUpdate'] ?? null);
+$NomeAutore = $connessione->real_escape_string($_POST['autoreUpdate'] ?? null);
 $Titolo = $connessione->real_escape_string($_POST['titoloUpdate'] ?? null);
 $AnnoAquisto = $connessione->real_escape_string($_POST['AnnoAquistoUpdate'] ?? null);
 $AnnoRealizzazione = $connessione->real_escape_string($_POST['AnnoRealizzazioneUpdate'] ?? null);
 $Tipo = $connessione->real_escape_string($_POST['tipoUpdate'] ?? null);
-$NumeroSala = $connessione->real_escape_string($_POST['NumeroSalaUpdate'] ?? null);
+$NomeSala = $connessione->real_escape_string($_POST['NumeroSalaUpdate'] ?? null);
+
+
+//Ricavo Id Opera
+$TitoloOpera = substr($Opera, 0, strpos($Opera, '-') - 1);
+$AutoreOpera = substr($Opera, strpos($Opera, '-') + 2);
+
+$parti = explode(" ", $AutoreOpera);
+
+$cognome = $parti[0];
+$nome = $parti[1];
+
+$queryIdOpera = "SELECT opera.codice AS codiceOpera FROM opera JOIN autore ON autore.codice = opera.autore WHERE opera.titolo = '$TitoloOpera' AND autore.nome = '$nome' AND autore.cognome = '$cognome';";
+
+if ($result = $connessione->query($queryIdOpera)) {
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+        $Codice = $row['codiceOpera'];
+    }
+}
+
+
+//Taglio Id Autore
+$Autore = substr($NomeAutore, 0, strpos($NomeAutore, '-') - 1);
+
+//Ricavo Id Sala
+$queryIdSala = "SELECT numero FROM sala WHERE nome = '$NomeSala';";
+
+if ($result = $connessione->query($queryIdSala)) {
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+        $NumeroSala = $row['numero'];
+    }
+}
+
 
 $sql = "UPDATE opera SET ";
 $count = 0;
@@ -57,7 +89,7 @@ if (!($NumeroSala == NULL) && $count == 0) {
 
 $sql .= "WHERE codice = '$Codice';";
 $stmt = $connessione->prepare($sql);
-$stmt->execute();
+
 if(!$stmt->execute()){
     echo "Aggiornamento dei dati riuscito!";
 }else{
