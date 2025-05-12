@@ -16,14 +16,18 @@ function aggiornaPagina(valore) {
         pagina--;
         cerca(event);
 
-        contenitore.animate({ scrollTop: 0 }, 300);
+        if (contenitore.scrollTop() > 0) {
+            contenitore.animate({ scrollTop: 0 }, 300);
+        }
     }
 
     if (valore == "+" && numeroRighe - pagina * 25 > 0) {
         pagina++;
         cerca(event);
 
-        contenitore.animate({ scrollTop: 0 }, 300);
+        if (contenitore.scrollTop() > 0) {
+            contenitore.animate({ scrollTop: 0 }, 300);
+        }
     }
     paginazione.innerHTML = "Righe: " + (((pagina - 1) * 25) + 1) + "-" + (pagina * 25);
     pulsantiDisattiavati();
