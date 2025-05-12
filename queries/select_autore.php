@@ -2,7 +2,7 @@
 require_once('config.php');
 
 $Codice = $connessione->real_escape_string($_POST['Codice'] ?? null);
-$Nome = $connessione->real_escape_string($_POST['Nome'] ?? null);
+$Nome = $connessione->real_escape_string ($_POST['Nome'] ?? null);
 $Cognome = $connessione->real_escape_string($_POST['Cognome'] ?? null);
 $Nazione = $connessione->real_escape_string($_POST['Nazione'] ?? null);
 $DataNascita = $connessione->real_escape_string($_POST['DataNascita'] ?? null);
