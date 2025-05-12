@@ -116,7 +116,7 @@ function query() {
             ombra.style.boxShadow = "0px 0px 100px 0px rgba(101, 215, 83, 0.5)";
             contenuto.style.paddingBottom = "120px";
          }, 10);
-         
+
          select();
 
          setTimeout(() => {
@@ -386,6 +386,8 @@ function gestisciSubmitSelect() {
    } else {
       inserisci();
       cancellaValori();
+      autocomplete(document.getElementById("autoreSelect"), autoriArray);
+      autocomplete(document.getElementById("NumeroSalaSelect"), saleArray);
       aggiornaCerca();
       return true;
    }
@@ -542,30 +544,30 @@ function getNomeAutori(idAutoriOpere, event) {
       },
       body: formData
    })
-   .then(response => response.json())
-   .then(data => {
-      informazioni = data;
+      .then(response => response.json())
+      .then(data => {
+         informazioni = data;
 
-      console.log('dati ricevuti: ', informazioni);
+         console.log('dati ricevuti: ', informazioni);
 
-      let idAutore = [...new Set(informazioni.map(info => info.codice))];
-      let nomeAutore = informazioni.map(info => info.nome);
-      let cognomeAutore = informazioni.map(info => info.cognome);
-      let autoreMap = {};
+         let idAutore = [...new Set(informazioni.map(info => info.codice))];
+         let nomeAutore = informazioni.map(info => info.nome);
+         let cognomeAutore = informazioni.map(info => info.cognome);
+         let autoreMap = {};
 
-      for (let i = 0; i < idAutore.length; i++) {
-         autoreMap[idAutore[i]] = `${cognomeAutore[i]} ${nomeAutore[i]}`;
-      }
-
-      // Pulisce l’array per evitare duplicazioni
-      nomeAutoriArray.length = 0;
-
-      for (let i = 0; i < idAutoriOpere.length; i++) {
-         if (autoreMap[idAutoriOpere[i]]) {
-            nomeAutoriArray.push(autoreMap[idAutoriOpere[i]]);
+         for (let i = 0; i < idAutore.length; i++) {
+            autoreMap[idAutore[i]] = `${cognomeAutore[i]} ${nomeAutore[i]}`;
          }
-      }
-   });
+
+         // Pulisce l’array per evitare duplicazioni
+         nomeAutoriArray.length = 0;
+
+         for (let i = 0; i < idAutoriOpere.length; i++) {
+            if (autoreMap[idAutoriOpere[i]]) {
+               nomeAutoriArray.push(autoreMap[idAutoriOpere[i]]);
+            }
+         }
+      });
 }
 
 
@@ -667,6 +669,9 @@ function gestisciSubmitUpdate() {
    } else {
       aggiorna();
       cancellaValori();
+      autocomplete(document.getElementById("codiceUpdate"), opereArray);
+      autocomplete(document.getElementById("autoreUpdate"), autoriArray);
+      autocomplete(document.getElementById("NumeroSalaUpdate"), saleArray);
       aggiornaCerca();
       return true;
    }
@@ -702,7 +707,7 @@ function controlloInputUpdate() {
       return false;
    }
 
-   if (inputArray.every(val => val.trim() === "")){
+   if (inputArray.every(val => val.trim() === "")) {
       overlayMessaggioOn("noInput");
       return false;
    }
@@ -873,7 +878,7 @@ function sicurezzaOn() {
    const obj = Object.fromEntries(formDataDelete);
    console.log(obj);
 
-   
+
    if (!(opereArray.includes(opera))) {
       console.log(opera);
       console.log(opereArray);
@@ -881,7 +886,8 @@ function sicurezzaOn() {
       return false;
    }
    document.getElementById("overlayDelete").style.display = "block";
-   cancellaValori(); 
+   cancellaValori();
+   autocomplete(document.getElementById("codiceDelete"), opereArray);
    aggiornaCerca();
    return true;
 
