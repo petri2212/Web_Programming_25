@@ -52,10 +52,10 @@ if (!($AnnoRealizzazione == NULL) && $count == 0) {
 }
 
 if (!($Tipo == NULL) && $count == 0) {
-    $sql .= "WHERE tipo = '$Tipo'";
+    $sql .= "WHERE opera.tipo = '$Tipo'";
     $count++;
 } elseif ($Tipo != NULL) {
-    $sql .= "AND tipo = '$Tipo'";
+    $sql .= "AND opera.tipo = '$Tipo'";
 }
 
 if (!($NumeroSala == NULL) && $count == 0) {

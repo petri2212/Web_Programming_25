@@ -41,10 +41,10 @@ if (!($DataNascita == NULL) && $count == 0) {
 }
 
 if (!($tipo == NULL) && $count == 0) {
-    $sql .= "WHERE tipo = '$tipo' ";
+    $sql .= "WHERE autore.tipo = '$tipo' ";
     $count++;
 } elseif ($tipo != NULL) {
-    $sql .= "AND tipo = '$tipo'";
+    $sql .= "AND autore.tipo = '$tipo'";
 }
 
 if (!($DataMorte == NULL) && $count == 0) {
