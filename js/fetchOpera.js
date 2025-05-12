@@ -122,7 +122,7 @@ function query() {
          setTimeout(() => {
             autocomplete(document.getElementById("autoreSelect"), autoriArray);
             autocomplete(document.getElementById("NumeroSalaSelect"), saleArray);
-         }, 100);
+         }, 500);
 
          break;
       case "update":
@@ -137,7 +137,7 @@ function query() {
             autocomplete(document.getElementById("codiceUpdate"), opereArray);
             autocomplete(document.getElementById("autoreUpdate"), autoriArray);
             autocomplete(document.getElementById("NumeroSalaUpdate"), saleArray);
-         }, 100);
+         }, 500);
 
          break;
       case "delete":
@@ -149,7 +149,7 @@ function query() {
 
          setTimeout(() => {
             autocomplete(document.getElementById("codiceDelete"), opereArray);
-         }, 100);
+         }, 500);
 
          break;
       default:
